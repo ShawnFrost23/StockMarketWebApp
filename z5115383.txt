@@ -1,0 +1,19 @@
+Week 1 
+
+Formed a group of 5. Picked the portfolio management project. Agreed everyone would
+read project proposal guidelines and marking criteria to kick off discussion next Monday
+night. Group decided to meet 3x a week on Monday, Wednesday and Friday at 7pm. 
+I created a What's App group to facilitate all group communications outside of UNSW, 
+Github and Jira. I also created a Google Drive folder to house documentation. Prep for next 
+week included mapping background, user stories, sprints and architecture diagrams. 
+
+Week 2
+
+Met Monday night to discuss epic and user stories. Met again on Wednesday afternoon to 
+divide proposal work up and settle on requirements. This week i wrote the background
+section for the proposal and helped consolidate user stories and sprints in preparation
+for proposal submission. 
+
+Week 3
+
+
