@@ -16,4 +16,9 @@ for proposal submission.
 
 Week 3
 
+Met Monday night to run through progress. Sent Rachid a copy of proposal 
+to give feedback for weekly meeting on Wednesday. Following feedback from Rachid helped
+clarify and edit proposal in preparation for submission. Just waiting on submission to 
+begin setting up environment for development and sprint 1.  
+
 
