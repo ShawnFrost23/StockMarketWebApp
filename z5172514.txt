@@ -1,0 +1,18 @@
+Elton Wong (z5172514)
+
+Week 1
+
+This week I formed a group of 5 with my classmates. We decide to proceed with the portfolio management tool after considering other available options. During the session, we introduce ourselves to each other
+and started to brainstorm our approach to build this product.
+
+Week 2
+
+In our team meeting, we discussed the main functionalities of the product and the technology we plan to use.
+We split up the work to write our user stories on Jira. I was assigned to write the user stories of optimizing the user's portfolio. We also split the user stories into different sprints. This is a very important preparation 
+for our project proposal which is due next week. 
+
+Week 3
+
+I helped to create and edit the user stories in the proposal. I also created the software architecture diagram in the proposal. After I reached out to our tutor Rachid, I added a description of software architecture based on his feedback. I started to research on what is the best cloud infrastructure for us to build our web app on 
+and I plan to deploy our web app and build our CI/CD pipeline on AWS next week. 
+ 
