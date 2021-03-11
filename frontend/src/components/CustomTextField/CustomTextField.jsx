@@ -12,36 +12,36 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
-    borderColor: '#161a25',
-    width: '35ch',
+    borderColor: '#ffffff',
+    width: '80%',
   },
   input : {
-    color: '#161a25',
+    color: '#ffffff',
   }
 }));
 
 const CssTextField = withStyles({
   root: {
     '& label.Mui-focused': {
-      color: 'green',
+      color: 'white',
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: 'green',
+      borderBottomColor: 'white',
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '161a25',
+        borderColor: 'ffffff',
       },
       '&:hover fieldset': {
-        borderColor: '161a25',
+        borderColor: 'ffffff',
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'green',
+        borderColor: 'white',
       },
     },
     '& label': {
-      color: '161a25',
-      border: '161a25',
+      color: 'ffffff',
+      border: 'ffffff',
     },
 
   },
