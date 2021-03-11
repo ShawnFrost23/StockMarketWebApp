@@ -1,0 +1,35 @@
+# Arth Sanskar Patel (z5228942)
+
+## Week 1 
+
+Formed a group of 5 people including Me, Matt, Dan, Donna, and Elton. We mutually agreed on the
+portfolio management project after going through the spciications of all the projects. We went through
+the project proposal guidelines and the project specification for Portfolio management to have a discussion
+on Monday regarding how the team would approach the task of creating the proposal. Dan created and added everyone
+to a Whatsapp group. Dan created a google drive folder and created a basic file where we started writing appropriate user 
+stories, epics, sprints, architecture diagrams etc.
+
+## Week 2
+
+Met on monday afternoon to discuss the written epics and user stories on the google drive. We decided to 
+clean up the stories and from a proper structure to coresspond to the project. Met on Wednesday to divide the final work for 
+the propsal. From Wednesday to Monday, I worked on UI diagrams and App flow diagrams along with Mathew. Used Figma to design basic
+UI pages.
+
+## Week 3
+
+Met Monday afternoon to discuss the process and discuss how everyone's work was coming. I gave an idea
+to send rachid the basic propsal we had till now so he can suggest any improvements. It paid out and on Wednesday morning tut,
+he discussed what can be improved in the index, how links were to added for references, how the UI should be named and arranged properly and more.
+After the tut, the group discussed the changes proposed by Rachid and decided to work on them in the allocated areas from last week.
+Me and Matt, further worked on the UI pages and write up content explaining how our UI is better from the existsing ones. 
+This week, I worked on setting up the GitHub and project. Created a basic React app for frontend and started working on the 
+very basic UI structure.
+
+## Week 4
+
+Met on Tuesday Afternoon to decide on the work flows and sprint requirements. It was a short meeting to see how everyone was holding
+up and if they needed any helps with nay sections alloated to them. During the tut on Wednesday morning, Rachid further discussed 
+the marking for the project showcasing for sprint 1. Went through our sprint 1 requirements and started working on it.
+
+
