@@ -1,9 +1,15 @@
 import React from 'react'
-import styles from './LoginContainer.module.css';
+import { useHistory } from 'react-router-dom';
 
+import styles from './LoginContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 function LoginContainer() {
+    const history = useHistory();
+
+    const registerButtonHandler = () => {
+        history.push('registerScreen');
+    }
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>
@@ -20,6 +26,7 @@ function LoginContainer() {
             />
             <CustomButton
                 displayText="New? Register Now!"
+                func={registerButtonHandler}
             />
         </div>
     )
