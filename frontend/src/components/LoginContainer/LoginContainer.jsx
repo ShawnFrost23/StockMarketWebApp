@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './LoginContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
+import LogRegHeading from '../LogRegHeading/LogRegHeading';
 function LoginContainer() {
     const history = useHistory();
 
@@ -12,9 +13,9 @@ function LoginContainer() {
     }
     return (
         <div className={styles.container}>
-            <h1 className={styles.header}>
-                Login
-            </h1>
+            <LogRegHeading 
+                heading="Login"
+            />
             <CustomTextField 
                 placeholder="Username"
             />
