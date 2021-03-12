@@ -32,7 +32,7 @@ function RegisterContainer() {
                 displayText="Register"
             />
             <CustomButton
-                displayText="Already a user? Login Now!"
+                displayText="User? Login Now!"
                 func={loginButtonHandler}
             />
         </div>
