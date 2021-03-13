@@ -18,9 +18,3 @@ def auth_login(email, password):
     #     return {'u_id': user.id}
 
     # raise Exception("Email and/or password is invalid")
-
-# DZ TODO: log out maybe client side only
-# def auth_logout(user_id):
-
-# DZ TODO: wait to see if Dan already started this one
-# def auth_register(email, password, nickname):
