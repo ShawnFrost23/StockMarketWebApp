@@ -12,12 +12,13 @@ def auth_login(email, password):
 
     # # TODO: connect to database function - is this an object or string?
     # # TODO: may need null check added, depending on the object
+    # This is a string
     # user = find_user_by_email(email)
 
     # if user.password == password:
     #     return {'u_id': user.id}
 
-    # raise Exception("Email and/or password is invalid")
+    # raise ValueError("Email and/or password is invalid")
 
 # DZ TODO: log out maybe client side only
 # def auth_logout(user_id):
