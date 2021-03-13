@@ -1,11 +1,5 @@
-import psycopg2
-
-def connect_db(): 
-    con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
-    print("Database opened successfully")
-
-    cur = con.cursor()
-
+# Creating database schema 
+def create_db_schema(cur): 
     # Create a Table for Users
     cur.execute(
     '''CREATE TABLE IF NOT EXISTS USERS
@@ -27,7 +21,5 @@ def connect_db():
     (ASSET_ID       SERIAL      PRIMARY KEY    NOT NULL,
     WATCHLIST_ID    INTEGER     NOT NULL,
     TICKER          VARCHAR     NOT NULL); ''')
-
+    
     print("Table created successfully")
-    con.commit()
-    return cur; 
