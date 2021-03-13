@@ -37,6 +37,10 @@ app.config['TRAP_HTTP_EXCEPTIONS'] = True
 # app.register_error_handler(Exception, default_handler)
 CORS(app)
 
+@app.route('/')
+def index():
+    return dumps("STONKS R US")
+
 @app.route('/hello', methods=['GET'])
 def hello():
     return dumps("hello world")
