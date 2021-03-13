@@ -4,23 +4,21 @@ from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
+from server.auth import *
 from db_setup import create_db_schema, create_mock_users
 
-# Establish connection to database 
+# Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
-# Obtain database cursor 
+# Obtain database cursor
 cur = con.cursor()
 
-# Create database schema 
-create_db_schema(cur)
-con.commit()
+# # Create database schema
+# create_db_schema(cur)
+# con.commit()
 
-# Create mock user registrations 
-create_mock_users(cur)
-con.commit()
-
-# DZ TODO error handler
-# from server.database impor
+# # Create mock user registrations
+# create_mock_users(cur)
+# con.commit()
 
 app = Flask(__name__, static_folder='server/static')
 
@@ -33,13 +31,7 @@ app.config.update(
 )
 
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
-# DZ TODO
-# app.register_error_handler(Exception, default_handler)
 CORS(app)
-
-@app.route('/')
-def index():
-    return dumps("STONKS R US")
 
 @app.route('/hello', methods=['GET'])
 def hello():
@@ -47,7 +39,8 @@ def hello():
 
 @app.route('/auth/login', methods=['POST'])
 def login():
-    return dumps("login not yet implemented")
+    return dumps(auth_login(request.values.get('email'),
+                            request.values.get('password')))
 
 @app.route('/auth/logout', methods=['POST'])
 def logout():
@@ -64,6 +57,10 @@ def reset_request():
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
     return dumps("reset password not yet implemented")
+
+@app.route('/')
+def index():
+    return dumps("STONKS R US")
 
 if __name__ == '__main__':
     app.run()
