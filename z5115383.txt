@@ -1,3 +1,5 @@
+Dan O'Malley (z5115383)
+
 Week 1 
 
 Formed a group of 5. Picked the portfolio management project. Agreed everyone would
@@ -21,4 +23,5 @@ to give feedback for weekly meeting on Wednesday. Following feedback from Rachid
 clarify and edit proposal in preparation for submission. Just waiting on submission to 
 begin setting up environment for development and sprint 1.  
 
+Week 4
 

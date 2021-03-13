@@ -1,3 +1,4 @@
+import psycopg2
 import re
 
 # TODO log in the user
@@ -10,14 +11,23 @@ def auth_login(email, password):
     if not valid_email(str(email)):
         raise ValueError("Email is not valid")
 
-    # # TODO: connect to database function - is this an object or string?
-    # # TODO: may need null check added, depending on the object
-    # user = find_user_by_email(email)
+    # TODO: Q does this connection need to be reopened? Extract into db file?
+    # Establish connection to database
+    con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
+    # Obtain database cursor
+    cur = con.cursor()
 
-    # if user.password == password:
-    #     return {'u_id': user.id}
+    cur.execute(f"SELECT * FROM users WHERE email = '{email}'")
+    result = cur.fetchone()
+    cur.close()
+    con.close()
 
-    # raise Exception("Email and/or password is invalid")
+    # TODO extract into function
+    if result is not None:
+        db_id = result[0]
+        db_password = result[3]
+        if db_password == password:
+            return { 'user_id': db_id }
 
 def auth_reset_request(email):
     user = find_user_by_email(email)
