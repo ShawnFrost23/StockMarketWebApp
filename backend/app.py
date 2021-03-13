@@ -52,16 +52,15 @@ def register():
 
 @app.route('/auth/reset_request', methods=['POST'])
 def reset_request():
-    user = auth_reset_request(request.values.get('email'))
+    # TODO db update to have reset_code
+    email, reset_code = auth_reset_request(request.values.get('email'))
 
     mail = Mail(app)
     msg = Message("Diamond Hands password reset",
                   sender="diamondhands3900@gmail.com",
-                  recipients=[user['email']])
+                  recipients=[email])
     msg.body = f"""Hi, you have requested a password reset.
-
-                Please enter this code on the reset password page:
-                {user['reset_code']}"""
+Please enter this code on the reset password page: {reset_code}"""
     mail.send(msg)
     return dumps({})
 

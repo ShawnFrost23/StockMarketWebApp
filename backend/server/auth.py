@@ -30,13 +30,23 @@ def auth_login(email, password):
             return { 'user_id': db_id }
 
 def auth_reset_request(email):
-    user = find_user_by_email(email)
-    reset_code = str(uuid4())[0:10]
+    # TODO extract into database file
+    # Establish connection to database
+    con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
+    # Obtain database cursor
+    cur = con.cursor()
 
-    # TODO: reset code will be in database
-    set_reset_code(user['u_id'], reset_code)
+    cur.execute(f"SELECT * FROM users WHERE email = '{email}'")
+    result = cur.fetchone()
+    cur.close()
+    con.close()
 
-    return {'email': email, 'reset_code': reset_code}
+    if result is not None:
+        reset_code = result[0]
+        return (email, reset_code)
+
+    raise ValueError('Reset request could not be processed')
+
 
 def auth_reset_password(reset_code, new_password):
     user = find_user_by_reset_code(reset_code)
