@@ -3,6 +3,10 @@ from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
+from db_setup import connect_db
+
+# Returning cursor to database. 
+connect_db()
 
 # DZ TODO error handler
 # from server.database impor
