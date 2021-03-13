@@ -1,9 +1,24 @@
 import sys
+import psycopg2
 from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 from server.auth import *
+from db_setup import create_db_schema, create_mock_users
+
+# Establish connection to database
+con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
+# Obtain database cursor
+cur = con.cursor()
+
+# # Create database schema
+# create_db_schema(cur)
+# con.commit()
+
+# # Create mock user registrations
+# create_mock_users(cur)
+# con.commit()
 
 app = Flask(__name__, static_folder='server/static')
 
@@ -42,6 +57,10 @@ def reset_request():
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
     return dumps("reset password not yet implemented")
+
+@app.route('/')
+def index():
+    return dumps("STONKS R US")
 
 if __name__ == '__main__':
     app.run()
