@@ -7,6 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import LoginScreen from './pages/LoginScreen/LoginScreen'
+import RegisterScreen from './pages/RegisterScreen/RegisterScreen';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Route exact path="/" render={() => (<Redirect to="/loginScreen"/>)} />
           <Route path="/loginScreen">
             <LoginScreen />
+          </Route>
+          <Route path="/registerScreen">
+            <RegisterScreen />
           </Route>
         </Switch>
       </>
