@@ -4,7 +4,7 @@ from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
-from db_setup import create_db_schema
+from db_setup import create_db_schema, create_mock_users
 
 # Establish connection to database 
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
@@ -15,6 +15,9 @@ cur = con.cursor()
 create_db_schema(cur)
 con.commit()
 
+# Create mock user registrations 
+create_mock_users(cur)
+con.commit()
 
 # DZ TODO error handler
 # from server.database impor

@@ -23,3 +23,26 @@ def create_db_schema(cur):
     TICKER          VARCHAR     NOT NULL); ''')
     
     print("Table created successfully")
+
+def create_mock_users(cur):
+    Bob = {
+        "nickname": "bobthebuilder",
+        "email": "bob@gmail.com",
+        "password": "builderman420"
+    }
+
+    Alice = {
+        "nickname": "alice",
+        "email": "alice@gmail.com",
+        "password": "wonderlandtea"
+    }
+
+    Mallory = {
+        "nickname": "hacker",
+        "email": "hacker@gmail.com",
+        "password": "satoshinakomoto"
+    }
+
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Bob['nickname']}', '{Bob['email']}', '{Bob['password']}')")
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Alice['nickname']}', '{Alice['email']}', '{Alice['password']}')")
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Mallory['nickname']}', '{Mallory['email']}', '{Mallory['password']}')")
