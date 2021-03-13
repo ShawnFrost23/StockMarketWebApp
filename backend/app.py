@@ -4,9 +4,6 @@ from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 
-# DZ TODO error handler
-# from server.database impor
-
 app = Flask(__name__, static_folder='server/static')
 
 app.config.update(
@@ -18,8 +15,6 @@ app.config.update(
 )
 
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
-# DZ TODO
-# app.register_error_handler(Exception, default_handler)
 CORS(app)
 
 @app.route('/hello', methods=['GET'])
