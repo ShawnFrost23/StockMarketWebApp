@@ -18,3 +18,20 @@ def auth_login(email, password):
     #     return {'u_id': user.id}
 
     # raise Exception("Email and/or password is invalid")
+
+def auth_reset_request(email):
+    user = find_user_by_email(email)
+    reset_code = str(uuid4())[0:10]
+
+    # TODO: reset code will be in database
+    set_reset_code(user['u_id'], reset_code)
+
+    return {'email': email, 'reset_code': reset_code}
+
+def auth_reset_password(reset_code, new_password):
+    user = find_user_by_reset_code(reset_code)
+    if (user is not None and reset_code == user['reset_code']):
+        set_new_password(user['u_id'], new_password)
+        return ({})
+
+    raise ValueError('Reset code is not valid and/or password is not valid')

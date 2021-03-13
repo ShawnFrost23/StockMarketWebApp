@@ -37,11 +37,23 @@ def register():
 
 @app.route('/auth/reset_request', methods=['POST'])
 def reset_request():
-    return dumps("password reset request not yet implemented")
+    user = auth_reset_request(request.values.get('email'))
+
+    mail = Mail(app)
+    msg = Message("Diamond Hands password reset",
+                  sender="diamondhands3900@gmail.com",
+                  recipients=[user['email']])
+    msg.body = f"""Hi, you have requested a password reset.
+
+                Please enter this code on the reset password page:
+                {user['reset_code']}"""
+    mail.send(msg)
+    return dumps({})
 
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
-    return dumps("reset password not yet implemented")
+    return dumps(auth_reset_password(request.values.get('reset_code'),
+                                     request.values.get('new_password')))
 
 if __name__ == '__main__':
     app.run()
