@@ -3,6 +3,7 @@ from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
+from server.auth import *
 
 app = Flask(__name__, static_folder='server/static')
 
@@ -23,7 +24,8 @@ def hello():
 
 @app.route('/auth/login', methods=['POST'])
 def login():
-    return dumps("login not yet implemented")
+    return dumps(auth_login(request.values.get('email'),
+                            request.values.get('password')))
 
 @app.route('/auth/logout', methods=['POST'])
 def logout():
