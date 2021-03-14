@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 from server.auth import *
+from server.register import *
 from db_setup import create_db_schema, create_mock_users
 
 # Establish connection to database
@@ -12,13 +13,13 @@ con = psycopg2.connect(database="iteration1", user="diamond_hands", password="",
 # Obtain database cursor
 cur = con.cursor()
 
-# # Create database schema
-# create_db_schema(cur)
-# con.commit()
+# Create database schema
+create_db_schema(cur)
+con.commit()
 
-# # Create mock user registrations
-# create_mock_users(cur)
-# con.commit()
+# Create mock user registrations
+create_mock_users(cur)
+con.commit()
 
 app = Flask(__name__, static_folder='server/static')
 
@@ -46,9 +47,19 @@ def login():
 def logout():
     return dumps("logout not yet implemented")
 
+# Need from front end: 
+#       - email 
+#       - password
+#       - nickname 
+
+# Will return to front end: 
+#       {"success": True||False, "id": Int}
 @app.route('/auth/register', methods=['POST'])
 def register():
-    return dumps("register not yet implemented")
+    return dumps(auth_register(cur, con,
+                               request.values.get('email'),
+                               request.values.get('password'),
+                               request.values.get('nickname')))
 
 @app.route('/auth/reset_request', methods=['POST'])
 def reset_request():
