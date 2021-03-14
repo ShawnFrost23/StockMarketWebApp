@@ -31,5 +31,8 @@ very basic UI structure.
 Met on Tuesday Afternoon to decide on the work flows and sprint requirements. It was a short meeting to see how everyone was holding
 up and if they needed any helps with nay sections alloated to them. During the tut on Wednesday morning, Rachid further discussed 
 the marking for the project showcasing for sprint 1. Went through our sprint 1 requirements and started working on it.
+Met on Saturday Afternoon to discuss how everyone is doing. Disscussed the work and time left to complete.
+Dan and I discussed how the front end will be integerated with the backend using API calls.
+
 
 
