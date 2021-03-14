@@ -28,11 +28,82 @@ function RegisterContainer() {
 
     const history = useHistory();
 
+    // Function to check name input.
+    const checkName = (name) => {
+        if (name === '') {
+              setNameHelpText('Enter your Name');
+            return false;
+        }
+        return true;
+    }
+
+    // Function to check Email input.
+    const checkEmail = (email) => {
+        if (email === '') {
+              setEmailHelpText('Enter your Email ');
+            return false;
+        }
+        return true;
+    }
+
+    // Function to check passswords in the input field and verify
+    // if the entered passwords match or not.
+    const checkPass = (newPass, confirmNewPass) => {
+        if (newPass === '' || confirmNewPass === '') {
+            if (newPass === '') {
+                setPasswordHelpText('Enter a new Password');
+                setPasswordErr(true);
+            } else {
+                setPasswordHelpText('');
+                setPasswordErr(false);
+            }
+
+            if (confirmNewPass === '') {
+                setConfirmPasswordHelpText('Enter a new Password');
+                setConfirmPasswordErr(true);
+            } else {
+                setConfirmPasswordHelpText('');
+                setConfirmPasswordErr(false);
+            }
+            return false;
+        } else if (confirmNewPass !== newPass) {
+                setPasswordHelpText('Entered Passwords do not match');
+                setPasswordErr(true);
+                setConfirmPasswordHelpText('Entered Passwords do not match');
+                setConfirmPasswordErr(true);
+                return false;
+        }
+        return true;
+    }
+
+
     const handleRegister = () => {
-        console.log("🚀 ~ file: RegisterContainer.jsx ~ line 10 ~ RegisterContainer ~ name", name)
-        console.log("🚀 ~ file: RegisterContainer.jsx ~ line 12 ~ RegisterContainer ~ email", email)
-        console.log("🚀 ~ file: RegisterContainer.jsx ~ line 14 ~ RegisterContainer ~ password", password)
-        console.log("🚀 ~ file: RegisterContainer.jsx ~ line 16 ~ RegisterContainer ~ confirmPassword", confirmPassword)
+        const nameStatus = checkName(name);
+        const emailStatus = checkEmail(email);
+        const passStatus = checkPass(password, confirmPassword);
+
+        if (nameStatus === false) {
+            setNameErr(true);
+        } else if (nameStatus === true) {
+            setNameHelpText('');
+            setNameErr(false);
+        }
+
+        if (emailStatus === false) {
+            setEmailErr(true);
+        } else if (emailStatus === true) {
+            setEmailHelpText('');
+            setEmailErr(false);
+        }
+
+        if (passStatus === false) {
+            // Do Nothing
+        } else if (passStatus === true) {
+            setConfirmPasswordHelpText('');
+            setConfirmPasswordErr(false);
+            setPasswordHelpText('');
+            setPasswordErr(false);
+        } 
     }
 
     const loginButtonHandler = () => {
