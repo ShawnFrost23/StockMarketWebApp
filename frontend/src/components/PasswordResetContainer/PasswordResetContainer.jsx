@@ -20,6 +20,7 @@ function PasswordResetContainer() {
     const [confirmNewPassErr, setConfirmNewPassErr] = React.useState(false);
     const [confirmNewPassHelpText, setConfirmNewPassHelpText] = React.useState('');
 
+    // Function to check verification code in input field.
     const checkVeriCode = (veriCode) => {
         if (veriCode === '') {
             setVeriCodeHelpText('Enter Verification Code');
@@ -27,15 +28,28 @@ function PasswordResetContainer() {
         }
         return true;
     }
+
+    const checkNewPass = (newPass) => {
+        if (newPass === '') {
+            setNewPassHelpText('Enter a new Password');
+            return false;
+        }
+        return true;
+    }
     
+
     // Change Password Button Handler
     const handleChangePassword = () => {
         const veriCodeStatus = checkVeriCode(veriCode);
-        // const newPassStatus = checkNewPass();
-        // const confirmNewPassStatus = checkNewPass();
+        const newPassStatus = checkNewPass(newPass);
+        // const confirmNewPassStatus = checkNewPass(newPass, confirmNewPass);
         
         if (veriCodeStatus === false) {
             setVeriCodeErr(true);
+        }
+
+        if (newPassStatus === false) {
+            setNewPassErr(true)
         }
     }
     return (
