@@ -3,11 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  //Link,
   Redirect
 } from "react-router-dom";
 import LoginScreen from './pages/LoginScreen/LoginScreen'
 import RegisterScreen from './pages/RegisterScreen/RegisterScreen';
+import PasswordResetScreen from './pages/PasswordResetScreen/PasswordResetScreen';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/registerScreen">
             <RegisterScreen />
+          </Route>
+          <Route path="/passwordReset">
+            <PasswordResetScreen />
           </Route>
         </Switch>
       </>
