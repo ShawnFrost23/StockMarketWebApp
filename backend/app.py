@@ -9,7 +9,7 @@ from server.register import *
 from db_setup import create_db_schema, create_mock_users
 
 # Establish connection to database
-con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
+con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
 # Obtain database cursor
 cur = con.cursor()
 
