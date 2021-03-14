@@ -38,11 +38,24 @@ CORS(app)
 def hello():
     return dumps("hello world")
 
+# Comment By Arth:
+# Below method should be 'POST'
+# The required fields are EMAIL and PASSWORD
+# Will return to front end: 
+#       {"success": True "id": Int}
+#       OR IN CASE OF ERROR
+#       {"success": False}
 @app.route('/auth/login', methods=['POST'])
 def login():
     return dumps(auth_login(request.values.get('email'),
                             request.values.get('password')))
 
+# Comment By Arth:
+# Below method should be 'POST'
+# The required fields are TOKEN or USERID
+
+# Will return to front end:
+#   {'success': True||False}
 @app.route('/auth/logout', methods=['POST'])
 def logout():
     return dumps("logout not yet implemented")
@@ -50,10 +63,12 @@ def logout():
 # Need from front end: 
 #       - email 
 #       - password
-#       - nickname 
+#       - name 
 
 # Will return to front end: 
-#       {"success": True||False, "id": Int}
+#       {"success": True "id": Int}
+#       OR IN CASE OF ERROR
+#       {"success": False}
 @app.route('/auth/register', methods=['POST'])
 def register():
     return dumps(auth_register(cur, con,
@@ -65,6 +80,11 @@ def register():
 def reset_request():
     return dumps("password reset request not yet implemented")
 
+# Comment By Arth:
+# Below method should be 'POST'
+# The required fields are VERFICATION CODE sent to email, NEWPASSWORD, TOKEN or USER ID
+# Will return to front end: 
+#       {"success": True || False}
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
     return dumps("reset password not yet implemented")
