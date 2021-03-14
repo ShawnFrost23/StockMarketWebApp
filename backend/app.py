@@ -78,7 +78,17 @@ def register():
 
 @app.route('/auth/reset_request', methods=['POST'])
 def reset_request():
-    return dumps("password reset request not yet implemented")
+    # TODO db update to have reset_code
+    email, reset_code = auth_reset_request(request.values.get('email'))
+
+    mail = Mail(app)
+    msg = Message("Diamond Hands password reset",
+                  sender="diamondhands3900@gmail.com",
+                  recipients=[email])
+    msg.body = f"""Hi, you have requested a password reset.
+Please enter this code on the reset password page: {reset_code}"""
+    mail.send(msg)
+    return dumps({})
 
 # Comment By Arth:
 # Below method should be 'POST'
@@ -87,7 +97,8 @@ def reset_request():
 #       {"success": True || False}
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
-    return dumps("reset password not yet implemented")
+    return dumps(auth_reset_password(request.values.get('reset_code'),
+                                     request.values.get('new_password')))
 
 @app.route('/')
 def index():
