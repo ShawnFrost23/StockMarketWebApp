@@ -28,29 +28,58 @@ function PasswordResetContainer() {
         }
         return true;
     }
+    
+    // Function to check confirm new passsword in the input field and verify
+    // if the entered passwords match or not.
+    const checkPass = (newPass, confirmNewPass) => {
+        if (newPass === '' || confirmNewPass === '') {
+            if (newPass === '') {
+                setNewPassHelpText('Enter a new Password');
+                setNewPassErr(true);
+            } else {
+                setNewPassHelpText('');
+                setNewPassErr(false);
+            }
 
-    const checkNewPass = (newPass) => {
-        if (newPass === '') {
-            setNewPassHelpText('Enter a new Password');
+            if (confirmNewPass === '') {
+                setConfirmNewPassHelpText('Enter a new Password');
+                setConfirmNewPassErr(true);
+            } else {
+                setConfirmNewPassHelpText('');
+                setConfirmNewPassErr(false);
+            }
             return false;
+        } else if (confirmNewPass !== newPass) {
+                setNewPassHelpText('Entered Passwords do not match');
+                setNewPassErr(true);
+                setConfirmNewPassHelpText('Entered Passwords do not match');
+                setConfirmNewPassErr(true);
+                return false;
         }
         return true;
     }
-    
 
     // Change Password Button Handler
     const handleChangePassword = () => {
         const veriCodeStatus = checkVeriCode(veriCode);
-        const newPassStatus = checkNewPass(newPass);
-        // const confirmNewPassStatus = checkNewPass(newPass, confirmNewPass);
+        //const newPassStatus = checkNewPass(newPass);
+        const confirmNewPassStatus = checkPass(newPass, confirmNewPass);
         
         if (veriCodeStatus === false) {
             setVeriCodeErr(true);
+        } else if (veriCodeStatus === true) {
+            setVeriCodeHelpText('');
+            setVeriCodeErr(false);
         }
 
-        if (newPassStatus === false) {
-            setNewPassErr(true)
-        }
+        if (confirmNewPassStatus === false) {
+            // Do Nothing
+        } else if (confirmNewPassStatus == true) {
+            setConfirmNewPassHelpText('');
+            setConfirmNewPassErr(false);
+            setNewPassHelpText('');
+            setNewPassErr(false);
+        } 
     }
     return (
         <div className={styles.container}>
