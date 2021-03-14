@@ -62,8 +62,7 @@ function PasswordResetContainer() {
     // Change Password Button Handler
     const handleChangePassword = () => {
         const veriCodeStatus = checkVeriCode(veriCode);
-        //const newPassStatus = checkNewPass(newPass);
-        const confirmNewPassStatus = checkPass(newPass, confirmNewPass);
+        const passStatus = checkPass(newPass, confirmNewPass);
         
         if (veriCodeStatus === false) {
             setVeriCodeErr(true);
@@ -72,9 +71,9 @@ function PasswordResetContainer() {
             setVeriCodeErr(false);
         }
 
-        if (confirmNewPassStatus === false) {
+        if (passStatus === false) {
             // Do Nothing
-        } else if (confirmNewPassStatus == true) {
+        } else if (passStatus == true) {
             setConfirmNewPassHelpText('');
             setConfirmNewPassErr(false);
             setNewPassHelpText('');
@@ -112,7 +111,7 @@ function PasswordResetContainer() {
             />
             <CustomButton
                 displayText="Cancel"
-                //func={registerButtonHandler}
+                //func={cancelButtonHandler}
             />
         </div>
     )
