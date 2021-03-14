@@ -21,7 +21,10 @@ function RegisterContainer() {
     const [passwordErr, setPasswordErr] = React.useState(false);
     const [passwordHelpText, setPasswordHelpText] = React.useState('');
 
+    // Confirm Password State Varaibles
     const [confirmPassword, setConfirmPassword] = React.useState('');
+    const [confirmPasswordErr, setConfirmPasswordErr] = React.useState(false);
+    const [confirmPasswordHelpText, setConfirmPasswordHelpText] = React.useState('');
 
     const history = useHistory();
 
@@ -63,6 +66,8 @@ function RegisterContainer() {
                 placeholder="Confirm Password"
                 type='password'
                 setValue={setConfirmPassword}
+                errorStatus={confirmPasswordErr}
+                helperText={confirmPasswordHelpText}
             />
             <CustomButton
                 displayText="Register"
