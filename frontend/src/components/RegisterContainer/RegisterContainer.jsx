@@ -11,7 +11,11 @@ function RegisterContainer() {
     const [nameErr, setNameErr] = React.useState(false)
     const [nameHelpText, setNameHelpText] = React.useState('');
 
+    // Email State Variables
     const [email, setEmail] = React.useState('');
+    const [emailErr, setEmailErr] = React.useState(false);
+    const [emailHelpText, setEmailHelpText] = React.useState('');
+
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
 
@@ -41,6 +45,8 @@ function RegisterContainer() {
             <CustomTextField 
                 placeholder="Email"
                 setValue={setEmail}
+                errorStatus={emailErr}
+                helperText={emailHelpText}
             />
             <CustomTextField 
                 placeholder="Password"
