@@ -14,8 +14,11 @@ function PasswordResetContainer() {
     const [newPass, setNewPass] = React.useState('');
     const [newPassErr, setNewPassErr] = React.useState(false);
     const [newPassHelpText, setNewPassHelpText] = React.useState('');
-    
+
+    // Confirm New Passwrod State Variables
     const [confirmNewPass, setConfirmNewPass] = React.useState('');
+    const [confirmNewPassErr, setConfirmNewPassErr] = React.useState(false);
+    const [confirmNewPassHelpText, setConfirmNewPassHelpText] = React.useState('');
 
     return (
         <div className={styles.container}>
@@ -39,6 +42,8 @@ function PasswordResetContainer() {
                 placeholder="Confirm New Password"
                 type='password'
                 setValue={setConfirmNewPass}
+                errorStatus={confirmNewPassErr}
+                helperText={confirmNewPassHelpText}
             />
             <CustomButton
                 displayText="Change Password"
