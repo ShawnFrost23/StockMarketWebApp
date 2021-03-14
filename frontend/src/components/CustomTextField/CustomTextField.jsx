@@ -47,17 +47,23 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function CustomTextField({ placeholder }) {
+function CustomTextField({ placeholder, type, setValue }) {
   const classes = useStyles();
+
+  const handleChange = (event) => {
+    setValue(event.target.value)
+  }
   return (
     <CssTextField 
       className={classes.margin} 
       id="custom-css-standard-input" 
       label={placeholder}
+      type={type}
       InputProps={{
         className: classes.input,
       }}
       variant="outlined"
+      onChange={handleChange}
       />
   )
 }
