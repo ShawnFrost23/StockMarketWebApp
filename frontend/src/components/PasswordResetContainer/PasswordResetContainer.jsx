@@ -6,7 +6,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
 function PasswordResetContainer() {
     // Verification Code State Variables
-    const [veriCode, setVeriCode] = React.useState(0);
+    const [veriCode, setVeriCode] = React.useState('');
     const [veriCodeErr, setVeriCodeErr] = React.useState(false);
     const [veriCodeHelpText, setVeriCodeHelpText] = React.useState('');
 
@@ -20,6 +20,24 @@ function PasswordResetContainer() {
     const [confirmNewPassErr, setConfirmNewPassErr] = React.useState(false);
     const [confirmNewPassHelpText, setConfirmNewPassHelpText] = React.useState('');
 
+    const checkVeriCode = (veriCode) => {
+        if (veriCode === '') {
+            setVeriCodeHelpText('Enter Verification Code');
+            return false;
+        }
+        return true;
+    }
+    
+    // Change Password Button Handler
+    const handleChangePassword = () => {
+        const veriCodeStatus = checkVeriCode(veriCode);
+        // const newPassStatus = checkNewPass();
+        // const confirmNewPassStatus = checkNewPass();
+        
+        if (veriCodeStatus === false) {
+            setVeriCodeErr(true);
+        }
+    }
     return (
         <div className={styles.container}>
             <LogRegHeading 
@@ -47,7 +65,7 @@ function PasswordResetContainer() {
             />
             <CustomButton
                 displayText="Change Password"
-                //func={handleLogin}
+                func={handleChangePassword}
             />
             <CustomButton
                 displayText="Cancel"
