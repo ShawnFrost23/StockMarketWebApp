@@ -25,3 +25,8 @@ begin setting up environment for development and sprint 1.
 
 Week 4
 
+Met Tuesday afternoon to allocate work for sprint 1. During the Tute on Wednesday we 
+talked through proposal with Rachid and then discussed blockers for beginning work on 
+code. This week i set up the database and connection adapter. This involved creating a 
+schema and writing queries to beginning filling the database. I also wrote backend 
+functionality for registering users to the webapp. 
