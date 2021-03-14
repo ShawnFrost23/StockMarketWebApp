@@ -47,7 +47,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function CustomTextField({ placeholder, type, setValue, errorStatus }) {
+function CustomTextField({ placeholder, type, setValue, errorStatus, helperText }) {
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -65,6 +65,7 @@ function CustomTextField({ placeholder, type, setValue, errorStatus }) {
       variant="outlined"
       onChange={handleChange}
       error={errorStatus}
+      helperText={helperText}
       />
   )
 }
