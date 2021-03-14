@@ -6,7 +6,12 @@ import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
 function LoginContainer() {
-    const [name, setName] = React.useState('');
+    // Name State Variables
+    const [email, setEmail] = React.useState('');
+    const [emailErr, setEmailErr] = React.useState(false);
+    const [emailHelpText, setEmailHelpText] = React.useState('');
+
+
     const [password, setPassword] = React.useState('')
     const history = useHistory();
 
@@ -24,8 +29,10 @@ function LoginContainer() {
                 heading="Login"
             />
             <CustomTextField 
-                placeholder="Username"
-                setValue={setName}
+                placeholder="Email"
+                setValue={setEmail}
+                errorStatus={emailErr}
+                helperText={emailHelpText}
             />
             <CustomTextField 
                 placeholder="Password"
