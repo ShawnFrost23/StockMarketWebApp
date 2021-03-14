@@ -9,8 +9,12 @@ function PasswordResetContainer() {
     const [veriCode, setVeriCode] = React.useState(0);
     const [veriCodeErr, setVeriCodeErr] = React.useState(false);
     const [veriCodeHelpText, setVeriCodeHelpText] = React.useState('');
-    
+
+    // New Password State Variables
     const [newPass, setNewPass] = React.useState('');
+    const [newPassErr, setNewPassErr] = React.useState(false);
+    const [newPassHelpText, setNewPassHelpText] = React.useState('');
+    
     const [confirmNewPass, setConfirmNewPass] = React.useState('');
 
     return (
@@ -28,6 +32,8 @@ function PasswordResetContainer() {
                 placeholder="New Password"
                 type='password'
                 setValue={setNewPass}
+                errorStatus={newPassErr}
+                helperText={newPassHelpText}
             />
             <CustomTextField 
                 placeholder="Confirm New Password"
