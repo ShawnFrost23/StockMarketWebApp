@@ -57,7 +57,11 @@ function RegisterContainer() {
     // Function to check passswords in the input field and verify
     // if the entered passwords match or not.
     const checkPass = (newPass, confirmNewPass) => {
-        if (newPass === '' || confirmNewPass === '') {
+        if (newPass.length < 8) {
+            setPasswordHelpText('Password should have atleast 8 characters');
+            setPasswordErr(true);
+            return false;
+        } else if (newPass === '' || confirmNewPass === '') {
             if (newPass === '') {
                 setPasswordHelpText('Enter a new Password');
                 setPasswordErr(true);
@@ -84,7 +88,7 @@ function RegisterContainer() {
         return true;
     }
 
-
+    // TODO: Add backend link
     const handleRegister = () => {
         const nameStatus = checkName(name);
         const emailStatus = checkEmail(email);
