@@ -11,13 +11,49 @@ function LoginContainer() {
     const [emailErr, setEmailErr] = React.useState(false);
     const [emailHelpText, setEmailHelpText] = React.useState('');
 
+    // Password State Variables
+    const [password, setPassword] = React.useState('');
+    const [passwordErr, setPasswordErr] = React.useState(false);
+    const [passwordHelpText, setPasswordHelpText] = React.useState('');
 
-    const [password, setPassword] = React.useState('')
     const history = useHistory();
 
+    // Function to check Email input.
+    const checkEmail = (email) => {
+        if (email === '') {
+            setEmailHelpText('Enter your Email ');
+            return false;
+        }
+        return true;
+    }
+
+    // Function to check password input.
+    const checkPassword = (password) => {
+        if (password === '') {
+            setPasswordHelpText('Enter your password ');
+            return false;
+        }
+        return true;
+    }
+
+    // TODO: Add logic to send backend verfication for inputs and login to account.
     const handleLogin = () => {
-        console.log("🚀 ~ file: LoginContainer.jsx ~ line 19 ~ handleLogin ~ name", name);
-        console.log("🚀 ~ file: LoginContainer.jsx ~ line 19 ~ handleLogin ~ password", password);
+        const emailStatus = checkEmail(email);
+        const passwordStatus = checkPassword(password);
+
+        if (emailStatus === false) {
+            setEmailErr(true);
+        } else if (emailStatus === true) {
+            setEmailHelpText('');
+            setEmailErr(false);
+        }
+
+        if (passwordStatus === false) {
+            setPasswordErr(true);
+        } else if (passwordStatus === true) {
+            setPasswordHelpText('');
+            setPasswordErr(false);
+        }
     }
 
     const registerButtonHandler = () => {
@@ -38,6 +74,8 @@ function LoginContainer() {
                 placeholder="Password"
                 type='password'
                 setValue={setPassword}
+                errorStatus={passwordErr}
+                helperText={passwordHelpText}
             />
             <CustomButton
                 displayText="Login"
