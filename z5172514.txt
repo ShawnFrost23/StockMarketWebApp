@@ -17,7 +17,7 @@ I helped to create and edit the user stories in the proposal. I also created the
 and I plan to deploy our web app and build our CI/CD pipeline on AWS next week. 
 
 Week 4
-This week I have completed the user stores of creating a watchlist, removing a watchlist, add assets
+This week I have completed the backend code of creating a watchlist, removing a watchlist, add assets
 to the watchlist, and remove assets from the watchlist. All the backend code I complete enables python code 
 to work with the PostgreSQL database seamlessly. The backend code is now completed, but more work needs to 
 be done for our first sprint presentation. Our team still faces some challenges in terms of connecting the 
