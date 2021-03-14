@@ -6,7 +6,11 @@ import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
 function RegisterContainer() {
+    // Name State Variables
     const [name, setName] = React.useState('');
+    const [nameErr, setNameErr] = React.useState(false)
+    const [nameHelpText, setNameHelpText] = React.useState('');
+
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -31,6 +35,8 @@ function RegisterContainer() {
             <CustomTextField 
                 placeholder="Name"
                 setValue={setName}
+                errorStatus={nameErr}
+                helperText={nameHelpText}
             />
             <CustomTextField 
                 placeholder="Email"
