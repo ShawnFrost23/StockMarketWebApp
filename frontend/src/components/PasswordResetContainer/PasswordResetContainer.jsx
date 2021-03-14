@@ -6,8 +6,11 @@ import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
 function PasswordResetContainer() {
     const [veriCode, setVeriCode] = React.useState(0);
+    const [veriCodeErr, setVeriCodeErr] = React.useState(false);
+    const [veriCodeHelpText, setVeriCodeHelpText] = React.useState('');
     const [newPass, setNewPass] = React.useState('');
     const [confirmNewPass, setConfirmNewPass] = React.useState('');
+
     return (
         <div className={styles.container}>
             <LogRegHeading 
@@ -16,6 +19,8 @@ function PasswordResetContainer() {
             <CustomTextField 
                 placeholder="Verification Code"
                 setValue={setVeriCode}
+                errorStatus={veriCodeErr}
+                helperText={veriCodeHelpText}
             />
             <CustomTextField 
                 placeholder="New Password"
