@@ -73,7 +73,7 @@ function PasswordResetContainer() {
 
         if (passStatus === false) {
             // Do Nothing
-        } else if (passStatus == true) {
+        } else if (passStatus === true) {
             setConfirmNewPassHelpText('');
             setConfirmNewPassErr(false);
             setNewPassHelpText('');
