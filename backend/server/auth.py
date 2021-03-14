@@ -29,6 +29,8 @@ def auth_login(email, password):
         if db_password == password:
             return { 'user_id': db_id }
 
+    raise ValueError("Email and/or password is not valid")
+
 def auth_reset_request(email):
     # TODO extract into database file
     # Establish connection to database
@@ -49,9 +51,20 @@ def auth_reset_request(email):
 
 
 def auth_reset_password(reset_code, new_password):
-    user = find_user_by_reset_code(reset_code)
-    if (user is not None and reset_code == user['reset_code']):
-        set_new_password(user['u_id'], new_password)
+    con = psycopg2.connect(database="iteration1", user="diamond_hands", password="", host="127.0.0.1", port="5432")
+    # Obtain database cursor
+    cur = con.cursor()
+
+    cur.execute(f"SELECT * FROM users WHERE id = '{reset_code}'")
+    result = cur.fetchone()
+
+    if result is not None:
+        cur.execute(f"UPDATE users SET password = '{new_password}' WHERE id = '{reset_code}'")
+        con.commit()
+        cur.close()
+        con.close()
         return ({})
 
+    cur.close()
+    con.close()
     raise ValueError('Reset code is not valid and/or password is not valid')
