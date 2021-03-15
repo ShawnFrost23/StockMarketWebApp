@@ -118,15 +118,17 @@ function RegisterContainer() {
             setPasswordErr(false);
         } 
 
-        const request_options = {
-            method: 'POST'
+        if (nameStatus && emailStatus && passStatus) {
+            const request_options = {
+                method: 'POST'
+            }
+    
+            fetch('/auth/register' + '?' + new URLSearchParams({
+                email: email,
+                password: password,
+                nickname: name,
+            }), request_options).then(response =>response.json()).then(json => console.log(json)); 
         }
-
-        fetch('/auth/register' + '?' + new URLSearchParams({
-            email: 'dan999@gmail.com',
-            password: 'password123',
-            nickname: 'dan',
-        }), request_options).then(response =>response.json()).then(json => console.log(json)); 
     }
 
     const loginButtonHandler = () => {
