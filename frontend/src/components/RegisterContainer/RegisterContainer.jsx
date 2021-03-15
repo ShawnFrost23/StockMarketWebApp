@@ -5,6 +5,7 @@ import styles from './RegisterContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 function RegisterContainer() {
     // Name State Variables
     const [name, setName] = React.useState('');
@@ -116,6 +117,18 @@ function RegisterContainer() {
             setPasswordHelpText('');
             setPasswordErr(false);
         } 
+
+        if (nameStatus && emailStatus && passStatus) {
+            const request_options = {
+                method: 'POST'
+            }
+    
+            fetch('/auth/register' + '?' + new URLSearchParams({
+                email: email,
+                password: password,
+                nickname: name,
+            }), request_options).then(response =>response.json()).then(json => console.log(json)); 
+        }
     }
 
     const loginButtonHandler = () => {

@@ -33,5 +33,5 @@ def auth_register(cur, con, email, password, nickname):
         if (not user_id): 
             return {"success": False}
         else: 
-            return {"success": True, "id": user_id[0]}
+            return {"success": True, "user_id": user_id[0]}
 
