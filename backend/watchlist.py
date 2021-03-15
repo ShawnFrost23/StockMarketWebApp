@@ -31,6 +31,7 @@ def delete_watchlist(watchlist_id):
 
 
 # add asset to the watchlist
+
 def add_asset(ticker, watchlist_id):
     con, cur = connect()
     cur.execute("SELECT MAX(asset_id) FROM assets;")
@@ -46,7 +47,11 @@ def remove_asset(asset_id, watchlist_id):
     cur.execute(f"DELETE FROM assets WHERE asset_id={asset_id} and watchlist_id={watchlist_id};")
     close(con, cur)
 
-
+# Rename watchlist
+def rename_watchlist(watchlist_id, new_name):
+    con, cur = connect()
+    cur.execute(f"UPDATE watchlists SET watchlist_name = {new_name} where watchlist_id = {watchlist_id};")
+    close(con, cur)
 
 
 '''
