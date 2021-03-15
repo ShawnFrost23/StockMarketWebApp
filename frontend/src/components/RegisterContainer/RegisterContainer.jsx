@@ -127,7 +127,15 @@ function RegisterContainer() {
                 email: email,
                 password: password,
                 nickname: name,
-            }), request_options).then(response =>response.json()).then(json => console.log(json)); 
+            }), request_options).then(response => response.json())
+                                .then(function(json) {
+                                        if(json.success == true) {
+                                            console.log("working"); 
+                                            console.log(json.user_id);
+                                        } else {
+                                            console.log("not_working"); 
+                                        }
+                                }); 
         }
     }
 

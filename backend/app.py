@@ -43,7 +43,7 @@ def hello():
 # Below method should be 'POST'
 # The required fields are EMAIL and PASSWORD
 # Will return to front end: 
-#       {"success": True "id": Int}
+#       {"success": True "user_id": Int}
 #       OR IN CASE OF ERROR
 #       {"success": False}
 @app.route('/auth/login', methods=['POST'])
@@ -67,7 +67,7 @@ def logout():
 #       - name 
 
 # Will return to front end: 
-#       {"success": True "id": Int}
+#       {"success": True "user_id": Int}
 #       OR IN CASE OF ERROR
 #       {"success": False}
 @app.route('/auth/register', methods=['POST'])
