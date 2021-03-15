@@ -6,6 +6,7 @@ from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 from server.auth import *
 from server.register import *
+from server.watchlist import *
 from db_setup import create_db_schema, create_mock_users
 
 # Establish connection to database
@@ -99,6 +100,10 @@ Please enter this code on the reset password page: {reset_code}"""
 def reset_password():
     return dumps(auth_reset_password(request.values.get('reset_code'),
                                      request.values.get('new_password')))
+
+@app.route('/watchlists', methods=['GET'])
+def list_watchlists():
+    return dumps(watchlists_list(request.values.get('user_id')))
 
 @app.route('/')
 def index():
