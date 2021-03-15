@@ -12,6 +12,17 @@ def close(connect, cursor):
     cursor.close()
     connect.close()
 
+def watchlists_list(user_id):
+    con, cur = connect()
+    cur.execute(f"SELECT * FROM watchlists WHERE user_id='{user_id}';")
+    rows = cur.fetchall()
+    result = []
+    for row in rows:
+        # Add watchlist id and watchlist name
+        result.append([row[0], row[2]])
+    close(con, cur)
+    return result
+
 # create watchlist
 def create_watchlist(user_id, watchlist_name):
     con, cur = connect()
@@ -22,13 +33,11 @@ def create_watchlist(user_id, watchlist_name):
     cur.execute(f"INSERT INTO watchlists (watchlist_id, user_id, watchlist_name) VALUES ({watchlist_id}, {user_id}, '{watchlist_name}');")
     close(con, cur)
 
-
-# delete watchlist 
+# delete watchlist
 def delete_watchlist(watchlist_id):
     con, cur = connect()
     cur.execute(f"DELETE FROM watchlists WHERE watchlist_id={watchlist_id};")
     close(con, cur)
-
 
 # add asset to the watchlist
 def add_asset(ticker, watchlist_id):
@@ -46,15 +55,9 @@ def remove_asset(asset_id, watchlist_id):
     cur.execute(f"DELETE FROM assets WHERE asset_id={asset_id} and watchlist_id={watchlist_id};")
     close(con, cur)
 
-
-
-
 '''
 create_watchlist(2, 'penny')
 delete_watchlist(7)
 add_asset('BNB', 2)
 remove_asset(4, 2)
 '''
-
-
-
