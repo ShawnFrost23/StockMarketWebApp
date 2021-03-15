@@ -56,6 +56,19 @@ function LoginContainer() {
         }
     }
 
+    const handleForgotPassword = () => {
+        const emailStatus = checkEmail(email);
+
+        if (emailStatus === false) {
+            setEmailErr(true);
+        } else if (emailStatus === true) {
+            setEmailHelpText('');
+            setEmailErr(false);
+        }
+
+        history.push('passwordReset')
+    }
+
     const registerButtonHandler = () => {
         history.push('registerScreen');
     }
