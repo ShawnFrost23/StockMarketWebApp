@@ -5,7 +5,6 @@ import styles from './RegisterContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 function RegisterContainer() {
     // Name State Variables
     const [name, setName] = React.useState('');
