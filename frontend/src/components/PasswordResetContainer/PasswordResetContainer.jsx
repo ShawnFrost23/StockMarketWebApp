@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 import styles from './PasswordResetContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
@@ -20,6 +21,8 @@ function PasswordResetContainer() {
     const [confirmNewPassErr, setConfirmNewPassErr] = React.useState(false);
     const [confirmNewPassHelpText, setConfirmNewPassHelpText] = React.useState('');
 
+    const history = useHistory();
+
     // Function to check verification code in input field.
     const checkVeriCode = (veriCode) => {
         if (veriCode === '') {
@@ -32,7 +35,11 @@ function PasswordResetContainer() {
     // Function to check confirm new passsword in the input field and verify
     // if the entered passwords match or not.
     const checkPass = (newPass, confirmNewPass) => {
-        if (newPass === '' || confirmNewPass === '') {
+        if (newPass.length < 8) {
+            setNewPassHelpText('Password should have atleast 8 characters');
+            setNewPassErr(true);
+            return false;
+        } else if (newPass === '' || confirmNewPass === '') {
             if (newPass === '') {
                 setNewPassHelpText('Enter a new Password');
                 setNewPassErr(true);
@@ -60,7 +67,7 @@ function PasswordResetContainer() {
     }
 
     // Change Password Button Handler
-    const handleChangePassword = () => {
+    async function handleChangePassword () {
         const veriCodeStatus = checkVeriCode(veriCode);
         const passStatus = checkPass(newPass, confirmNewPass);
         
@@ -79,6 +86,20 @@ function PasswordResetContainer() {
             setNewPassHelpText('');
             setNewPassErr(false);
         } 
+
+        if (veriCodeStatus && passStatus) {
+            const requestOptions = {
+                method: 'POST',
+            }
+
+            const response = await fetch('/auth/reset_password' + '?' + new URLSearchParams({reset_code: veriCode, new_password: newPass, }), requestOptions);
+            if (response.status === 200) {
+                history.push('loginScreen');
+            } else {
+                setVeriCodeHelpText('Wrong Code, Try Again!');
+                setVeriCodeErr(true);
+            }
+        }
     }
     return (
         <div className={styles.container}>
