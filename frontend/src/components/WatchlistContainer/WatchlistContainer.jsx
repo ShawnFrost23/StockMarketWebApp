@@ -6,12 +6,16 @@ import {
     Card,
     CardContent,
     CardHeader,
-    Container
+    Container,
+    Input,
+    InputLabel,
 } from '@material-ui/core';
 
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
+
+    const [name, setName] = useState('New watchlist');
     const getWatchlists = async () => {
         const request_options = {
             method: 'GET',
@@ -43,10 +47,36 @@ function WatchlistContainer() {
         displayWatchlists();
     }, [history]);
 
+    const createWatchlist = async (event) => {
+      event.preventDefault();
+      // DZ TODO HTTP POST watchlist
+      console.log("POSTing watchlist" + name);
+      setName('');
+      getWatchlists();
+    }
+
     return (
       <>
         <Container maxWidth="sm">
-          <h2>Your watchlists:</h2>
+          <h2>Create a new watchlist</h2>
+          <Box>
+            <Card>
+              <CardContent>
+                <form name="createWatchlistForm" onSubmit={createWatchlist}>
+                  <InputLabel>
+                    Name
+                    <Box my={1}>
+                      <Input type="text" id="createWatchlistName" name="name" value={name} onChange={(event) => setName(event.target.value)} />
+                    </Box>
+                  </InputLabel>
+                  <Box my={3}>
+                    <Button type="submit" variant="contained" color="primary">Create Watchlist</Button>
+                  </Box>
+                </form>
+              </CardContent>
+            </Card>
+          </Box>
+          <h2>Your watchlists</h2>
           { watchlists?.sort((a, b) => a[1].localeCompare(b[1])).map((w) => (
             <Box key={w[0]} my={2}>
               <Card variant="outlined">
