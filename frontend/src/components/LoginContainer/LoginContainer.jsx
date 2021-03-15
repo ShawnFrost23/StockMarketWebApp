@@ -70,9 +70,7 @@ function LoginContainer() {
             }
 
             const response = await fetch('/auth/login' + '?' + new URLSearchParams({email: email, password: password,}), requestOptions);
-            if (response.status === 200) {
-                // history.push('advanceHome');
-                
+            if (response.status === 200) {                
                 const jsonFormat = await response.json();
                 // TODO: Store user_id in local storage.
                 const userID = await jsonFormat.user_id;
