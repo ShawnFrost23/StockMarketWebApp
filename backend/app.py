@@ -6,7 +6,7 @@ from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 from server.auth import *
 from server.register import *
-from server.watchlist import *
+from watchlist import *
 from db_setup import create_db_schema, create_mock_users
 
 # Establish connection to database
