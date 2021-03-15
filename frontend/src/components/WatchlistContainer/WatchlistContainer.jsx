@@ -55,6 +55,13 @@ function WatchlistContainer() {
       getWatchlists();
     }
 
+    const deleteWatchlist = async (id) => {
+      // DZ TODO link HTTP DELETE watchlist with backend function
+      // await HTTP_DELETE(`watchlists/${id}`);
+      console.log("Dummy delete for watchlist with id: " + id);
+      getWatchlists();
+    }
+
     return (
       <>
         <Container maxWidth="sm">
@@ -89,7 +96,7 @@ function WatchlistContainer() {
                   <Button color="primary" variant="outlined">
                     Edit Watchlist
                   </Button>
-                  <Button color="secondary" variant="outlined">
+                  <Button color="secondary" variant="outlined" onClick={() => deleteWatchlist(w[0])}>
                     Delete Watchlist
                   </Button>
                 </CardContent>
