@@ -9,6 +9,7 @@ import {
 import LoginScreen from './pages/LoginScreen/LoginScreen'
 import RegisterScreen from './pages/RegisterScreen/RegisterScreen';
 import PasswordResetScreen from './pages/PasswordResetScreen/PasswordResetScreen';
+import AdvanceHomeScreen from './pages/AdvanceHomeScreen/AdvanceHomeScreen';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/passwordReset">
             <PasswordResetScreen />
+          </Route>
+          <Route path="/advanceHome">
+            <AdvanceHomeScreen />
           </Route>
         </Switch>
       </>
