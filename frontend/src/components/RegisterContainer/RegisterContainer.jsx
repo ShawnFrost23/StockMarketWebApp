@@ -90,7 +90,7 @@ function RegisterContainer() {
     }
 
     // TODO: Add backend link
-    const handleRegister = () => {
+    async function handleRegister () {
         const nameStatus = checkName(name);
         const emailStatus = checkEmail(email);
         const passStatus = checkPass(password, confirmPassword);
@@ -123,11 +123,24 @@ function RegisterContainer() {
                 method: 'POST'
             }
     
-            fetch('/auth/register' + '?' + new URLSearchParams({
+            const response = await fetch('/auth/register' + '?' + new URLSearchParams({
                 email: email,
                 password: password,
                 nickname: name,
-            }), request_options).then(response =>response.json()).then(json => console.log(json)); 
+            }), request_options);
+            if (response.status === 200) {
+                const jsonFormat = await response.json();
+                if (jsonFormat.success === true) {
+                    // TODO: Store the user_id in local storage for later uses.
+                    const userID = jsonFormat.user_id;
+                    console.log("🚀 ~ file: RegisterContainer.jsx ~ line 138 ~ handleRegister ~ userID", userID)
+                    history.push('advanceHome')
+                } else {
+                    setEmailHelpText('Email already in use');
+                    setEmailErr(true);
+                }
+            }
+            
         }
     }
 
