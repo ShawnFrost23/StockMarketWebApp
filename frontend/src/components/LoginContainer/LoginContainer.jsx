@@ -82,6 +82,11 @@ function LoginContainer() {
                 func={handleLogin}
             />
             <CustomButton
+                displayText="Forgot Password"
+                // TODO: add the function to handle Forgot passwrod button.
+                func={handleLogin}
+            />
+            <CustomButton
                 displayText="New? Register Now!"
                 func={registerButtonHandler}
             />
