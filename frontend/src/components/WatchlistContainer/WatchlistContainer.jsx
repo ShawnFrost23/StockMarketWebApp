@@ -55,6 +55,10 @@ function WatchlistContainer() {
       getWatchlists();
     }
 
+    const editWatchlist = (id) => {
+      history.push(`watchlist/edit/${id}`);
+    }
+
     const deleteWatchlist = async (id) => {
       // DZ TODO link HTTP DELETE watchlist with backend function
       // await HTTP_DELETE(`watchlists/${id}`);
@@ -93,7 +97,7 @@ function WatchlistContainer() {
                   <Button color="primary" variant="contained">
                     View Assets
                   </Button>
-                  <Button color="primary" variant="outlined">
+                  <Button color="primary" variant="outlined" onClick={() => editWatchlist(w[0])}>
                     Edit Watchlist
                   </Button>
                   <Button color="secondary" variant="outlined" onClick={() => deleteWatchlist(w[0])}>
