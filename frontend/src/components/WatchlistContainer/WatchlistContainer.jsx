@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Container
+} from '@material-ui/core';
 
 function WatchlistContainer() {
     const history = useHistory();
@@ -36,13 +44,30 @@ function WatchlistContainer() {
     }, [history]);
 
     return (
-        <>
-            <h2>Your watchlists:</h2>
-            {/* TODO DZ SORT */}
-            { watchlists?.map((w) => (
-                w[1]
-            ))}
-        </>
+      <>
+        <Container maxWidth="sm">
+          <h2>Your watchlists:</h2>
+          { watchlists?.sort((a, b) => a[1].localeCompare(b[1])).map((w) => (
+            <Box key={w[0]} my={2}>
+              <Card variant="outlined">
+                <CardContent>
+                  <CardHeader className="title" title={w[1]}>
+                  </CardHeader>
+                  <Button color="primary" variant="contained">
+                    View Assets
+                  </Button>
+                  <Button color="primary" variant="outlined">
+                    Edit Watchlist
+                  </Button>
+                  <Button color="secondary" variant="outlined">
+                    Delete Watchlist
+                  </Button>
+                </CardContent>
+              </Card>
+            </Box>
+          ))}
+        </Container>
+      </>
     )
 
 }
