@@ -24,6 +24,14 @@ function LoginContainer() {
             setEmailHelpText('Enter your Email ');
             return false;
         }
+        // Email format validation
+        if (typeof (email) !== "undefined") {
+            let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (!pattern.test(email)) {
+              setEmailHelpText('Enter Valid Email');
+              return false;
+            }
+        }
         return true;
     }
 
@@ -56,7 +64,7 @@ function LoginContainer() {
         }
     }
 
-    const handleForgotPassword = () => {
+    async function handleForgotPassword () {
         const emailStatus = checkEmail(email);
 
         if (emailStatus === false) {
@@ -66,7 +74,21 @@ function LoginContainer() {
             setEmailErr(false);
         }
 
-        history.push('passwordReset')
+        if (emailStatus) {
+            //history.push('passwordReset');
+
+            const requestOptions = {
+                method: 'POST',
+            }
+
+            const response = await fetch('/auth/reset_request' + '?' + new URLSearchParams({email: email, }), requestOptions);
+            if (response.status === 200) {
+                history.push('passwordReset');
+            } else {
+                setEmailHelpText('Sorry! Email not registered.');
+                setEmailErr(true);
+            }
+        }
     }
 
     const registerButtonHandler = () => {
@@ -97,7 +119,7 @@ function LoginContainer() {
             <CustomButton
                 displayText="Forgot Password"
                 // TODO: add the function to handle Forgot passwrod button.
-                func={handleLogin}
+                func={handleForgotPassword}
             />
             <CustomButton
                 displayText="New? Register Now!"
