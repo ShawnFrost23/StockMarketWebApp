@@ -45,7 +45,7 @@ function LoginContainer() {
     }
 
     // TODO: Add logic to send backend verfication for inputs and login to account.
-    const handleLogin = () => {
+    async function handleLogin () {
         const emailStatus = checkEmail(email);
         const passwordStatus = checkPassword(password);
 
@@ -62,6 +62,28 @@ function LoginContainer() {
             setPasswordHelpText('');
             setPasswordErr(false);
         }
+
+        if (emailStatus && passwordStatus) {
+
+            const requestOptions = {
+                method: 'POST',
+            }
+
+            const response = await fetch('/auth/login' + '?' + new URLSearchParams({email: email, password: password,}), requestOptions);
+            if (response.status === 200) {
+                // history.push('advanceHome');
+                
+                const jsonFormat = await response.json();
+                // TODO: Store user_id in local storage.
+                const userID = await jsonFormat.user_id;
+                history.push('advanceHome')
+            } else {
+                setEmailHelpText('Invalid Details, Try Again!');
+                setEmailErr(true);
+                setPasswordHelpText('Invalid Details, Try Again!');
+                setPasswordErr(true);
+            }
+        }
     }
 
     async function handleForgotPassword () {
@@ -75,7 +97,6 @@ function LoginContainer() {
         }
 
         if (emailStatus) {
-            //history.push('passwordReset');
 
             const requestOptions = {
                 method: 'POST',
