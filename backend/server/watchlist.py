@@ -60,14 +60,17 @@ def delete_watchlist(watchlist_id):
         return {"success": True}
 
 # add asset to the watchlist
-def add_asset(ticker, watchlist_id):
+def add_asset(watchlist_id, ticker):
     con, cur = connect()
-    cur.execute("SELECT MAX(asset_id) FROM assets;")
-    asset_id = cur.fetchone()
-    asset_id = asset_id[0]
-    asset_id += 1
-    cur.execute(f"INSERT INTO assets (asset_id, watchlist_id, ticker) VALUES ({asset_id}, {watchlist_id}, '{ticker}');")
-    close(con, cur)
+    cur.execute(f"INSERT INTO assets VALUES(DEFAULT, '{watchlist_id}', '{ticker}')")
+    con.commit()
+    cur.execute(f"SELECT * FROM assets WHERE watchlist_id = '{watchlist_id}' AND ticker = '{ticker}';")
+    result = cur.fetchone()
+    if result: 
+        return {"success": True, "asset_id": result[0]}
+    else: 
+        return {"success": False}
+    
 
 # remove asset from the watchlist
 def remove_asset(asset_id, watchlist_id):

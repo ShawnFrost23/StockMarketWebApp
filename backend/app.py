@@ -136,6 +136,17 @@ def rename_a_watchlist():
 def delete_a_watchlist():
     return dumps(delete_watchlist(request.values.get('watchlist_id')))
 
+# Route requires:
+#       watchlist_id
+#       ticker 
+# Will return to Front end 
+#       { "success": True, "asset_id": x } if successful 
+#       { "success": False} if not 
+@app.route('/watchlists/add_asset', methods=['POST'])
+def add_watchlist_asset():
+    return dumps(add_asset(request.values.get('watchlist_id'),
+                           request.values.get('ticker')))
+
 @app.route('/')
 def index():
     return dumps("STONKS R US")
