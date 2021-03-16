@@ -6,8 +6,8 @@ from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
 from server.auth import *
 from server.register import *
-from watchlist import *
-from db_setup import create_db_schema, create_mock_users
+from server.watchlist import *
+from server.db_setup import *
 
 # Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
@@ -115,6 +115,17 @@ def list_watchlists():
 def create_a_watchlist():
     return dumps(create_watchlist(request.values.get('user_id'),
                                   request.values.get('watchlist_name')))
+
+# Route requires:
+#       user_id
+#       watchlist_id 
+# Will return to Front end 
+#       { "success": True } if successful 
+#       { "success": False} if not 
+@app.route('/watchlists/rename', methods=['POST'])
+def rename_a_watchlist():
+    return dumps(rename_watchlist(request.values.get('user_id'),
+                                  request.values.get('watchlist_id')))
 
 @app.route('/')
 def index():
