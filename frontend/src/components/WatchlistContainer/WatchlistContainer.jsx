@@ -15,8 +15,8 @@ import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
-
     const [name, setName] = useState('New watchlist');
+
     const getWatchlists = async () => {
         const request_options = {
             method: 'GET',
