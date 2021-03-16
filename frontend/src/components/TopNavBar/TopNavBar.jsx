@@ -8,16 +8,17 @@ function TopNavBar() {
     const history = useHistory();
 
     // TODO: ADD Logic for getting Verification code to email.
-    const handleChangePasswordButton = () => {
-        history.push('passwordReset');
+    const handleLogOut = () => {
+        localStorage.clear();
+        history.push('loginScreen');
     }
     
     return (
         <div className={styles.container}>
             <div className={styles.buttonWrapper}>
                 <CustomButton 
-                    displayText="Reset Password"
-                    func={handleChangePasswordButton}
+                    displayText="Log out"
+                    func={handleLogOut}
                 />
             </div>
             
