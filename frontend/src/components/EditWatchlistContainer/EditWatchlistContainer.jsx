@@ -29,7 +29,6 @@ function WatchlistContainer() {
         }), request_options);
 
         const jsonResponse = await res.json();
-        console.log(jsonResponse);
         setWatchlistName(jsonResponse[2]);
         setWatchlistNameInput(jsonResponse[2]);
       }
@@ -47,9 +46,16 @@ function WatchlistContainer() {
     }
 
     const saveChanges = async () => {
-      // DZ TODO connect up to backend - something like
-      // await HTTP_PUT(`watchlist/edit/${watchlistID}`, watchlistNewName);
-      console.log("Dummy PUT for watchlist edit id: " + watchlistID + " " + watchlistName);
+      const request_options = {
+          method: 'POST',
+      }
+
+      const res = await fetch('/watchlists/rename' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+          watchlist_name: watchlistName,
+      }), request_options);
+
+      const jsonResponse = await res.json();
     }
 
     const toAllWatchlists = () => {
