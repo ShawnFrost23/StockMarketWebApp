@@ -20,14 +20,18 @@ function WatchlistContainer() {
 
     useEffect(() => {
       async function getWatchlistInfo() {
-        // DZ TODO link to backend get function
-        // const data = await HTTP_GET(`watchlist/${watchlistID}`);
-        // DZ TODO check name will be data[1]
-        // setWatchlistName(data[1]);
-        // setWatchlistNameInput(data[1]);
+        const request_options = {
+            method: 'GET',
+        }
 
-        setWatchlistName('to the moon');
-        setWatchlistNameInput('to the moon');
+        const res = await fetch('/watchlist' + '?' + new URLSearchParams({
+            watchlist_id: watchlistID,
+        }), request_options);
+
+        const jsonResponse = await res.json();
+        console.log(jsonResponse);
+        setWatchlistName(jsonResponse[2]);
+        setWatchlistNameInput(jsonResponse[2]);
       }
 
       if (localStorage.getItem('user_id') === null) {
