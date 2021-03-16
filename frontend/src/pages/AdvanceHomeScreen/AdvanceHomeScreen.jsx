@@ -8,7 +8,8 @@ function AdvanceHomeScreen() {
     const [watchLists, setWatchLists] = React.useState([]);
     
     return (
-        <>
+        <>  
+            <TopNavBar />
             <WatchlistContainer />
         </>
     )
