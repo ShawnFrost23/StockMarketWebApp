@@ -15,7 +15,7 @@ import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
-    const [name, setName] = useState('New watchlist');
+    const [name, setName] = useState('');
 
     const getWatchlists = async () => {
         const request_options = {
@@ -51,6 +51,15 @@ function WatchlistContainer() {
     const createWatchlist = async (event) => {
       event.preventDefault();
       // DZ TODO HTTP POST watchlist
+      const request_options = {
+          method: 'POST',
+      }
+
+      const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
+          user_id: localStorage.getItem('user_id'),
+          watchlist_name: name,
+      }), request_options);
+
       console.log("POSTing watchlist" + name);
       setName('');
       getWatchlists();
