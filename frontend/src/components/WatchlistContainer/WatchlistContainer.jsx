@@ -10,6 +10,7 @@ import {
     Input,
     InputLabel,
 } from '@material-ui/core';
+import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
 
 function WatchlistContainer() {
     const history = useHistory();
@@ -55,6 +56,10 @@ function WatchlistContainer() {
       getWatchlists();
     }
 
+    const viewWatchlist = (id) => {
+      history.push(`watchlist/${id}`);
+    }
+
     const editWatchlist = (id) => {
       history.push(`watchlist/edit/${id}`);
     }
@@ -94,7 +99,7 @@ function WatchlistContainer() {
                 <CardContent>
                   <CardHeader className="title" title={w[1]}>
                   </CardHeader>
-                  <Button color="primary" variant="contained">
+                  <Button color="primary" variant="contained" onClick={() => viewWatchlist(w[0])}>
                     View Assets
                   </Button>
                   <Button color="primary" variant="outlined" onClick={() => editWatchlist(w[0])}>
