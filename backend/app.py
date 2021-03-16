@@ -42,7 +42,7 @@ def hello():
 # Comment By Arth:
 # Below method should be 'POST'
 # The required fields are EMAIL and PASSWORD
-# Will return to front end: 
+# Will return to front end:
 #       {"success": True "user_id": Int}
 #       OR IN CASE OF ERROR
 #       {"success": False}
@@ -61,12 +61,12 @@ def login():
 def logout():
     return dumps("logout not yet implemented")
 
-# Need from front end: 
-#       - email 
+# Need from front end:
+#       - email
 #       - password
-#       - name 
+#       - name
 
-# Will return to front end: 
+# Will return to front end:
 #       {"success": True "user_id": Int}
 #       OR IN CASE OF ERROR
 #       {"success": False}
@@ -94,7 +94,7 @@ Please enter this code on the reset password page: {reset_code}"""
 # Comment By Arth:
 # Below method should be 'POST'
 # The required fields are VERFICATION CODE sent to email, NEWPASSWORD, TOKEN or USER ID
-# Will return to front end: 
+# Will return to front end:
 #       {"success": True || False}
 @app.route('/auth/reset_password', methods=['POST'])
 def reset_password():
@@ -105,12 +105,12 @@ def reset_password():
 def list_watchlists():
     return dumps(watchlists_list(request.values.get('user_id')))
 
-# Route requires: 
+# Route requires:
 #       user_id
 #       watchlist_name
 # Will return to Front end
 #        { "success": True, "user_id": x } if successful
-#        { "success": False } if not 
+#        { "success": False } if not
 @app.route('/watchlists/create', methods=['POST'])
 def create_a_watchlist():
     return dumps(create_watchlist(request.values.get('user_id'),
@@ -118,40 +118,40 @@ def create_a_watchlist():
 
 # Route requires:
 #       user_id
-#       watchlist_id 
-# Will return to Front end 
-#       { "success": True } if successful 
-#       { "success": False} if not 
+#       watchlist_id
+# Will return to Front end
+#       { "success": True } if successful
+#       { "success": False} if not
 @app.route('/watchlists/rename', methods=['POST'])
 def rename_a_watchlist():
     return dumps(rename_watchlist(request.values.get('watchlist_id'),
                                   request.values.get('watchlist_name')))
 
 # Route requires:
-#       watchlist_id 
-# Will return to Front end 
-#       { "success": True } if successful 
-#       { "success": False} if not 
-@app.route('/watchlists/delete', methods=['POST'])
+#       watchlist_id
+# Will return to Front end
+#       { "success": True } if successful
+#       { "success": False} if not
+@app.route('/watchlists/delete', methods=['DELETE'])
 def delete_a_watchlist():
     return dumps(delete_watchlist(request.values.get('watchlist_id')))
 
 # Route requires:
 #       watchlist_id
-#       ticker 
-# Will return to Front end 
-#       { "success": True, "asset_id": x } if successful 
-#       { "success": False} if not 
+#       ticker
+# Will return to Front end
+#       { "success": True, "asset_id": x } if successful
+#       { "success": False} if not
 @app.route('/watchlists/add_asset', methods=['POST'])
 def add_watchlist_asset():
     return dumps(add_asset(request.values.get('watchlist_id'),
                            request.values.get('ticker')))
 
 # Route requires:
-#       asset_id 
-# Will return to Front end 
-#       { "success": True} if successful 
-#       { "success": False} if not 
+#       asset_id
+# Will return to Front end
+#       { "success": True} if successful
+#       { "success": False} if not
 @app.route('/watchlists/delete_asset', methods=['POST'])
 def delete_watchlist_asset():
     return dumps(remove_asset(request.values.get('asset_id')))

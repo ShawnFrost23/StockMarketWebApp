@@ -50,7 +50,6 @@ function WatchlistContainer() {
 
     const createWatchlist = async (event) => {
       event.preventDefault();
-      // DZ TODO HTTP POST watchlist
       const request_options = {
           method: 'POST',
       }
@@ -60,7 +59,6 @@ function WatchlistContainer() {
           watchlist_name: name,
       }), request_options);
 
-      console.log("POSTing watchlist" + name);
       setName('');
       getWatchlists();
     }
@@ -74,9 +72,15 @@ function WatchlistContainer() {
     }
 
     const deleteWatchlist = async (id) => {
-      // DZ TODO link HTTP DELETE watchlist with backend function
-      // await HTTP_DELETE(`watchlists/${id}`);
-      console.log("Dummy delete for watchlist with id: " + id);
+      const request_options = {
+          method: 'DELETE',
+      }
+
+      await fetch('/watchlists/delete' + '?' + new URLSearchParams({
+          user_id: localStorage.getItem('user_id'),
+          watchlist_id: id,
+      }), request_options);
+
       getWatchlists();
     }
 
