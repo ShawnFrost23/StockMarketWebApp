@@ -63,10 +63,17 @@ function ViewWatchlistContainer() {
       history.push("/advanceHome")
     }
 
-    const createAsset = (event) => {
+    const createAsset = async (event) => {
       event.preventDefault();
-      // DZ TODO HTTP POST watchlist
-      console.log("POSTing new asset: " + newAssetName);
+      const request_options = {
+          method: 'POST',
+      };
+
+      const res = await fetch('/watchlists/add_asset' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+          ticker: newAssetName,
+      }), request_options);
+
       setNewAssetName('');
       getAssets();
     }
