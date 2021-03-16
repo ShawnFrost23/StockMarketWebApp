@@ -35,6 +35,18 @@ def create_watchlist(user_id, watchlist_name):
     else: 
         return {"success": False}
 
+# rename a watchlist
+def rename_watchlist(watchlist_id, watchlist_name):
+    con, cur = connect()
+    cur.execute(f"UPDATE WATCHLISTS SET WATCHLIST_NAME='{watchlist_name}' WHERE WATCHLIST_ID='{watchlist_id}'")
+    con.commit()
+    cur.execute(f"SELECT * FROM WATCHLISTS WHERE watchlist_name = '{watchlist_name}' AND watchlist_id = '{watchlist_id}';")
+    result = cur.fetchone()
+    if result: 
+        return {"success": True}
+    else: 
+        return {"success": False}
+
 # delete watchlist
 def delete_watchlist(watchlist_id):
     con, cur = connect()

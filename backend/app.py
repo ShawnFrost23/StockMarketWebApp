@@ -124,8 +124,8 @@ def create_a_watchlist():
 #       { "success": False} if not 
 @app.route('/watchlists/rename', methods=['POST'])
 def rename_a_watchlist():
-    return dumps(rename_watchlist(request.values.get('user_id'),
-                                  request.values.get('watchlist_id')))
+    return dumps(rename_watchlist(request.values.get('watchlist_id'),
+                                  request.values.get('watchlist_name')))
 
 @app.route('/')
 def index():
