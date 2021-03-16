@@ -147,6 +147,15 @@ def add_watchlist_asset():
     return dumps(add_asset(request.values.get('watchlist_id'),
                            request.values.get('ticker')))
 
+# Route requires:
+#       asset_id 
+# Will return to Front end 
+#       { "success": True} if successful 
+#       { "success": False} if not 
+@app.route('/watchlists/delete_asset', methods=['POST'])
+def delete_watchlist_asset():
+    return dumps(remove_asset(request.values.get('asset_id')))
+
 @app.route('/')
 def index():
     return dumps("STONKS R US")
