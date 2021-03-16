@@ -130,8 +130,8 @@ function RegisterContainer() {
             if (response.status === 200) {
                 const jsonFormat = await response.json();
                 if (jsonFormat.success === true) {
-                    // DZ TODO: Store the user_id in local storage for later uses.
                     const userID = jsonFormat.user_id;
+                    localStorage.setItem('user_id', userID);
                     console.log("🚀 ~ file: RegisterContainer.jsx ~ line 138 ~ handleRegister ~ userID", userID)
                     history.push('advanceHome')
                 } else {
