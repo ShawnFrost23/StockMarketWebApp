@@ -105,6 +105,10 @@ def reset_password():
 def list_watchlists():
     return dumps(watchlists_list(request.values.get('user_id')))
 
+@app.route('/watchlist', methods=['GET'])
+def watchlist():
+    return dumps(get_watchlist(request.values.get('watchlist_id')))
+
 # Route requires:
 #       user_id
 #       watchlist_name

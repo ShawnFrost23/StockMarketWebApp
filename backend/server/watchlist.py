@@ -12,6 +12,13 @@ def close(connect, cursor):
     cursor.close()
     connect.close()
 
+def get_watchlist(watchlist_id):
+    con, cur = connect()
+    cur.execute(f"SELECT * FROM watchlists WHERE watchlist_id='{watchlist_id}';")
+    result = cur.fetchone()
+    close(con, cur)
+    return result
+
 def watchlists_list(user_id):
     con, cur = connect()
     cur.execute(f"SELECT * FROM watchlists WHERE user_id='{user_id}';")

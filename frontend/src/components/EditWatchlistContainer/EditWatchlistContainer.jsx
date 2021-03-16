@@ -20,14 +20,17 @@ function WatchlistContainer() {
 
     useEffect(() => {
       async function getWatchlistInfo() {
-        // DZ TODO link to backend get function
-        // const data = await HTTP_GET(`watchlist/${watchlistID}`);
-        // DZ TODO check name will be data[1]
-        // setWatchlistName(data[1]);
-        // setWatchlistNameInput(data[1]);
+        const request_options = {
+            method: 'GET',
+        }
 
-        setWatchlistName('to the moon');
-        setWatchlistNameInput('to the moon');
+        const res = await fetch('/watchlist' + '?' + new URLSearchParams({
+            watchlist_id: watchlistID,
+        }), request_options);
+
+        const jsonResponse = await res.json();
+        setWatchlistName(jsonResponse[2]);
+        setWatchlistNameInput(jsonResponse[2]);
       }
 
       if (localStorage.getItem('user_id') === null) {
@@ -43,9 +46,16 @@ function WatchlistContainer() {
     }
 
     const saveChanges = async () => {
-      // DZ TODO connect up to backend - something like
-      // await HTTP_PUT(`watchlist/edit/${watchlistID}`, watchlistNewName);
-      console.log("Dummy PUT for watchlist edit id: " + watchlistID + " " + watchlistName);
+      const request_options = {
+          method: 'POST',
+      }
+
+      const res = await fetch('/watchlists/rename' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+          watchlist_name: watchlistName,
+      }), request_options);
+
+      const jsonResponse = await res.json();
     }
 
     const toAllWatchlists = () => {
