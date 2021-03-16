@@ -10,6 +10,8 @@ import LoginScreen from './pages/LoginScreen/LoginScreen'
 import RegisterScreen from './pages/RegisterScreen/RegisterScreen';
 import PasswordResetScreen from './pages/PasswordResetScreen/PasswordResetScreen';
 import AdvanceHomeScreen from './pages/AdvanceHomeScreen/AdvanceHomeScreen';
+import EditWatchlist from './pages/EditWatchlist/EditWatchlist';
+import ViewWatchlist from './pages/ViewWatchlist/ViewWatchlist';
 
 function App() {
   return (
@@ -28,6 +30,12 @@ function App() {
           </Route>
           <Route path="/advanceHome">
             <AdvanceHomeScreen />
+          </Route>
+          <Route path="/watchlist/edit/:watchlistID">
+            <EditWatchlist />
+          </Route>
+          <Route path="/watchlist/:watchlistID">
+            <ViewWatchlist />
           </Route>
         </Switch>
       </>

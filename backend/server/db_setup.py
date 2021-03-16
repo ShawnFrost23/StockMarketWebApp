@@ -21,8 +21,7 @@ def create_db_schema(cur):
     (ASSET_ID       SERIAL      PRIMARY KEY    NOT NULL,
     WATCHLIST_ID    INTEGER     NOT NULL,
     TICKER          VARCHAR     NOT NULL); ''')
-    
-    print("Table created successfully")
+
 
 def create_mock_users(cur):
     Bob = {

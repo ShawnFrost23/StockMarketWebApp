@@ -115,13 +115,13 @@ function RegisterContainer() {
             setConfirmPasswordErr(false);
             setPasswordHelpText('');
             setPasswordErr(false);
-        } 
+        }
 
         if (nameStatus && emailStatus && passStatus) {
             const request_options = {
                 method: 'POST'
             }
-    
+
             const response = await fetch('/auth/register' + '?' + new URLSearchParams({
                 email: email,
                 password: password,
@@ -130,7 +130,7 @@ function RegisterContainer() {
             if (response.status === 200) {
                 const jsonFormat = await response.json();
                 if (jsonFormat.success === true) {
-                    // TODO: Store the user_id in local storage for later uses.
+                    // DZ TODO: Store the user_id in local storage for later uses.
                     const userID = jsonFormat.user_id;
                     console.log("🚀 ~ file: RegisterContainer.jsx ~ line 138 ~ handleRegister ~ userID", userID)
                     history.push('advanceHome')
@@ -139,7 +139,7 @@ function RegisterContainer() {
                     setEmailErr(true);
                 }
             }
-            
+
         }
     }
 
@@ -148,29 +148,29 @@ function RegisterContainer() {
     }
     return (
         <div className={styles.container}>
-            <LogRegHeading 
+            <LogRegHeading
                 heading="Register"
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Name"
                 setValue={setName}
                 errorStatus={nameErr}
                 helperText={nameHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Email"
                 setValue={setEmail}
                 errorStatus={emailErr}
                 helperText={emailHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Password"
                 type='password'
                 setValue={setPassword}
                 errorStatus={passwordErr}
                 helperText={passwordHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Confirm Password"
                 type='password'
                 setValue={setConfirmPassword}
