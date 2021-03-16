@@ -160,7 +160,7 @@ def add_watchlist_asset():
 # Will return to Front end
 #       { "success": True} if successful
 #       { "success": False} if not
-@app.route('/watchlists/delete_asset', methods=['POST'])
+@app.route('/watchlists/delete_asset', methods=['DELETE'])
 def delete_watchlist_asset():
     return dumps(remove_asset(request.values.get('asset_id')))
 
