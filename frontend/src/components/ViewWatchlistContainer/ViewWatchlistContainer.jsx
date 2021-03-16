@@ -19,6 +19,19 @@ function ViewWatchlistContainer() {
     const [assets, setAssets] = useState([]);
     const { watchlistID } = useParams();
 
+    const getWatchlist = async () => {
+      const request_options = {
+          method: 'GET',
+      }
+
+      const res = await fetch('/watchlist' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+      }), request_options);
+
+      const jsonResponse = await res.json();
+      setWatchlistName(jsonResponse[2]);
+    }
+
     const getAssets = async () => {
       const request_options = {
         method: 'POST',
@@ -35,6 +48,7 @@ function ViewWatchlistContainer() {
 
     useEffect(() => {
       const displayAssets = async () => {
+        getWatchlist();
         getAssets();
       }
 
