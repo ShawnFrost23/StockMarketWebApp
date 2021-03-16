@@ -79,8 +79,14 @@ function ViewWatchlistContainer() {
     }
 
     const deleteAsset = async (id) => {
-      // DZ TODO link HTTP DELETE asset with backend function
-      console.log("Dummy delete for asset with id: " + id);
+      const request_options = {
+          method: 'DELETE',
+      };
+
+      const res = await fetch('/watchlists/delete_asset' + '?' + new URLSearchParams({
+          asset_id: id,
+      }), request_options);
+
       getAssets();
     }
 
