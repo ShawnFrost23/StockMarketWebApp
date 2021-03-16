@@ -101,6 +101,11 @@ function PasswordResetContainer() {
             }
         }
     }
+
+    async function cancelButtonHandler() {
+        history.push('loginScreen');
+    }
+
     return (
         <div className={styles.container}>
             <LogRegHeading 
@@ -132,7 +137,7 @@ function PasswordResetContainer() {
             />
             <CustomButton
                 displayText="Cancel"
-                //func={cancelButtonHandler}
+                func={cancelButtonHandler}
             />
         </div>
     )
