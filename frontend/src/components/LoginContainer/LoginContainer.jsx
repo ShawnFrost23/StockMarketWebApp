@@ -74,6 +74,7 @@ function LoginContainer() {
                 const jsonFormat = await response.json();
                 // TODO: Store user_id in local storage.
                 const userID = await jsonFormat.user_id;
+                localStorage.setItem('user_id', userID);
                 history.push('advanceHome')
             } else {
                 setEmailHelpText('Invalid Details, Try Again!');
