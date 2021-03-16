@@ -105,6 +105,11 @@ def reset_password():
 def list_watchlists():
     return dumps(watchlists_list(request.values.get('user_id')))
 
+@app.route('/watchlists/create', methods=['POST'])
+def create_a_watchlist():
+    return dumps(create_watchlist(request.values.get('user_id'),
+                                  request.values.get('watchlist_name')))
+
 @app.route('/')
 def index():
     return dumps("STONKS R US")

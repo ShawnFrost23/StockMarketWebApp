@@ -26,12 +26,10 @@ def watchlists_list(user_id):
 # create watchlist
 def create_watchlist(user_id, watchlist_name):
     con, cur = connect()
-    cur.execute("SELECT MAX(watchlist_id) FROM watchlists;")
-    watchlist_id = cur.fetchone()
-    watchlist_id = watchlist_id[0]
-    watchlist_id += 1
-    cur.execute(f"INSERT INTO watchlists (watchlist_id, user_id, watchlist_name) VALUES ({watchlist_id}, {user_id}, '{watchlist_name}');")
-    close(con, cur)
+    cur.execute(f"INSERT INTO WATCHLISTS VALUES('{user_id}', DEFAULT, '{watchlist_name}')")
+    con.commit()
+    
+    
 
 # delete watchlist
 def delete_watchlist(watchlist_id):
