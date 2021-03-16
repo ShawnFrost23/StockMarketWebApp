@@ -5,7 +5,6 @@ import styles from './RegisterContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 function RegisterContainer() {
     // Name State Variables
     const [name, setName] = React.useState('');
@@ -90,7 +89,7 @@ function RegisterContainer() {
     }
 
     // TODO: Add backend link
-    const handleRegister = () => {
+    async function handleRegister () {
         const nameStatus = checkName(name);
         const emailStatus = checkEmail(email);
         const passStatus = checkPass(password, confirmPassword);
@@ -116,26 +115,31 @@ function RegisterContainer() {
             setConfirmPasswordErr(false);
             setPasswordHelpText('');
             setPasswordErr(false);
-        } 
+        }
 
         if (nameStatus && emailStatus && passStatus) {
             const request_options = {
                 method: 'POST'
             }
-    
-            fetch('/auth/register' + '?' + new URLSearchParams({
+
+            const response = await fetch('/auth/register' + '?' + new URLSearchParams({
                 email: email,
                 password: password,
                 nickname: name,
-            }), request_options).then(response => response.json())
-                                .then(function(json) {
-                                        if(json.success == true) {
-                                            console.log("working"); 
-                                            console.log(json.user_id);
-                                        } else {
-                                            console.log("not_working"); 
-                                        }
-                                }); 
+            }), request_options);
+            if (response.status === 200) {
+                const jsonFormat = await response.json();
+                if (jsonFormat.success === true) {
+                    // DZ TODO: Store the user_id in local storage for later uses.
+                    const userID = jsonFormat.user_id;
+                    console.log("🚀 ~ file: RegisterContainer.jsx ~ line 138 ~ handleRegister ~ userID", userID)
+                    history.push('advanceHome')
+                } else {
+                    setEmailHelpText('Email already in use');
+                    setEmailErr(true);
+                }
+            }
+
         }
     }
 
@@ -144,29 +148,29 @@ function RegisterContainer() {
     }
     return (
         <div className={styles.container}>
-            <LogRegHeading 
+            <LogRegHeading
                 heading="Register"
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Name"
                 setValue={setName}
                 errorStatus={nameErr}
                 helperText={nameHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Email"
                 setValue={setEmail}
                 errorStatus={emailErr}
                 helperText={emailHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Password"
                 type='password'
                 setValue={setPassword}
                 errorStatus={passwordErr}
                 helperText={passwordHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Confirm Password"
                 type='password'
                 setValue={setConfirmPassword}
