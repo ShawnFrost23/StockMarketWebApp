@@ -127,6 +127,15 @@ def rename_a_watchlist():
     return dumps(rename_watchlist(request.values.get('watchlist_id'),
                                   request.values.get('watchlist_name')))
 
+# Route requires:
+#       watchlist_id 
+# Will return to Front end 
+#       { "success": True } if successful 
+#       { "success": False} if not 
+@app.route('/watchlists/delete', methods=['POST'])
+def delete_a_watchlist():
+    return dumps(delete_watchlist(request.values.get('watchlist_id')))
+
 @app.route('/')
 def index():
     return dumps("STONKS R US")

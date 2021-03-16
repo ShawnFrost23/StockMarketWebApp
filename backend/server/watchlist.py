@@ -51,7 +51,13 @@ def rename_watchlist(watchlist_id, watchlist_name):
 def delete_watchlist(watchlist_id):
     con, cur = connect()
     cur.execute(f"DELETE FROM watchlists WHERE watchlist_id={watchlist_id};")
-    close(con, cur)
+    con.commit()
+    cur.execute(f"SELECT * FROM WATCHLISTS WHERE watchlist_id = '{watchlist_id}';")
+    result = cur.fetchone()
+    if result: 
+        return {"success": False}
+    else: 
+        return {"success": True}
 
 # add asset to the watchlist
 def add_asset(ticker, watchlist_id):
@@ -69,9 +75,3 @@ def remove_asset(asset_id, watchlist_id):
     cur.execute(f"DELETE FROM assets WHERE asset_id={asset_id} and watchlist_id={watchlist_id};")
     close(con, cur)
 
-'''
-create_watchlist(2, 'penny')
-delete_watchlist(7)
-add_asset('BNB', 2)
-remove_asset(4, 2)
-'''
