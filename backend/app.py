@@ -140,6 +140,10 @@ def rename_a_watchlist():
 def delete_a_watchlist():
     return dumps(delete_watchlist(request.values.get('watchlist_id')))
 
+@app.route('/watchlist/assets', methods=['GET'])
+def watchlist_assets():
+    return dumps(get_assets(request.values.get('watchlist_id')))
+
 # Route requires:
 #       watchlist_id
 #       ticker
