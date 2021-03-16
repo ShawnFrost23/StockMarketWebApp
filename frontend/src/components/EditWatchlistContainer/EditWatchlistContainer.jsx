@@ -13,49 +13,66 @@ import {
 
 function WatchlistContainer() {
     const history = useHistory();
-//     const [watchlists, setWatchlists] = useState([]);
 
-//     const [name, setName] = useState('New watchlist');
-//     const getWatchlists = async () => {
-//         const request_options = {
-//             method: 'GET',
-//         }
+    const [watchlistName, setWatchlistName] = useState('');
+    const [watchlistNameInput, setWatchlistNameInput] = useState('');
+    const { watchlistID } = useParams();
 
-//         const res = await fetch('/watchlists' + '?' + new URLSearchParams({
-//             user_id: localStorage.getItem('user_id'),
-//         }), request_options);
+    useEffect(() => {
+      async function getWatchlistInfo() {
+        // DZ TODO link to backend get function
+        // const data = await HTTP_GET(`watchlist/${watchlistID}`);
+        // DZ TODO check name will be data[1]
+        // setWatchlistName(data[1]);
+        // setWatchlistNameInput(data[1]);
 
-// //       if (res.status !== 200) {
-// //         const data = await res.json();
-// //         throw new Error(data.error);
-// //       }
+        setWatchlistName('to the moon');
+        setWatchlistNameInput('to the moon');
+      }
 
-//         const jsonResponse = await res.json();
-//         console.log(jsonResponse);
+      if (localStorage.getItem('user_id') === null) {
+        history.push('/loginScreen');
+        return;
+      }
+      getWatchlistInfo();
+    }, [watchlistID, history]);
 
-//         setWatchlists(jsonResponse);
-    // }
+    const updateName = (str) => {
+      setWatchlistNameInput(str);
+      setWatchlistName(str);
+    }
+
+    const saveChanges = async () => {
+      // DZ TODO connect up to backend - something like
+      // await HTTP_PUT(`watchlist/edit/${watchlistID}`, watchlistNewName);
+      console.log("Dummy PUT for watchlist edit id: " + watchlistID + " " + watchlistName);
+    }
+
+    const toAllWatchlists = () => {
+      history.push("/advanceHome")
+    }
 
     return (
       <>
         <Container maxWidth="sm">
-          <h2>Edit watchlist</h2>
+          <h2>Editing watchlist: {watchlistName}</h2>
           <Box>
             <Card>
-              <CardContent>
-                {/* <form name="createWatchlistForm" onSubmit={createWatchlist}>
-                  <InputLabel>
-                    Name
-                    <Box my={1}>
-                      <Input type="text" id="createWatchlistName" name="name" value={name} onChange={(event) => setName(event.target.value)} />
-                    </Box>
-                  </InputLabel>
-                  <Box my={3}>
-                    <Button type="submit" variant="contained" color="primary">Create Watchlist</Button>
+              <CardContent id="editWatchlist">
+                <InputLabel>
+                  Watchlist name
+                  <Box m={1}>
+                    <Input type="text" value={watchlistNameInput} onChange={(event) => updateName(event.target.value)} />
                   </Box>
-                </form> */}
+                </InputLabel>
+                <Button variant="contained" color="primary" onClick={() => saveChanges()}>
+                  Save changes
+                </Button>
               </CardContent>
             </Card>
+            <Button color="primary" onClick={() => toAllWatchlists()}>
+              Back to all watchlists
+            </Button>
           </Box>
         </Container>
       </>
