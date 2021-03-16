@@ -10,12 +10,13 @@ import {
     Input,
     InputLabel,
 } from '@material-ui/core';
+import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
 
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
-
     const [name, setName] = useState('New watchlist');
+
     const getWatchlists = async () => {
         const request_options = {
             method: 'GET',
@@ -53,6 +54,10 @@ function WatchlistContainer() {
       console.log("POSTing watchlist" + name);
       setName('');
       getWatchlists();
+    }
+
+    const viewWatchlist = (id) => {
+      history.push(`watchlist/${id}`);
     }
 
     const editWatchlist = (id) => {
@@ -94,7 +99,7 @@ function WatchlistContainer() {
                 <CardContent>
                   <CardHeader className="title" title={w[1]}>
                   </CardHeader>
-                  <Button color="primary" variant="contained">
+                  <Button color="primary" variant="contained" onClick={() => viewWatchlist(w[0])}>
                     View Assets
                   </Button>
                   <Button color="primary" variant="outlined" onClick={() => editWatchlist(w[0])}>
