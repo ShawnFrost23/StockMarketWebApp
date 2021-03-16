@@ -59,12 +59,24 @@ def delete_watchlist(watchlist_id):
     con, cur = connect()
     cur.execute(f"DELETE FROM watchlists WHERE watchlist_id='{watchlist_id}';")
     con.commit()
-    cur.execute(f"SELECT * FROM WATCHLISTS WHERE watchlist_id = '{watchlist_id}';")
+    cur.execute(f"SELECT * FROM WATCHLISTS WHERE watchlist_id='{watchlist_id}';")
     result = cur.fetchone()
-    if result: 
+    if result:
         return {"success": False}
-    else: 
+    else:
         return {"success": True}
+
+# Get all watchlist assets
+def get_assets(watchlist_id):
+    con, cur = connect()
+    cur.execute(f"SELECT * FROM assets WHERE watchlist_id={watchlist_id};")
+    rows = cur.fetchall()
+    result = []
+    for row in rows:
+        result.append([row[0], row[2]])
+    close(con, cur)
+    return result
+
 
 # add asset to the watchlist
 def add_asset(watchlist_id, ticker):

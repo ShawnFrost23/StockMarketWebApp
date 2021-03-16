@@ -15,7 +15,7 @@ function ViewWatchlistContainer() {
     const history = useHistory();
 
     const [watchlistName, setWatchlistName] = useState('');
-    const [newAssetName, setNewAssetName] = useState('New asset');
+    const [newAssetName, setNewAssetName] = useState('');
     const [assets, setAssets] = useState([]);
     const { watchlistID } = useParams();
 
@@ -34,16 +34,15 @@ function ViewWatchlistContainer() {
 
     const getAssets = async () => {
       const request_options = {
-        method: 'POST',
+        method: 'GET',
       }
 
-      // DZ TODO get name of watchlist with ID
-      setWatchlistName('to the moon');
+      const res = await fetch('/watchlist/assets' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+      }), request_options);
 
-      // DZ TODO link to backend HTTP GET of all assets with watchlist ID
-      // const res =
-      // setAssets(jsonResponse);
-      setAssets([[1, 'GME'], [2, 'CBA']])
+      const jsonResponse = await res.json();
+      setAssets(jsonResponse);
     }
 
     useEffect(() => {
