@@ -105,6 +105,12 @@ def reset_password():
 def list_watchlists():
     return dumps(watchlists_list(request.values.get('user_id')))
 
+# Route requires: 
+#       user_id
+#       watchlist_name
+# Will return to Front end
+#        { "success": True, "user_id": x } if successful
+#        { "success": False } if not 
 @app.route('/watchlists/create', methods=['POST'])
 def create_a_watchlist():
     return dumps(create_watchlist(request.values.get('user_id'),
