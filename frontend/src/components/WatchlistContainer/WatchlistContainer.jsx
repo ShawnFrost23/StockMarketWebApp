@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 import styles from './WatchListContainer.module.css';
-import CustomButton from '../CustomButton/CustomButton';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import WatchListCards from '../WatchListCards/WatchListCards';
 
