@@ -47,7 +47,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function CustomTextField({ placeholder, type, setValue, errorStatus, helperText }) {
+function CustomTextField({ placeholder, type, setValue, errorStatus, helperText, size }) {
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -66,6 +66,7 @@ function CustomTextField({ placeholder, type, setValue, errorStatus, helperText 
       onChange={handleChange}
       error={errorStatus}
       helperText={helperText}
+      size={size}
       />
   )
 }

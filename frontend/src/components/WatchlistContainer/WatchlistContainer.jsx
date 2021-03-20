@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Container,
-    Input,
-    InputLabel,
-} from '@material-ui/core';
-import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
+import styles from './WatchListContainer.module.css';
+import CustomTextField from '../CustomTextField/CustomTextField';
+import WatchListCards from '../WatchListCards/WatchListCards';
+
 
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
     const [name, setName] = useState('');
+    const [nameErr, setNameErr] = React.useState(false)
+    const [nameHelpText, setNameHelpText] = React.useState('');
 
     const getWatchlists = async () => {
         const request_options = {
@@ -26,14 +23,7 @@ function WatchlistContainer() {
             user_id: localStorage.getItem('user_id'),
         }), request_options);
 
-//       if (res.status !== 200) {
-//         const data = await res.json();
-//         throw new Error(data.error);
-//       }
-
         const jsonResponse = await res.json();
-        console.log(jsonResponse);
-
         setWatchlists(jsonResponse);
     }
 
@@ -48,19 +38,37 @@ function WatchlistContainer() {
         displayWatchlists();
     }, [history]);
 
-    const createWatchlist = async (event) => {
-      event.preventDefault();
-      const request_options = {
-          method: 'POST',
+    const checkWatchlistName = (name) => {
+      if (name === '') {
+        setNameHelpText('Enter Watchlist Name');
+        return false;
       }
+      return true;
+    }
 
-      const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
-          user_id: localStorage.getItem('user_id'),
-          watchlist_name: name,
-      }), request_options);
+    const createWatchlist = async (event) => {
+      
+      event.preventDefault();
+      const watchlistNameStatus = checkWatchlistName(name);
 
-      setName('');
-      getWatchlists();
+      if (watchlistNameStatus == false) {
+        setNameErr(true);
+      } else {
+        setNameErr(false);
+        setNameHelpText('');
+        const request_options = {
+          method: 'POST',
+        }
+
+        const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
+            user_id: localStorage.getItem('user_id'),
+            watchlist_name: name,
+        }), request_options);
+
+        setName('');
+        getWatchlists();
+      }
+      
     }
 
     const viewWatchlist = (id) => {
@@ -86,46 +94,32 @@ function WatchlistContainer() {
 
     return (
       <>
-        <Container maxWidth="sm">
+        <div className={styles.container}>
           <h2>Create a new watchlist</h2>
-          <Box>
-            <Card>
-              <CardContent>
-                <form name="createWatchlistForm" onSubmit={createWatchlist}>
-                  <InputLabel>
-                    Name
-                    <Box my={1}>
-                      <Input type="text" id="createWatchlistName" name="name" value={name} onChange={(event) => setName(event.target.value)} />
-                    </Box>
-                  </InputLabel>
-                  <Box my={3}>
-                    <Button type="submit" variant="contained" color="primary">Create Watchlist</Button>
-                  </Box>
-                </form>
-              </CardContent>
-            </Card>
-          </Box>
+          <div className={styles.watchlistContainer}>
+            <CustomTextField 
+              placeholder="Name"
+              setValue={setName}
+              errorStatus={nameErr}
+              helperText={nameHelpText}
+              size="small"
+            />
+            <AddCircleOutlineIcon 
+              onClick={(event) => createWatchlist(event)}
+              style={{fontSize: "50pt" , color: "green"}}
+            />
+          </div>
           <h2>Your watchlists</h2>
           { watchlists?.sort((a, b) => a[1].localeCompare(b[1])).map((w) => (
-            <Box key={w[0]} my={2}>
-              <Card variant="outlined">
-                <CardContent>
-                  <CardHeader className="title" title={w[1]}>
-                  </CardHeader>
-                  <Button color="primary" variant="contained" onClick={() => viewWatchlist(w[0])}>
-                    View Assets
-                  </Button>
-                  <Button color="primary" variant="outlined" onClick={() => editWatchlist(w[0])}>
-                    Edit Watchlist
-                  </Button>
-                  <Button color="secondary" variant="outlined" onClick={() => deleteWatchlist(w[0])}>
-                    Delete Watchlist
-                  </Button>
-                </CardContent>
-              </Card>
-            </Box>
+            <WatchListCards 
+              id={w[0]}
+              watchListName={w[1]}
+              viewFunc={() => viewWatchlist(w[0])}
+              editFunc={() => editWatchlist(w[0])}
+              deleteFunc={() => deleteWatchlist(w[0])}
+            />
           ))}
-        </Container>
+        </div>
       </>
     )
 
