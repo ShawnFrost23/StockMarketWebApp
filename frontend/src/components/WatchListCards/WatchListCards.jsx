@@ -9,9 +9,11 @@ function WatchListCards({ id, watchListName, viewFunc, editFunc, deleteFunc}) {
     return (
         <div key={id} className={styles.container}>
             <div className={styles.headingName}>{watchListName}</div>
-            <AssessmentIcon style={{color: 'green'}} onClick={viewFunc}/>
-            <EditIcon style={{color: 'blue'}} onClick={editFunc}/>
-            <DeleteIcon style={{color: 'red'}} onClick={deleteFunc}/>
+            <div className={styles.icons}>
+                <AssessmentIcon style={{color: 'green', fontSize: '35px'}} onClick={viewFunc}/>
+                <EditIcon style={{color: 'blue', fontSize: '35px'}} onClick={editFunc}/>
+                <DeleteIcon style={{color: 'red', fontSize: '35px'}} onClick={deleteFunc}/>
+            </div>
         </div>
     )
 }
