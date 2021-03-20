@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
     Box,
@@ -10,12 +10,17 @@ import {
     Input,
     InputLabel,
 } from '@material-ui/core';
-import ViewWatchlist from '../../pages/ViewWatchlist/ViewWatchlist';
+
+import styles from './WatchListContainer.module.css';
+import CustomButton from '../CustomButton/CustomButton';
+import CustomTextField from '../CustomTextField/CustomTextField';
 
 function WatchlistContainer() {
     const history = useHistory();
     const [watchlists, setWatchlists] = useState([]);
     const [name, setName] = useState('');
+    const [nameErr, setNameErr] = React.useState(false)
+    const [nameHelpText, setNameHelpText] = React.useState('');
 
     const getWatchlists = async () => {
         const request_options = {
@@ -26,14 +31,7 @@ function WatchlistContainer() {
             user_id: localStorage.getItem('user_id'),
         }), request_options);
 
-//       if (res.status !== 200) {
-//         const data = await res.json();
-//         throw new Error(data.error);
-//       }
-
         const jsonResponse = await res.json();
-        console.log(jsonResponse);
-
         setWatchlists(jsonResponse);
     }
 
@@ -48,19 +46,37 @@ function WatchlistContainer() {
         displayWatchlists();
     }, [history]);
 
-    const createWatchlist = async (event) => {
-      event.preventDefault();
-      const request_options = {
-          method: 'POST',
+    const checkWatchlistName = (name) => {
+      if (name === '') {
+        setNameHelpText('Enter Watchlist Name');
+        return false;
       }
+      return true;
+    }
 
-      const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
-          user_id: localStorage.getItem('user_id'),
-          watchlist_name: name,
-      }), request_options);
+    const createWatchlist = async (event) => {
+      
+      event.preventDefault();
+      const watchlistNameStatus = checkWatchlistName(name);
 
-      setName('');
-      getWatchlists();
+      if (watchlistNameStatus == false) {
+        setNameErr(true);
+      } else {
+        setNameErr(false);
+        setNameHelpText('');
+        const request_options = {
+          method: 'POST',
+        }
+
+        const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
+            user_id: localStorage.getItem('user_id'),
+            watchlist_name: name,
+        }), request_options);
+
+        setName('');
+        getWatchlists();
+      }
+      
     }
 
     const viewWatchlist = (id) => {
@@ -86,25 +102,20 @@ function WatchlistContainer() {
 
     return (
       <>
-        <Container maxWidth="sm">
+        <div className={styles.container}>
           <h2>Create a new watchlist</h2>
-          <Box>
-            <Card>
-              <CardContent>
-                <form name="createWatchlistForm" onSubmit={createWatchlist}>
-                  <InputLabel>
-                    Name
-                    <Box my={1}>
-                      <Input type="text" id="createWatchlistName" name="name" value={name} onChange={(event) => setName(event.target.value)} />
-                    </Box>
-                  </InputLabel>
-                  <Box my={3}>
-                    <Button type="submit" variant="contained" color="primary">Create Watchlist</Button>
-                  </Box>
-                </form>
-              </CardContent>
-            </Card>
-          </Box>
+          <div>
+            <CustomTextField 
+              placeholder="Name"
+              setValue={setName}
+              errorStatus={nameErr}
+              helperText={nameHelpText}
+            />
+            <CustomButton
+              displayText="Create"
+              func={createWatchlist}
+            />
+          </div>
           <h2>Your watchlists</h2>
           { watchlists?.sort((a, b) => a[1].localeCompare(b[1])).map((w) => (
             <Box key={w[0]} my={2}>
@@ -125,7 +136,7 @@ function WatchlistContainer() {
               </Card>
             </Box>
           ))}
-        </Container>
+        </div>
       </>
     )
 
