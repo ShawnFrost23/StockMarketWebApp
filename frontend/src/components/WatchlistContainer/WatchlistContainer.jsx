@@ -104,7 +104,7 @@ function WatchlistContainer() {
       <>
         <div className={styles.container}>
           <h2>Create a new watchlist</h2>
-          <div>
+          <div className={styles.watchlistContainer}>
             <CustomTextField 
               placeholder="Name"
               setValue={setName}
