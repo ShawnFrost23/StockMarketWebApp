@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Container,
-    Input,
-    InputLabel,
-} from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 import styles from './WatchListContainer.module.css';
 import CustomButton from '../CustomButton/CustomButton';
 import CustomTextField from '../CustomTextField/CustomTextField';
+import WatchListCards from '../WatchListCards/WatchListCards';
+
 
 function WatchlistContainer() {
     const history = useHistory();
@@ -110,31 +103,22 @@ function WatchlistContainer() {
               setValue={setName}
               errorStatus={nameErr}
               helperText={nameHelpText}
+              size="small"
             />
-            <CustomButton
-              displayText="Create"
-              func={createWatchlist}
+            <AddCircleOutlineIcon 
+              onClick={(event) => createWatchlist(event)}
+              style={{fontSize: "50pt" , color: "green"}}
             />
           </div>
           <h2>Your watchlists</h2>
           { watchlists?.sort((a, b) => a[1].localeCompare(b[1])).map((w) => (
-            <Box key={w[0]} my={2}>
-              <Card variant="outlined">
-                <CardContent>
-                  <CardHeader className="title" title={w[1]}>
-                  </CardHeader>
-                  <Button color="primary" variant="contained" onClick={() => viewWatchlist(w[0])}>
-                    View Assets
-                  </Button>
-                  <Button color="primary" variant="outlined" onClick={() => editWatchlist(w[0])}>
-                    Edit Watchlist
-                  </Button>
-                  <Button color="secondary" variant="outlined" onClick={() => deleteWatchlist(w[0])}>
-                    Delete Watchlist
-                  </Button>
-                </CardContent>
-              </Card>
-            </Box>
+            <WatchListCards 
+              id={w[0]}
+              watchListName={w[1]}
+              viewFunc={() => viewWatchlist(w[0])}
+              editFunc={() => editWatchlist(w[0])}
+              deleteFunc={() => deleteWatchlist(w[0])}
+            />
           ))}
         </div>
       </>
