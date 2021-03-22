@@ -22,4 +22,22 @@ Finished our project proposal ahead of time.
 
 ## Week 4
 
-Sprint begins!
+Sprint begins! Initially focused on setting up the backend (Python) infrastructure.
+
+## Week 5
+
+Made good progress and finished well before the deadline. All sprint tickets were completed.
+
+I took on more frontend tickets and was glad I still remembered my COMP6080 React skills!
+
+I was very happy with the demo, which was led by Matt.
+
+The team met up on Monday, twice on Tuesday, and completed Retro A on Wednesday.
+
+The team met up on Thursday to kick off the new sprint and assign tickets. Spoke at length about core technical decisions to make.
+
+## Week 6
+
+Started the week with researching our approach to using APIs. The key challenge is finding a free API that suits our application.
+
+Team meeting 7pm Monday 22 March.
