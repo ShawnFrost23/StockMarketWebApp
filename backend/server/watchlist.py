@@ -102,3 +102,14 @@ def remove_asset(asset_id):
         return {"success": False}
     else: 
         return {"success": True}
+
+# Validate Ticker 
+def validate(ticker):
+    con, cur = connect()
+    ticker = ticker.upper()
+    cur.execute(f"SELECT * FROM tickers WHERE ticker = '{ticker}';")
+    result = cur.fetchone()
+    if result: 
+        return {"success": True, "ticker": result[0], "company_name": result[1], "industry": result[2]}
+    else: 
+        return {"success": False}

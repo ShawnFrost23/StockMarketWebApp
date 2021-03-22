@@ -169,6 +169,16 @@ def add_watchlist_asset():
 def delete_watchlist_asset():
     return dumps(remove_asset(request.values.get('asset_id')))
 
+
+# Route requires:
+#       ticker
+# Will return to Front end 
+#       {"success": True, "ticker": x, "company_name": x, "industry": x} if successful
+#       {"success": False} if not successful 
+@app.route('/watchlists/ticker_validation', methods=['POST'])
+def validate_ticker():
+    return dumps(validate(request.values.get('ticker')))
+
 @app.route('/')
 def index():
     return dumps("STONKS R US")
