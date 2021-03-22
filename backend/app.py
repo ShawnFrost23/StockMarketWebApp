@@ -8,6 +8,7 @@ from server.auth import *
 from server.register import *
 from server.watchlist import *
 from server.db_setup import *
+from server.data.validate_tickers import *
 
 # Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
@@ -20,6 +21,10 @@ con.commit()
 
 # Create mock user registrations
 create_mock_users(cur)
+con.commit()
+
+# Fetch ASX Tickers 
+add_asx_tickers(cur)
 con.commit()
 
 app = Flask(__name__, static_folder='server/static')

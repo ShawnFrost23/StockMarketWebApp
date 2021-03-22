@@ -22,6 +22,14 @@ def create_db_schema(cur):
     WATCHLIST_ID    INTEGER     NOT NULL,
     TICKER          VARCHAR     NOT NULL); ''')
 
+    # Create a Table for ASX Tickers 
+    cur.execute(
+    '''CREATE TABLE IF NOT EXISTS TICKERS
+    (TICKER         VARCHAR     PRIMARY KEY    NOT NULL,
+    COMPANY_NAME    VARCHAR     NOT NULL,
+    INDUSTRY        VARCHAR     NOT NULL,
+    EXCHANGE        VARCHAR     NOT NULL); ''')
+
 
 def create_mock_users(cur):
     Bob = {
