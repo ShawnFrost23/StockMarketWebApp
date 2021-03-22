@@ -30,3 +30,16 @@ talked through proposal with Rachid and then discussed blockers for beginning wo
 code. This week i set up the database and connection adapter. This involved creating a 
 schema and writing queries to beginning filling the database. I also wrote backend 
 functionality for registering users to the webapp. 
+
+Week 5
+
+To begin week five i completed working on back end routes for registering users, 
+verifying login credentials and creating and removing watchlists and assets from the 
+database. In addition i helped connect front end and back end components. On Wednesday
+we had our Demo A with Rachid. After our demo we had our Retro A meeting where we 
+discussed what we did well and what could be improved on. 
+
+Week 6
+
+Downloaded csv with all ASX tickers. Wrote script to import ASX Tickers into database 
+and function to verify user was adding a real ticker to their watchlist.
