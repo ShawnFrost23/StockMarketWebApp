@@ -9,6 +9,7 @@ from server.register import *
 from server.watchlist import *
 from server.db_setup import *
 from server.data.validate_tickers import *
+from server.asset import *
 
 # Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
@@ -178,6 +179,10 @@ def delete_watchlist_asset():
 @app.route('/watchlists/ticker_validation', methods=['POST'])
 def validate_ticker():
     return dumps(validate(request.values.get('ticker')))
+
+@app.route('/stocks/overview', methods=['GET'])
+def get_overview():
+    return dumps(overview(request.values.get('ticker')))
 
 @app.route('/')
 def index():
