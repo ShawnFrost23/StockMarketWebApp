@@ -1,10 +1,11 @@
 import React from 'react'
 
 import styles from './GeneralNewsCard.module.css';
-function GeneralNewsCard() {
+function GeneralNewsCard( { newsArticle } ) {
+    console.log(newsArticle);
     return (
-        <div>
-            
+        <div style={styles.container}>
+            {/* <h5>{newsArticle.author}</h5> */}
         </div>
     )
 }
