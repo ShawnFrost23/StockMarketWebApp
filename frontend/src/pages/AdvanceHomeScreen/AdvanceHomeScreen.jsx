@@ -1,4 +1,5 @@
 import React from 'react'
+import GeneralNewsContainer from '../../components/GeneralNewsContainer/GeneralNewsContainer';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
 import WatchlistContainer from '../../components/WatchlistContainer/WatchlistContainer';
 
@@ -12,6 +13,7 @@ function AdvanceHomeScreen() {
         <>  
             <TopNavBar />
             <WatchlistContainer />
+            <GeneralNewsContainer />
         </>
     )
 }
