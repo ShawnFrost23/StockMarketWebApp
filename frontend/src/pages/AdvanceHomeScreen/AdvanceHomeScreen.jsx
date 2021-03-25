@@ -4,6 +4,7 @@ import WatchlistContainer from '../../components/WatchlistContainer/WatchlistCon
 
 import styles from './AdvanceHomeScreen.module.css';
 
+// API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 function AdvanceHomeScreen() {
     const [watchLists, setWatchLists] = React.useState([]);
     
