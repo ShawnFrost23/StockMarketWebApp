@@ -12,6 +12,7 @@ import PasswordResetScreen from './pages/PasswordResetScreen/PasswordResetScreen
 import AdvanceHomeScreen from './pages/AdvanceHomeScreen/AdvanceHomeScreen';
 import EditWatchlist from './pages/EditWatchlist/EditWatchlist';
 import ViewWatchlist from './pages/ViewWatchlist/ViewWatchlist';
+import ViewAsset from './pages/ViewAsset/ViewAsset';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/watchlist/:watchlistID">
             <ViewWatchlist />
+          </Route>
+          <Route path="/asset/:assetID">
+            <ViewAsset />
           </Route>
         </Switch>
       </>

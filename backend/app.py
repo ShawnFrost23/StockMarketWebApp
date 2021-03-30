@@ -180,7 +180,7 @@ def delete_watchlist_asset():
 def validate_ticker():
     return dumps(validate(request.values.get('ticker')))
 
-@app.route('/stocks/overview', methods=['GET'])
+@app.route('/asset', methods=['GET'])
 def get_overview():
     return dumps(overview(request.values.get('ticker')))
 
