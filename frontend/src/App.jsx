@@ -35,11 +35,11 @@ function App() {
           <Route path="/watchlist/edit/:watchlistID">
             <EditWatchlist />
           </Route>
+          <Route path="/watchlist/:watchlistID/asset/:assetID">
+            <ViewAsset />
+          </Route>
           <Route path="/watchlist/:watchlistID">
             <ViewWatchlist />
-          </Route>
-          <Route path="/asset/:assetID">
-            <ViewAsset />
           </Route>
         </Switch>
       </>

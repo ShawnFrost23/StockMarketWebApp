@@ -80,7 +80,7 @@ function ViewWatchlistContainer() {
     }
 
     const viewAsset = async (id) => {
-      history.push(`/asset/${id}`);
+      history.push(`/watchlist/${watchlistID}/asset/${id}`);
     }
 
     const deleteAsset = async (id) => {
