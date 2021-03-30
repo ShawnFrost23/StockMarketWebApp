@@ -182,7 +182,7 @@ def validate_ticker():
 
 @app.route('/asset', methods=['GET'])
 def get_overview():
-    return dumps(overview(request.values.get('ticker')))
+    return dumps(overview(request.values.get('asset_id')))
 
 @app.route('/')
 def index():
