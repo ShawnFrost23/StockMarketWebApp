@@ -10,6 +10,7 @@ import {
     Input,
     InputLabel,
 } from '@material-ui/core';
+import ViewAsset from '../../pages/ViewAsset/ViewAsset';
 
 function ViewWatchlistContainer() {
     const history = useHistory();
@@ -78,6 +79,10 @@ function ViewWatchlistContainer() {
       getAssets();
     }
 
+    const viewAsset = async (id) => {
+      history.push(`/asset/${id}`);
+    }
+
     const deleteAsset = async (id) => {
       const request_options = {
           method: 'DELETE',
@@ -96,7 +101,6 @@ function ViewWatchlistContainer() {
           <h2>Viewing watchlist: {watchlistName}</h2>
           <h2>Add new asset</h2>
           <Box>
-            {/* TODO get all assets */}
             <Card>
               <CardContent id="addAsset">
                 <form name="createAssetForm" onSubmit={createAsset}>
@@ -120,6 +124,9 @@ function ViewWatchlistContainer() {
                 <CardContent>
                   <CardHeader className="title" title={a[1]}>
                   </CardHeader>
+                  <Button color="primary" variant="contained" onClick={() => viewAsset(a[0])}>
+                    View asset
+                  </Button>
                   <Button color="secondary" variant="outlined" onClick={() => deleteAsset(a[0])}>
                     Delete asset
                   </Button>
