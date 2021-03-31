@@ -20,7 +20,7 @@ function GeneralNewsContainer() {
 
     useEffect(() => {
         const displayNews = async () => {
-            getNews('Google');
+            getNews('Netflix');
         }
 
         if (localStorage.getItem('user_id') === null) {
