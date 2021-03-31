@@ -7,7 +7,7 @@ import styles from './GeneralNewsContainer.module.css';
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 
 function GeneralNewsContainer() {
-    const [newsList, setNewsList] = useState();
+    const [newsList, setNewsList] = useState([]);
     const history = useHistory();
 
     async function getNews(queryName) {
@@ -15,7 +15,7 @@ function GeneralNewsContainer() {
         const body = await response.json();
         const articles = await body.articles;
         console.log("🚀 ~ file: GeneralNewsContainer.jsx ~ line 16 ~ getNews ~ response", articles)
-        setNewsList(articles[0]);
+        setNewsList(articles);
     }
 
     useEffect(() => {
@@ -33,11 +33,11 @@ function GeneralNewsContainer() {
     return (
         <div className={styles.container}>
             News Container
-            {/* {newsList.map((article) => ( */}
-                {/* <GeneralNewsCard 
-                    newsArticle={newsList}
-                /> */}
-            {/* ))} */}
+            {newsList.map((article) => (
+                <GeneralNewsCard 
+                    newsArticle={article}
+                />
+            ))}
         </div>
     )
 }
