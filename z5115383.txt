@@ -42,4 +42,8 @@ discussed what we did well and what could be improved on.
 Week 6
 
 Downloaded csv with all ASX tickers. Wrote script to import ASX Tickers into database 
-and function to verify user was adding a real ticker to their watchlist.
+and function to verify user was adding a real ticker to their watchlist. Uni Flexi - 
+Week so no more classes or meetings this week. 
+
+Week 7
+
