@@ -150,6 +150,10 @@ def delete_a_watchlist():
 def watchlist_assets():
     return dumps(get_assets(request.values.get('watchlist_id')))
 
+@app.route('/watchlist/aggregate_data', methods=['GET'])
+def watchlist_data():
+    return dumps(get_api_data_watchlist(request.values.get('watchlist_id')))
+
 # Route requires:
 #       watchlist_id
 #       ticker

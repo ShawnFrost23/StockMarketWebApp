@@ -93,4 +93,20 @@ def get_api_data(user_id):
 
 get_api_data(1)
 
+# Get data for a particular watchlist
+def get_api_data_watchlist(watchlist_id):
+    assets = get_assets(watchlist_id)
+    watchlist_data = get_all_stock_info(assets)
 
+    daily_percentage_changes = sum([asset['24hr_percentage_change'] for asset in assets]) / len(assets)
+    weekly_percentage_changes = sum([asset['weekly_percentage_change'] for asset in assets]) / len(assets)
+    monthly_percentage_changes = sum([asset['monthly_percentage_change'] for asset in assets]) / len(assets)
+    yearly_percentage_changes = sum([asset['yearly_percentage_change'] for asset in assets]) / len(assets)
+
+    aggregate_data  = {}
+    aggregate_data['daily_percentage_changes'] = daily_percentage_changes
+    aggregate_data['weekly_percentage_changes'] = weekly_percentage_changes
+    aggregate_data['monthly_percentage_changes'] = monthly_percentage_changes
+    aggregate_data['yearly_percentage_changes'] = yearly_percentage_changes
+
+    return aggregate_data
