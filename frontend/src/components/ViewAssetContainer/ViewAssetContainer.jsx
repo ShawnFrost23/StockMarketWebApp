@@ -13,6 +13,7 @@ import {
 
 function ViewAssetContainer() {
     const history = useHistory();
+    const [assetInfo, setAssetInfo] = useState({});
 
     const { watchlistID } = useParams();
     const { assetID } = useParams();
@@ -27,7 +28,9 @@ function ViewAssetContainer() {
       }), request_options);
 
       const jsonResponse = await res.json();
+      setAssetInfo(jsonResponse);
       console.log(jsonResponse);
+      console.log(assetInfo['last_price']);
     }
 
     useEffect(() => {
@@ -41,7 +44,27 @@ function ViewAssetContainer() {
 
     return (
       <>
-        Hello
+        <p>
+          Last price: {assetInfo['last_price']}
+        </p>
+        <p>
+          Change: {assetInfo['change']}
+        </p>
+        <p>
+          Change %: {assetInfo['change_percent']}
+        </p>
+        <p>
+          Volume: {assetInfo['volume']}
+        </p>
+        <p>
+          Market cap: {assetInfo['market_cap']}
+        </p>
+        <p>
+          52 week high: {assetInfo['fiftyTwoWeekHigh']}
+        </p>
+        <p>
+          52 week low: {assetInfo['fiftyTwoWeekLow']}
+        </p>
       </>
     )
 }
