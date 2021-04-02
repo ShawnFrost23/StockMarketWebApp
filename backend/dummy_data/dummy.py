@@ -1,4 +1,7 @@
 import psycopg2
+import sys
+sys.path.insert(0, '../server')
+from watchlist import *
 
 # establish connection and return cursor
 def connect():
@@ -13,10 +16,19 @@ def close(connect, cursor):
     connect.close()
 
 # Function adds dummy data for bobthebuilder id = 1
-# Will work on a clean database 
+# Will only work on a clean database!
 def dummy(cur):
-    
+    user_id = 1
+    watchlist_id = 1
+    create_watchlist(user_id, 'BOB1')
+    add_asset(watchlist_id, 'AAA')
+    add_asset(watchlist_id, 'CBA')
+    add_asset(watchlist_id, 'BHP')
+    add_asset(watchlist_id, 'A2M')
+    add_asset(watchlist_id, 'CCL')
 
-
-
-
+# Execute
+con, cur = connect()
+dummy(cur)
+con.commit()
+close(con, cur)
