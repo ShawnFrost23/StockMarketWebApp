@@ -1,3 +1,6 @@
+##### FILE MUST BE RUN MANUALLY ######
+# Active VENV and run python3 backend/dummy_data/dummy.py
+
 import psycopg2
 import sys
 sys.path.insert(0, '../server')
