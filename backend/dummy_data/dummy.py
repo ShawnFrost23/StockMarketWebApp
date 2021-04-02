@@ -12,6 +12,11 @@ def close(connect, cursor):
     cursor.close()
     connect.close()
 
-# WIP Function to get all users watchlists 
-def get_users_watchlist(): 
+# Function adds dummy data for bobthebuilder id = 1
+# Will work on a clean database 
+def dummy(cur):
+    
+
+
+
 

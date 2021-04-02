@@ -81,14 +81,17 @@ def get_assets(watchlist_id):
 # add asset to the watchlist
 def add_asset(watchlist_id, ticker):
     con, cur = connect()
-    cur.execute(f"INSERT INTO assets VALUES(DEFAULT, '{watchlist_id}', '{ticker}')")
-    con.commit()
-    cur.execute(f"SELECT * FROM assets WHERE watchlist_id = '{watchlist_id}' AND ticker = '{ticker}';")
-    result = cur.fetchone()
-    if result: 
-        return {"success": True, "asset_id": result[0]}
-    else: 
-        return {"success": False}
+    if (easy_validate(ticker)):
+        cur.execute(f"INSERT INTO assets VALUES(DEFAULT, '{watchlist_id}', '{ticker}')")
+        con.commit()
+        cur.execute(f"SELECT * FROM assets WHERE watchlist_id = '{watchlist_id}' AND ticker = '{ticker}';")
+        result = cur.fetchone()
+        if result: 
+            return {"success": True, "asset_id": result[0]}
+        else: 
+            return {"success": False}
+    else:
+        return {"success": False, "reason": 'Invalid Ticker'}
     
 
 # remove asset from the watchlist
@@ -113,3 +116,15 @@ def validate(ticker):
         return {"success": True, "ticker": result[0], "company_name": result[1], "industry": result[2]}
     else: 
         return {"success": False}
+
+# Revised function to validate adding a ticker 
+# within the add_asset function
+def easy_validate(ticker): 
+    con, cur = connect()
+    ticker = ticker.upper()
+    cur.execute(f"SELECT * FROM tickers WHERE ticker = '{ticker}';")
+    result = cur.fetchone()
+    if result: 
+        return True
+    else: 
+        return False
