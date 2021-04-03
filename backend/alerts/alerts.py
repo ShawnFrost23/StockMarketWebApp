@@ -1,4 +1,7 @@
 import psycopg2
+from flask_mail import Mail, Message
+from flask import Flask, request, send_from_directory
+#from apscheduler.schedulers.background import BackgroundScheduler
 
 # establish connection and return cursor
 def connect():
@@ -12,6 +15,13 @@ def close(connect, cursor):
     cursor.close()
     connect.close()
 
-# WIP Function to get all users watchlists 
-def get_users_watchlist(): 
-
+# get personal information
+def get_personal_data(user_id):
+    con, cur = connect()
+    user_info = {}
+    cur.execute(f"SELECT * FROM users WHERE id='{user_id}';")
+    result = cur.fetchone()
+    close(con, cur)
+    user_info['name'] = result[1]
+    user_info['email'] = result[2]
+    return user_info
