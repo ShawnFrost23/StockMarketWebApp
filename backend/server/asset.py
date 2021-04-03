@@ -17,7 +17,6 @@ def overview(asset_id):
     stock = yf.Ticker(f"{ticker}.AX")
     company_name = validate(ticker)['company_name']
     last_price = stock.history(period="1d", interval="1m").iloc[-1]["Close"]
-    last_close = stock.history(period="2d", interval="1d").iloc[-2]["Close"]
 
     start_price = stock.history(period="2d", interval="1d").iloc[0]["Close"]
     daily_nominal_change = round((last_price - start_price), 2)

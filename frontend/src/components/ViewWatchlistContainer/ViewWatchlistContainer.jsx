@@ -110,18 +110,20 @@ function ViewWatchlistContainer() {
           <h2>Viewing watchlist: {watchlistName}</h2>
           <Box>
             <Card>
-              <Typography>
-                Daily change: {aggregateInfo['daily_percentage_changes']}%
-              </Typography>
-              <Typography>
-                Weekly change: {aggregateInfo['weekly_percentage_changes']}%
-              </Typography>
-              <Typography>
-                Monthly change: {aggregateInfo['monthly_percentage_changes']}%
-              </Typography>
-              <Typography>
-                Yearly change: {aggregateInfo['yearly_percentage_changes']}%
-              </Typography>
+              <CardContent>
+                <Typography>
+                  Daily change: {aggregateInfo['daily_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Weekly change: {aggregateInfo['weekly_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Monthly change: {aggregateInfo['monthly_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Yearly change: {aggregateInfo['yearly_percentage_changes']}
+                </Typography>
+              </CardContent>
             </Card>
           </Box>
           <h2>Watchlist assets</h2>
