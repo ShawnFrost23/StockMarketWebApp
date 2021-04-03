@@ -5,6 +5,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import styles from './WatchListContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import WatchListCards from '../WatchListCards/WatchListCards';
+import download from './download.png'; 
 
 
 function WatchlistContainer() {
@@ -92,9 +93,26 @@ function WatchlistContainer() {
       getWatchlists();
     }
 
+    const send_report = async (id) => {
+      const request_options = {
+        method: 'POST', 
+      }
+
+      await fetch('/send_automated_report' + '?' + new URLSearchParams({
+        user_id: localStorage.getItem('user_id'),
+      }), request_options);
+    }
+
     return (
       <>
         <div className={styles.container}>
+          <div className={styles.download}>
+            <img src={download} alt="download icon" 
+              width="50" 
+              height="50" 
+              style= {{cursor: "pointer"}}
+              onClick={(event) => send_report(event)}/>
+          </div>
           <h2>Create a new watchlist</h2>
           <div className={styles.watchlistContainer}>
             <CustomTextField 
