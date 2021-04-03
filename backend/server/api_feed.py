@@ -1,7 +1,7 @@
 import psycopg2
 import yfinance as yf
 
-from watchlist import * 
+from .watchlist import *
 
 '''
 Stock level:
@@ -91,19 +91,17 @@ def get_api_data(user_id):
     print(api_data)
     return api_data
 
-get_api_data(1)
-
 # Get data for a particular watchlist
 def get_api_data_watchlist(watchlist_id):
     assets = get_assets(watchlist_id)
     watchlist_data = get_all_stock_info(assets)
 
-    daily_percentage_changes = sum([asset['24hr_percentage_change'] for asset in assets]) / len(assets)
-    weekly_percentage_changes = sum([asset['weekly_percentage_change'] for asset in assets]) / len(assets)
-    monthly_percentage_changes = sum([asset['monthly_percentage_change'] for asset in assets]) / len(assets)
-    yearly_percentage_changes = sum([asset['yearly_percentage_change'] for asset in assets]) / len(assets)
+    daily_percentage_changes = sum([float(asset['24hr_percentage_change'][:-1]) for asset in watchlist_data]) / len(assets)
+    weekly_percentage_changes = sum([float(asset['weekly_percentage_change'][:-1]) for asset in watchlist_data]) / len(assets)
+    monthly_percentage_changes = sum([float(asset['monthly_percentage_change'][:-1]) for asset in watchlist_data]) / len(assets)
+    yearly_percentage_changes = sum([float(asset['yearly_percentage_change'][:-1]) for asset in watchlist_data]) / len(assets)
 
-    aggregate_data  = {}
+    aggregate_data = {}
     aggregate_data['daily_percentage_changes'] = daily_percentage_changes
     aggregate_data['weekly_percentage_changes'] = weekly_percentage_changes
     aggregate_data['monthly_percentage_changes'] = monthly_percentage_changes
