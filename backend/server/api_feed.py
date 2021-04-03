@@ -102,9 +102,9 @@ def get_api_data_watchlist(watchlist_id):
     yearly_percentage_changes = sum([float(asset['yearly_percentage_change'][:-1]) for asset in watchlist_data]) / len(assets)
 
     aggregate_data = {}
-    aggregate_data['daily_percentage_changes'] = daily_percentage_changes
-    aggregate_data['weekly_percentage_changes'] = weekly_percentage_changes
-    aggregate_data['monthly_percentage_changes'] = monthly_percentage_changes
-    aggregate_data['yearly_percentage_changes'] = yearly_percentage_changes
+    aggregate_data['daily_percentage_changes'] = "{:.2%}".format(daily_percentage_changes / 100)
+    aggregate_data['weekly_percentage_changes'] = "{:.2%}".format(weekly_percentage_changes / 100)
+    aggregate_data['monthly_percentage_changes'] = "{:.2%}".format(monthly_percentage_changes / 100)
+    aggregate_data['yearly_percentage_changes'] = "{:.2%}".format(yearly_percentage_changes / 100)
 
     return aggregate_data
