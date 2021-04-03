@@ -48,14 +48,31 @@ CORS(app)
 # Email Test 
 @app.route('/send_automated_report', methods=['POST'])
 def send_email_report():
-    personal_info = get_personal_data(request.values.get('user_id'))
+    user_id = request.values.get('user_id')
+    personal_info = get_personal_data(user_id)
     personal_info['name'] = "Dan"
     personal_info['email'] = 'dan-omalley@hotmail.com'    
 
-    msg = Message("TEST EMAIL",
+    msg = Message(subject="TEST EMAIL",
                   sender="diamondhands3900@gmail.com",
                   recipients=[personal_info['email']])
-    msg.body = f"""Hi {personal_info['name']}, hope this email finds you well!"""
+    
+    api_data = get_api_data(user_id)
+
+    message = f"""Hi {personal_info['name']},\n\nYour daily watchlist performance is summarised below:\n\n"""
+
+    for watchlist_x in api_data: 
+        aggregate_data = get_api_data_watchlist(watchlist_x['watchlist_id'])
+        message = message + f"""Summary for {watchlist_x['watchlist_name']}:
+        Daily Change: {aggregate_data['daily_percentage_changes']}
+        Weekly Change: {aggregate_data['weekly_percentage_changes']}
+        Monthly Change: {aggregate_data['monthly_percentage_changes']}
+        Yearly Change: {aggregate_data['yearly_percentage_changes']}\n\n"""
+
+
+    message = message + "This is an automated email sent by Team Diamond Hands!"
+
+    msg.body = message
     mail.send(msg)
     
     return dumps('success')
