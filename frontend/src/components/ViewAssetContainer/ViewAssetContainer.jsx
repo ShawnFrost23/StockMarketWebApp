@@ -9,6 +9,7 @@ import {
     Container,
     Input,
     InputLabel,
+    Typography,
 } from '@material-ui/core';
 
 function ViewAssetContainer() {
@@ -31,6 +32,10 @@ function ViewAssetContainer() {
       setAssetInfo(jsonResponse);
       console.log(jsonResponse);
       console.log(assetInfo['last_price']);
+    }
+
+    const toWatchlist = () => {
+      history.push(`/watchlist/${watchlistID}`)
     }
 
     useEffect(() => {
@@ -65,6 +70,9 @@ function ViewAssetContainer() {
         <p>
           52 week low: {assetInfo['fiftyTwoWeekLow']}
         </p>
+            <Button color="primary" onClick={() => toWatchlist()}>
+              Back to watchlist
+            </Button>
       </>
     )
 }
