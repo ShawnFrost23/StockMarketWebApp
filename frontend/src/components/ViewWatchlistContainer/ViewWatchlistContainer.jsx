@@ -18,6 +18,7 @@ function ViewWatchlistContainer() {
     const [watchlistName, setWatchlistName] = useState('');
     const [newAssetName, setNewAssetName] = useState('');
     const [assets, setAssets] = useState([]);
+    const [aggregateInfo, setAggregateInfo] = useState({});
     const { watchlistID } = useParams();
 
     const getWatchlist = async () => {
@@ -31,6 +32,13 @@ function ViewWatchlistContainer() {
 
       const jsonResponse = await res.json();
       setWatchlistName(jsonResponse[2]);
+
+      const aggregateRes = await fetch('/watchlist/aggregate_data' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+      }), request_options);
+
+      const aggregateJsonResponse = await aggregateRes.json();
+      setAggregateInfo(aggregateJsonResponse);
     }
 
     const getAssets = async () => {
@@ -137,6 +145,19 @@ function ViewWatchlistContainer() {
           <Button color="primary" onClick={() => toAllWatchlists()}>
             Back to all watchlists
           </Button>
+          <h2>Watchlist summary</h2>
+          <p>
+            Daily % change: {aggregateInfo['daily_percentage_changes']}
+          </p>
+          <p>
+            Weekly % change: {aggregateInfo['weekly_percentage_changes']}
+          </p>
+          <p>
+            Monthly % change: {aggregateInfo['monthly_percentage_changes']}
+          </p>
+          <p>
+            Yearly % change: {aggregateInfo['yearly_percentage_changes']}
+          </p>
         </Container>
       </>
     )
