@@ -10,13 +10,13 @@ function GeneralNewsContainer() {
     const [newsList, setNewsList] = useState([]);
     const [assetList, setAssetList] = useState([]);
     const history = useHistory();
-    const companyList = ['Amazon', 'Google'];
+    const companyList = ['Woolworths', 'ANZ Banking Corp'];
 
     async function getNews( comapnyList ) {
         const articleList = [];
         for ( let index = 0; index < comapnyList.length; index++) {
             const companyName = comapnyList[index];
-            const response = await fetch(`https://newsapi.org/v2/top-headlines?q=${companyName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
+            const response = await fetch(`https://newsapi.org/v2/everything?q=${companyName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
             const body = await response.json();
             const articles = await body.articles;
             if (articles.length > 5) {
