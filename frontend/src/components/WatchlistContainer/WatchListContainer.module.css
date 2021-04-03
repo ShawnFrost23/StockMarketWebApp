@@ -14,3 +14,9 @@
     align-items: center;
     width: 100%;
 }
+
+.download {
+    position: absolute;
+    top: 65px; 
+    right: 15px; 
+}
