@@ -49,9 +49,7 @@ CORS(app)
 @app.route('/send_automated_report', methods=['POST'])
 def send_email_report():
     user_id = request.values.get('user_id')
-    personal_info = get_personal_data(user_id)
-    personal_info['name'] = "Dan"
-    personal_info['email'] = 'dan-omalley@hotmail.com'    
+    personal_info = get_personal_data(user_id) 
 
     msg = Message(subject="TEST EMAIL",
                   sender="diamondhands3900@gmail.com",
@@ -68,9 +66,12 @@ def send_email_report():
         Weekly Change: {aggregate_data['weekly_percentage_changes']}
         Monthly Change: {aggregate_data['monthly_percentage_changes']}
         Yearly Change: {aggregate_data['yearly_percentage_changes']}\n\n"""
+        message = message + f"""Summary of Assets in {watchlist_x['watchlist_name']}:\n"""
+        for stock_x in watchlist_x['stock_info']:
+            message = message + f"""{stock_x['ticker']} - {stock_x['company_name']}:
+            24hr change: {stock_x['24hr_percentage_change']}, Weekly change: {stock_x['weekly_percentage_change']}, Monthly change: {stock_x['monthly_percentage_change']}, Yearly change: {stock_x['yearly_percentage_change']}\n\n"""
 
-
-    message = message + "This is an automated email sent by Team Diamond Hands!"
+    message = message + "\nThis is an automated email sent by Team Diamond Hands!"
 
     msg.body = message
     mail.send(msg)
