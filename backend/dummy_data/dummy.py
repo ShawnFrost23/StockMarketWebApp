@@ -18,6 +18,30 @@ def close(connect, cursor):
     cursor.close()
     connect.close()
 
+# Function to create mock users 
+def create_mock_users(cur):
+    Bob = {
+        "nickname": "bobthebuilder",
+        "email": "bob@gmail.com",
+        "password": "builderman420"
+    }
+
+    Alice = {
+        "nickname": "alice",
+        "email": "alice@gmail.com",
+        "password": "wonderlandtea"
+    }
+
+    Mallory = {
+        "nickname": "hacker",
+        "email": "hacker@gmail.com",
+        "password": "satoshinakomoto"
+    }
+
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Bob['nickname']}', '{Bob['email']}', '{Bob['password']}')")
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Alice['nickname']}', '{Alice['email']}', '{Alice['password']}')")
+    cur.execute(f"INSERT INTO USERS VALUES(DEFAULT, '{Mallory['nickname']}', '{Mallory['email']}', '{Mallory['password']}')")
+
 # Function adds dummy data for bobthebuilder id = 1
 # Will only work on a clean database!
 def dummy(cur):
@@ -40,8 +64,12 @@ def dummy(cur):
     add_asset(watchlist_id, 'FMG')
     add_asset(watchlist_id, 'TAH')
 
+
+
 # Execute
 con, cur = connect()
+create_mock_users(cur)
+con.commit()
 dummy(cur)
 con.commit()
 close(con, cur)
