@@ -4,6 +4,7 @@ from json import dumps
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from flask import Flask, request, send_from_directory
+from alerts.alerts import *
 from server.auth import *
 from server.register import *
 from server.watchlist import *
@@ -38,8 +39,25 @@ app.config.update(
     MAIL_PASSWORD='tothemoon' # To be stored in an ENVfile
 )
 
+mail = Mail(app)
+
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
 CORS(app)
+
+# Email Test 
+@app.route('/send_automated_report', methods=['POST'])
+def send_email_report():
+    personal_info = get_personal_data(request.values.get('user_id'))
+    personal_info['name'] = "Dan"
+    personal_info['email'] = 'dan-omalley@hotmail.com'    
+
+    msg = Message("TEST EMAIL",
+                  sender="diamondhands3900@gmail.com",
+                  recipients=[personal_info['email']])
+    msg.body = f"""Hi {personal_info['name']}, hope this email finds you well!"""
+    mail.send(msg)
+    
+    return dumps('success')
 
 @app.route('/hello', methods=['GET'])
 def hello():
