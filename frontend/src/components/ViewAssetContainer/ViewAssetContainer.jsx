@@ -9,6 +9,7 @@ import {
     Container,
     Input,
     InputLabel,
+    Typography,
 } from '@material-ui/core';
 
 function ViewAssetContainer() {
@@ -33,6 +34,10 @@ function ViewAssetContainer() {
       console.log(assetInfo['last_price']);
     }
 
+    const toWatchlist = () => {
+      history.push(`/watchlist/${watchlistID}`)
+    }
+
     useEffect(() => {
       if (localStorage.getItem('user_id') === null) {
         history.push('/loginScreen');
@@ -44,27 +49,51 @@ function ViewAssetContainer() {
 
     return (
       <>
-        <p>
-          Last price: {assetInfo['last_price']}
-        </p>
-        <p>
-          Change: {assetInfo['change']}
-        </p>
-        <p>
-          Change %: {assetInfo['change_percent']}
-        </p>
-        <p>
-          Volume: {assetInfo['volume']}
-        </p>
-        <p>
-          Market cap: {assetInfo['market_cap']}
-        </p>
-        <p>
-          52 week high: {assetInfo['fiftyTwoWeekHigh']}
-        </p>
-        <p>
-          52 week low: {assetInfo['fiftyTwoWeekLow']}
-        </p>
+        <Container maxWidth="sm">
+          <h2>{assetInfo['company_name']}</h2>
+          <Box key="assetOverview" my={2}>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography>
+                  Last price: {assetInfo['last_price']}
+                </Typography>
+                <Typography>
+                  Daily change: {assetInfo['daily_nominal_change']}
+                </Typography>
+                <Typography>
+                  Daily % change: {assetInfo['daily_percentage_change']}
+                </Typography>
+                <Typography>
+                  Weekly change: {assetInfo['weekly_nominal_change']}
+                </Typography>
+                <Typography>
+                  Weekly % change: {assetInfo['weekly_percentage_change']}
+                </Typography>
+                <Typography>
+                  Monthly change: {assetInfo['monthly_nominal_change']}
+                </Typography>
+                <Typography>
+                  Monthly % change: {assetInfo['monthly_percentage_change']}
+                </Typography>
+                <Typography>
+                  Yearly change: {assetInfo['yearly_nominal_change']}
+                </Typography>
+                <Typography>
+                  Yearly % change: {assetInfo['yearly_percentage_change']}
+                </Typography>
+                <Typography>
+                  Volume: {assetInfo['volume']}
+                </Typography>
+                <Typography>
+                  Market cap: {assetInfo['market_cap']}
+                </Typography>
+              </CardContent>
+            </Card>
+            <Button color="primary" onClick={() => toWatchlist()}>
+              Back to watchlist
+            </Button>
+          </Box>
+        </Container>
       </>
     )
 }

@@ -9,6 +9,7 @@ import {
     Container,
     Input,
     InputLabel,
+    Typography,
 } from '@material-ui/core';
 import ViewAsset from '../../pages/ViewAsset/ViewAsset';
 
@@ -107,21 +108,21 @@ function ViewWatchlistContainer() {
       <>
         <Container maxWidth="sm">
           <h2>Viewing watchlist: {watchlistName}</h2>
-          <h2>Add new asset</h2>
           <Box>
             <Card>
-              <CardContent id="addAsset">
-                <form name="createAssetForm" onSubmit={createAsset}>
-                  <InputLabel>
-                    ASX ticker
-                    <Box m={1}>
-                      <Input type="text" value={newAssetName} onChange={(event) => setNewAssetName(event.target.value)} />
-                    </Box>
-                  </InputLabel>
-                  <Box my={3}>
-                    <Button type="submit" variant="contained" color="primary">Add asset</Button>
-                  </Box>
-                </form>
+              <CardContent>
+                <Typography>
+                  Daily change: {aggregateInfo['daily_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Weekly change: {aggregateInfo['weekly_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Monthly change: {aggregateInfo['monthly_percentage_changes']}
+                </Typography>
+                <Typography>
+                  Yearly change: {aggregateInfo['yearly_percentage_changes']}
+                </Typography>
               </CardContent>
             </Card>
           </Box>
@@ -142,22 +143,27 @@ function ViewWatchlistContainer() {
               </Card>
             </Box>
           ))}
+          <h2>Add new asset</h2>
+          <Box>
+            <Card>
+              <CardContent id="addAsset">
+                <form name="createAssetForm" onSubmit={createAsset}>
+                  <InputLabel>
+                    ASX ticker
+                    <Box m={1}>
+                      <Input type="text" value={newAssetName} onChange={(event) => setNewAssetName(event.target.value)} />
+                    </Box>
+                  </InputLabel>
+                  <Box my={3}>
+                    <Button type="submit" variant="contained" color="primary">Add asset</Button>
+                  </Box>
+                </form>
+              </CardContent>
+            </Card>
+          </Box>
           <Button color="primary" onClick={() => toAllWatchlists()}>
             Back to all watchlists
           </Button>
-          <h2>Watchlist summary</h2>
-          <p>
-            Daily % change: {aggregateInfo['daily_percentage_changes']}
-          </p>
-          <p>
-            Weekly % change: {aggregateInfo['weekly_percentage_changes']}
-          </p>
-          <p>
-            Monthly % change: {aggregateInfo['monthly_percentage_changes']}
-          </p>
-          <p>
-            Yearly % change: {aggregateInfo['yearly_percentage_changes']}
-          </p>
         </Container>
       </>
     )
