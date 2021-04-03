@@ -10,13 +10,24 @@ function GeneralNewsContainer() {
     const [newsList, setNewsList] = useState([]);
     const [assetList, setAssetList] = useState([]);
     const history = useHistory();
+    const companyList = ['Amazon', 'Google'];
 
-    async function getNews(queryName) {
-        const response = await fetch(`https://newsapi.org/v2/top-headlines?q=${queryName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
-        const body = await response.json();
-        const articles = await body.articles;
-        console.log("🚀 ~ file: GeneralNewsContainer.jsx ~ line 16 ~ getNews ~ response", articles)
-        setNewsList(articles);
+    async function getNews( comapnyList ) {
+        const articleList = [];
+        for ( let index = 0; index < comapnyList.length; index++) {
+            const companyName = comapnyList[index];
+            const response = await fetch(`https://newsapi.org/v2/top-headlines?q=${companyName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
+            const body = await response.json();
+            const articles = await body.articles;
+            if (articles.length > 5) {
+                articleList.push(articles[0]);
+                articleList.push(articles[1]);
+            } else if (articles.length > 0) {
+                articleList.push(articles[0]);
+            } 
+        }
+        console.log("🚀 ~ file: GeneralNewsContainer.jsx ~ line 32 ~ getNews ~ response", articleList)
+        setNewsList(articleList);
     }
 
     const getCompaniesFromWatchlists = async () => {
@@ -48,7 +59,8 @@ function GeneralNewsContainer() {
 
     useEffect(() => {
         const displayNews = async () => {
-            getNews('Netflix');
+
+            getNews(companyList);
             getCompaniesFromWatchlists();
         }
 
