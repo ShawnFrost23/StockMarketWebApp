@@ -45,5 +45,6 @@ def overview(asset_id):
              "yearly_percentage_change": yearly_percentage_change,
              "volume": stock.info["volume"],
              "market_cap": stock.info["marketCap"],
+             "ticker": ticker,
              "company_name": company_name,
            }

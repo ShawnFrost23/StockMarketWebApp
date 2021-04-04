@@ -5,12 +5,10 @@ import {
     Button,
     Card,
     CardContent,
-    CardHeader,
     Container,
-    Input,
-    InputLabel,
     Typography,
 } from '@material-ui/core';
+import TradingViewWidget from 'react-tradingview-widget';
 
 function ViewAssetContainer() {
     const history = useHistory();
@@ -89,10 +87,15 @@ function ViewAssetContainer() {
                 </Typography>
               </CardContent>
             </Card>
-            <Button color="primary" onClick={() => toWatchlist()}>
-              Back to watchlist
-            </Button>
           </Box>
+        </Container>
+        <Container maxWidth="md">
+          <Card>
+            <TradingViewWidget symbol={`ASX:${assetInfo['ticker']}`}/>
+          </Card>
+          <Button color="primary" onClick={() => toWatchlist()}>
+            Back to watchlist
+          </Button>
         </Container>
       </>
     )
