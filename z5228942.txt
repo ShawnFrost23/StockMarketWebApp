@@ -35,4 +35,31 @@ Met on Saturday Afternoon to discuss how everyone is doing. Disscussed the work 
 Dan and I discussed how the front end will be integerated with the backend using API calls.
 
 
+## Week 5
+
+Made really good progress in terms of coding. I completed te working of front end styling and displaying
+every component appropriately. We had our first demo (DEMO A) on wednesday with Rachid in the tutorial time. 
+Really good presentation given by Matt. We completed all over sprint tasks well before the deadline and comfortably without 
+any over load. After the Demo, we had our meeting for Retrospective A. Discussed what went well in the first sprint,
+what can be imporved and more. On Friday, I restructured the code for the second sprint. Added some styling to major 
+components from sprint 1.
+
+## Week 6
+
+Had the team meeting on Monday to discuss the elemnts of sprint 2. After that, I explored various 
+news API's for integration to the project. Tried a few of them, played around with the API's to see which
+was the best one. Finally decided to use NewsAPI. 
+
+## Week 7
+
+Had a lot of trouble with the News API due to stupid typo error. Donna helped me solve that error.
+After that implemented the news for home screen. Worked on the styling of the frontend. Created front end algorithm
+to get all the companies from every watchlists so the user only sees the news which are related to assests in his/her watchlists.
+Had team meeting on monday where we discussed how everyone is doing and what work is left. Decided to meet again on Wednesday.
+Had team meeting on wednseday to discus the status and assist if someone is falling behind.
+
+## Week 8
+Finished the news for particular stock screens on Monday. Finished with everything in sprint 2 and ready for Demo!
+
+
 
