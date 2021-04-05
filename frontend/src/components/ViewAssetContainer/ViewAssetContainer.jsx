@@ -11,6 +11,9 @@ import {
 import TradingViewWidget from 'react-tradingview-widget';
 import styles from './ViewAssetContainer.module.css';
 import GeneralNewsCard from '../GeneralNewsCard/GeneralNewsCard';
+
+// API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
+
 function ViewAssetContainer() {
     const history = useHistory();
     const [assetInfo, setAssetInfo] = useState({});
