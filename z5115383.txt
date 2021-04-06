@@ -47,3 +47,9 @@ Week so no more classes or meetings this week.
 
 Week 7
 
+Helped build api functionality to provide stock data based on user preferences stored in
+the postgres database. This involved creating numerous data structures and writing backend 
+logic to make yfinance api calls. In addition i wrote logic for basic finance calculations 
+on stock price return using data returned by yfinance, making use of pandas dataframes. 
+I also wrote the functionality for automated email reporting on a users portfolio. One 
+improvement we could make in the future is by calling a faster/ premium API. 
