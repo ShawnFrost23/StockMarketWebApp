@@ -5,6 +5,3 @@ __pycache__/
 *$py.class
 .DS_Store
 *.vscode
-
-frontend/package-lock.json
-frontend/yarn.lock
