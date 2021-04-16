@@ -7,9 +7,16 @@
            Second meeting focussed on laying down the plan for the project proposal and a break down of tasks for each group member. I was assigned to work on the 
    website's user interface for the proposal with Arth, and the website's flow diagram.
    
-# Week 3 - The first meeting focussed to catch up with everyone's work and progress on the main google file. I finished the flow diagram and made extra pannels for the front end of the website. Rachid gave us a feedback regarding our proposal and highlited issues regarding my flow diagram as it appeared to be incomplete. Arth re-designed it changing some functionalities of how the front end would work. Also, Rachid pointed out some lack of reference and analysis of existing products in the market. Dan added the refferences and I wrote about the flaws of pre-existing share portfolio websites. I went back to my react notes I took during summer to brush up my knowledge for the project. The last meeting of the week focused on catching up on the google doc.
+# Week 3 - The first meeting focussed to catch up with everyone's work and progress on the main google file. I finished the flow diagram and made extra pannels for the 
+front end of the website. Rachid gave us a feedback regarding our proposal and highlited issues regarding my flow diagram as it appeared to be incomplete. Arth re-
+designed it changing some functionalities of how the front end would work. Also, Rachid pointed out some lack of reference and analysis of existing products in the 
+market. Dan added the refferences and I wrote about the flaws of pre-existing share portfolio websites. I went back to my react notes I took during summer to brush up 
+my knowledge for the project. The last meeting of the week focused on catching up on the google doc.
 
-# Week 4 - We on tuesday to talk about sprints and the creation of features. Rachid when through our jira board and confirmed our sprint allocation. We quickly met on Thursday to talk about who is going to do what. Arth and Donna took the front end part, Dan took on the data base side, and I was tasked with elton to work on the watchlist component of the project. Elton completed some watchlist functions while I was wrapping my head arround how Arth and Dona implemented the front end. I failed to implement my jira tickets.
+# Week 4 - We on tuesday to talk about sprints and the creation of features. Rachid when through our jira board and confirmed our sprint allocation. We quickly met on 
+Thursday to talk about who is going to do what. Arth and Donna took the front end part, Dan took on the data base side, and I was tasked with elton to work on the 
+watchlist component of the project. Elton completed some watchlist functions while I was wrapping my head arround how Arth and Dona implemented the front end. I failed 
+to implement my jira tickets.
 
 # Week 5 - Gave the presentation for our frontend. Rachid seemed to be happy with how everything worked and mentioned how we can improve the front end.
 We discussed the restrospective and talked about the progress of the project during the tutorial time. We allocated everyone's jira tickets on thursday's meeting. 
@@ -19,8 +26,10 @@ We discussed the restrospective and talked about the progress of the project dur
 # Week 7 - Met on Monday to talk about everyone's progress, metioned my time constraint during the mid term break. I tried to implement:
   - A drop down list with auto-completing feature for the Tickets, failed to implement it
   - Worked with yahoo finance API to add historical numbers in the Stock window before realising that's sprint-3 ticket.
-  - Tried to add the chart in the stock window, failed to work with Trading's view Api and The ploty library. I did a pair programming session with Elton and we failed to implement it together due to our lack of react knowledge.
+  - Tried to add the chart in the stock window, failed to work with Trading's view Api and The ploty library. I did a pair programming session with Elton and we failed 
+  to implement it together due to our lack of react knowledge.
   Donna ended up completing my ticket.
   
 # Week 8 - Dan Gave a presentation for the front end. We discussed the retrospective on sunday and planned out sprint-3. 
-I looked into trading's view technical buy/sell indicator, add banks' buy/sell recomendation and create a backend function to give a stock distribution in the portfolio based on the efficient frontier theory.
+I looked into trading's view technical buy/sell indicator, add banks' buy/sell recomendation and create a backend function to give a stock distribution in the 
+portfolio based on the efficient frontier theory.
