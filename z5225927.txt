@@ -21,7 +21,7 @@ to implement my jira tickets.
 # Week 5 - Gave the presentation for our frontend. Rachid seemed to be happy with how everything worked and mentioned how we can improve the front end.
 We discussed the restrospective and talked about the progress of the project during the tutorial time. We allocated everyone's jira tickets on thursday's meeting. 
 
-# Week 6 - I didn't work on my jura features because of other subjects and mid terms. My for the mid term was to get back on track with react.
+# Week 6 - I didn't work on my jura features because of other subjects and mid terms. My goal for the mid term break was to get back on track with react.
 
 # Week 7 - Met on Monday to talk about everyone's progress, metioned my time constraint during the mid term break. I tried to implement:
   - A drop down list with auto-completing feature for the Tickets, failed to implement it
