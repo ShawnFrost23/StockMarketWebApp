@@ -13,8 +13,8 @@ for our project proposal which is due next week.
 
 Week 3
 
-I helped to create and edit the user stories in the proposal. I also created the software architecture diagram in the proposal. After I reached out to our tutor Rachid, I added a description of software architecture based on his feedback. I started to research on what is the best cloud infrastructure for us to build our web app on 
-and I plan to deploy our web app and build our CI/CD pipeline on AWS next week. 
+I helped to create and edit the user stories in the proposal. I also created the software architecture diagram in the proposal. After I reached out to our tutor Rachid, I added a description of software architecture based on his feedback. 
+Also did some research on what is the best cloud infrastructure for us to build our web app on. 
 
 Week 4
 This week I have completed the backend code of creating a watchlist, removing a watchlist, add assets
@@ -23,4 +23,19 @@ to work with the PostgreSQL database seamlessly. The backend code is now complet
 be done for our first sprint presentation. Our team still faces some challenges in terms of connecting the 
 backend with the frontend, hopefully with my proficiency in the backend code can collaborate well with my 
 teammates who are working on the frontend and deliver a successful MVP for our presentation. 
+
+Week 5
+Successfully deliver on sprint 1 and presentation this week. Had a meeting to discuss the work allocation for 
+our next sprint. I am planning to work on the email notification feature of stock price change and a 
+consolidated report for our next sprint. This would primarily involve some backend work.
+
+Week 7
+Conduct research on Yahoo Finance API and the flask email server. Have some trial implementation on Yahoo 
+Finance API, starting to implement this feature this week. Also, help to work on some charting API from TradingView. 
+
+Week 8
+Complete sprint 2 and present the MVP this week. Have a meeting on the allocation of work for sprint 3. My 
+part would be to implement assisted stock predictions, I am planning to implement some machine learning 
+algorithms for this feature but it might slow down the performance of the application. Might try to implement 
+some existing API instead.  
 
