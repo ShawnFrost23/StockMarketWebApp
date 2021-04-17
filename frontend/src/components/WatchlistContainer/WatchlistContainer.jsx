@@ -116,6 +116,7 @@ function WatchlistContainer() {
           <h2>Create a new watchlist</h2>
           <div className={styles.watchlistContainer}>
             <CustomTextField 
+              lightVersion={true}
               placeholder="Name"
               setValue={setName}
               errorStatus={nameErr}
