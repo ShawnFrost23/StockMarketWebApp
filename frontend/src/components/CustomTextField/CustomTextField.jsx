@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
   },
   input : {
-    color: '#ffffff',
+    color: '#000000',
   }
 }));
 
@@ -43,15 +43,59 @@ const CssTextField = withStyles({
       color: 'ffffff',
       border: 'ffffff',
     },
+  },
+})(TextField);
+
+const CssTextFieldLightVersion = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '000000',
+      },
+      '&:hover fieldset': {
+        borderColor: '000000',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black',
+      },
+    },
+    '& label': {
+      color: '000000',
+      border: 'black',
+    },
 
   },
 })(TextField);
 
-function CustomTextField({ placeholder, type, setValue, errorStatus, helperText, size }) {
+function CustomTextField({ lightVersion, placeholder, type, setValue, errorStatus, helperText, size }) {
   const classes = useStyles();
 
   const handleChange = (event) => {
     setValue(event.target.value)
+  }
+  if (lightVersion === true) {
+    return (
+      <CssTextFieldLightVersion 
+        className={classes.margin} 
+        id="custom-css-standard-input" 
+        label={placeholder}
+        type={type}
+        InputProps={{
+          className: classes.input,
+        }}
+        variant="outlined"
+        onChange={handleChange}
+        error={errorStatus}
+        helperText={helperText}
+        size={size}
+        />
+    )
   }
   return (
     <CssTextField 
