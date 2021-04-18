@@ -12,6 +12,7 @@ from server.db_setup import *
 from server.data.validate_tickers import *
 from server.asset import *
 from server.api_feed import *
+from server.prediction import *
 
 # Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
@@ -219,6 +220,13 @@ def validate_ticker():
 @app.route('/asset', methods=['GET'])
 def get_overview():
     return dumps(overview(request.values.get('asset_id')))
+
+
+# need ticker to generate prediction
+# return {"signal": signal, "buy": buy, "sell": sell, "hold": cont}
+@app.route('/asset', methods=['POST'])
+def get_predict():
+    return dumps(predict(request.values.get('ticker')))
 
 @app.route('/')
 def index():
