@@ -99,6 +99,6 @@ def predict(ticker):
 
 
 
-print(predict('APT'))
+#print(predict('APT'))
 
 
