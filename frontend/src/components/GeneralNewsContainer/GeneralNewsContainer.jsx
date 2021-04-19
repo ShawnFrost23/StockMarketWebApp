@@ -78,7 +78,7 @@ function GeneralNewsContainer() {
 
     return (
         <div className={styles.container}>
-            News Container
+            <h2>News For You</h2>
             {newsList.map((article) => (
                 <GeneralNewsCard 
                     newsArticle={article}
