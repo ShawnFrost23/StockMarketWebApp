@@ -68,7 +68,7 @@ def send_email_report():
         for stock_x in watchlist_x['stock_info']:
             prediction = predict(stock_x['ticker'])
             message = message + f"""{stock_x['ticker']} - {stock_x['company_name']}:
-            Prediction: Signal: {prediction['signal']} Buy: {prediction['buy']} Sell: {prediction['sell']} Hold: {prediction['hold']}
+            Prediction: Signal: {prediction['signal']}, Buy: {prediction['buy']}, Sell: {prediction['sell']}, Hold: {prediction['hold']}
             24hr change: {stock_x['24hr_percentage_change']}, Weekly change: {stock_x['weekly_percentage_change']}, Monthly change: {stock_x['monthly_percentage_change']}, Yearly change: {stock_x['yearly_percentage_change']}\n\n"""
 
     message = message + "\nThis is an automated email sent by Team Diamond Hands!"
