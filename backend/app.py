@@ -12,6 +12,7 @@ from server.db_setup import *
 from server.data.validate_tickers import *
 from server.asset import *
 from server.api_feed import *
+from server.prediction import *
 
 # Establish connection to database
 con = psycopg2.connect(database="iteration1", user="diamond_hands", password="1234", host="127.0.0.1", port="5432")
@@ -65,7 +66,9 @@ def send_email_report():
         Yearly Change: {aggregate_data['yearly_percentage_changes']}\n\n"""
         message = message + f"""Summary of Assets in {watchlist_x['watchlist_name']}:\n"""
         for stock_x in watchlist_x['stock_info']:
+            prediction = predict(stock_x['ticker'])
             message = message + f"""{stock_x['ticker']} - {stock_x['company_name']}:
+            Prediction: Signal: {prediction['signal']}, Buy: {prediction['buy']}, Sell: {prediction['sell']}, Hold: {prediction['hold']}
             24hr change: {stock_x['24hr_percentage_change']}, Weekly change: {stock_x['weekly_percentage_change']}, Monthly change: {stock_x['monthly_percentage_change']}, Yearly change: {stock_x['yearly_percentage_change']}\n\n"""
 
     message = message + "\nThis is an automated email sent by Team Diamond Hands!"
@@ -218,6 +221,13 @@ def validate_ticker():
 @app.route('/asset', methods=['GET'])
 def get_overview():
     return dumps(overview(request.values.get('asset_id')))
+
+
+# need ticker to generate prediction
+# return {"signal": signal, "buy": buy, "sell": sell, "hold": cont}
+@app.route('/asset', methods=['POST'])
+def get_predict():
+    return dumps(predict(request.values.get('ticker')))
 
 @app.route('/')
 def index():

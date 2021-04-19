@@ -13,7 +13,7 @@ def script_already_run(cur, ticker):
 
 # Adding asx equities to tickers table 
 def add_asx_tickers(cur):
-    with open('./backend/server/data/asx-listed-companies.csv') as csvfile:
+    with open('server/data/asx-listed-companies.csv') as csvfile:
         csvReader = csv.reader(csvfile, delimiter=',')
         for row in csvReader:
             if script_already_run(cur, row[0]):
