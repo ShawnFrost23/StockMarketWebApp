@@ -137,7 +137,7 @@ function ViewWatchlistContainer() {
             </Box>
             <h2>Viewing Portfolio optimization</h2>
             <Typography>
-                  Daily change: {porfolioInfo['Sharpe_Ratio']}
+                  Daily change: {porfolioInfo}
                   {/* Daily change: hello there */}
             </Typography>
             { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
