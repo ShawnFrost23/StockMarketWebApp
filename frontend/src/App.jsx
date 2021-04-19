@@ -14,6 +14,7 @@ import EditWatchlist from './pages/EditWatchlist/EditWatchlist';
 import ViewWatchlist from './pages/ViewWatchlist/ViewWatchlist';
 import ViewAsset from './pages/ViewAsset/ViewAsset';
 import AccountSelection from './pages/AccountSelection/AccountSelection';
+import BasicHomeScreen from './pages/BasicHomeScreen/BasicHomeScreen';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           <Route exact path="/" render={() => (<Redirect to="/selectAccountType"/>)} />
           <Route path="/selectAccountType">
             <AccountSelection />
+          </Route>
+          <Route path="/basicHome">
+            <BasicHomeScreen />
           </Route>
           <Route path="/loginScreen">
             <LoginScreen />
