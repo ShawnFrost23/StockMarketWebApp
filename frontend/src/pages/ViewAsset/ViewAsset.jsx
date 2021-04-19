@@ -2,11 +2,13 @@ import React from 'react'
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
 import ViewAssetContainer from '../../components/ViewAssetContainer/ViewAssetContainer';
 
+import styles from './ViewAsset.module.css';
 function ViewAsset() {
     return (
-        <> <TopNavBar />
+        <div className={styles.container}> 
+            <TopNavBar />
             <ViewAssetContainer />
-        </>
+        </div>
     )
 }
 
