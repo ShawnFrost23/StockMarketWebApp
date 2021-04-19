@@ -20,7 +20,7 @@ function App() {
     <Router>
       <>
         <Switch>
-          <Route exact path="/" render={() => (<Redirect to="/loginScreen"/>)} />
+          <Route exact path="/" render={() => (<Redirect to="/selectAccountType"/>)} />
           <Route path="/selectAccountType">
             <AccountSelection />
           </Route>
