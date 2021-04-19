@@ -15,7 +15,7 @@ function GeneralNewsContainer() {
             method: 'GET',
         }
 
-        const res = await fetch('/watchlists' + '?' + new URLSearchParams({
+        const res = await fetch("/watchlists?" + new URLSearchParams({
             user_id: localStorage.getItem('user_id'),
         }), request_options);
 
@@ -24,7 +24,7 @@ function GeneralNewsContainer() {
         for (let index = 0; index < jsonResponse.length; index++) {
             const watchList = jsonResponse[index];
             const listID = watchList[0];
-            const assetRes = await fetch('/watchlist/assets' + '?' + new URLSearchParams({
+            const assetRes = await fetch('/watchlist/assets?' + new URLSearchParams({
                 watchlist_id: listID,
             }), request_options);
             const assetJsonResponse = await assetRes.json();
@@ -41,7 +41,7 @@ function GeneralNewsContainer() {
         const articleList = [];
         for ( let index = 0; index < comapnyList.length; index++) {
             const companyName = comapnyList[index];
-            const tickerValidation = await fetch('/watchlists/ticker_validation' + '?' + new URLSearchParams({
+            const tickerValidation = await fetch('/watchlists/ticker_validation?' + new URLSearchParams({
                 ticker: companyName,
             }), request_options2);
             const tickerValidationBody = await tickerValidation.json();
