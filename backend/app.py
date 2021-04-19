@@ -23,7 +23,7 @@ cur = con.cursor()
 create_db_schema(cur)
 con.commit()
 
-# Fetch ASX Tickers 
+# Fetch ASX Tickers
 add_asx_tickers(cur)
 con.commit()
 
@@ -42,22 +42,22 @@ mail = Mail(app)
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
 CORS(app)
 
-# Route requires user_id 
+# Route requires user_id
 # If successful will send the user an email
 @app.route('/send_automated_report', methods=['POST'])
 def send_email_report():
     user_id = request.values.get('user_id')
-    personal_info = get_personal_data(user_id) 
+    personal_info = get_personal_data(user_id)
 
     msg = Message(subject="AUTOMATED WATCHLIST REPORT",
                   sender="diamondhands3900@gmail.com",
                   recipients=[personal_info['email']])
-    
+
     api_data = get_api_data(user_id)
 
     message = f"""Hi {personal_info['name']},\n\nYour daily watchlist performance is summarised below:\n\n"""
 
-    for watchlist_x in api_data: 
+    for watchlist_x in api_data:
         aggregate_data = get_api_data_watchlist(watchlist_x['watchlist_id'])
         message = message + f"""Summary for {watchlist_x['watchlist_name']}:
         Daily Change: {aggregate_data['daily_percentage_changes']}
@@ -66,7 +66,9 @@ def send_email_report():
         Yearly Change: {aggregate_data['yearly_percentage_changes']}\n\n"""
         message = message + f"""Summary of Assets in {watchlist_x['watchlist_name']}:\n"""
         for stock_x in watchlist_x['stock_info']:
+            prediction = predict(stock_x['ticker'])
             message = message + f"""{stock_x['ticker']} - {stock_x['company_name']}:
+            Prediction: Signal: {prediction['signal']}, Buy: {prediction['buy']}, Sell: {prediction['sell']}, Hold: {prediction['hold']}
             24hr change: {stock_x['24hr_percentage_change']}, Weekly change: {stock_x['weekly_percentage_change']}, Monthly change: {stock_x['monthly_percentage_change']}, Yearly change: {stock_x['yearly_percentage_change']}\n\n"""
 
     message = message + "\nThis is an automated email sent by Team Diamond Hands!"
@@ -118,7 +120,6 @@ def register():
 
 @app.route('/auth/reset_request', methods=['POST'])
 def reset_request():
-    # TODO db update to have reset_code
     email, reset_code = auth_reset_request(request.values.get('email'))
 
     mail = Mail(app)
@@ -210,12 +211,21 @@ def delete_watchlist_asset():
 
 # Route requires:
 #       ticker
-# Will return to Front end 
+# Will return to Front end
 #       {"success": True, "ticker": x, "company_name": x, "industry": x} if successful
-#       {"success": False} if not successful 
+#       {"success": False} if not successful
 @app.route('/watchlists/ticker_validation', methods=['POST'])
 def validate_ticker():
     return dumps(validate(request.values.get('ticker')))
+
+# Route requires:
+#       company_name
+# Will return to Front end 
+#       {"success": True, "ticker": x, "company_name": x, "industry": x} if successful
+#       {"success": False} if not successful 
+@app.route('/watchlists/company_validation', methods=['POST'])
+def validate_name():
+    return dumps(validateCompName(request.values.get('company_name')))
 
 @app.route('/asset', methods=['GET'])
 def get_overview():

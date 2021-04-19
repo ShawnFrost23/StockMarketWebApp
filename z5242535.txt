@@ -41,3 +41,17 @@ The team met up on Thursday to kick off the new sprint and assign tickets. Spoke
 Started the week with researching our approach to using APIs. The key challenge is finding a free API that suits our application.
 
 Team meeting 7pm Monday 22 March.
+
+## Week 7
+Wrote my feature, making use of the Yahoo Finance API. It was unfortunately slow but the API was the best we could find for free.
+Helped out the team with pair programming sessions as well.
+
+## Week 8
+Dan presented the demo and did a great job. I'm happy with how we finished all the tickets, and how we finished well ahead of the deadline.
+I'm also happy that during the sprint we had the discipline to stick to our original plan, and did not increase the scope of the sprint.
+
+## Week 9
+A more relaxed week. Things are getting busy at work, so I had to spend more time on work during the week.
+Back on 3900 for the weekend, writing my section of the report, writing my feature (advanced financial metrics), and reviewing code quality of the app.
+
+## Week 10

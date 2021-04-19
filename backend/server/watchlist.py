@@ -117,6 +117,16 @@ def validate(ticker):
     else: 
         return {"success": False}
 
+# Validate Company_name
+def validateCompName(company_name):
+    con, cur = connect()
+    cur.execute(f"SELECT * FROM tickers WHERE LOWER(company_name) = LOWER('{company_name}');")
+    result = cur.fetchone()
+    if result: 
+        return {"success": True, "ticker": result[0], "company_name": result[1], "industry": result[2]}
+    else: 
+        return {"success": False}
+
 # Revised function to validate adding a ticker 
 # within the add_asset function
 def easy_validate(ticker): 

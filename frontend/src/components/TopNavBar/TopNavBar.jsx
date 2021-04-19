@@ -7,21 +7,20 @@ import styles from './TopNavBar.module.css';
 function TopNavBar() {
     const history = useHistory();
 
-    // TODO: ADD Logic for getting Verification code to email.
     const handleLogOut = () => {
         localStorage.clear();
         history.push('loginScreen');
     }
-    
+
     return (
         <div className={styles.container}>
             <div className={styles.buttonWrapper}>
-                <CustomButton 
+                <CustomButton
                     displayText="Log out"
                     func={handleLogOut}
                 />
             </div>
-            
+
         </div>
     )
 }
