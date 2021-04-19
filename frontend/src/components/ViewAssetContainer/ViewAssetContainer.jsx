@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import {
-    Box,
     Button,
-    Card,
-    CardContent,
     Container,
-    Typography,
 } from '@material-ui/core';
 import TradingViewWidget from 'react-tradingview-widget';
 import styles from './ViewAssetContainer.module.css';
@@ -27,7 +23,7 @@ function ViewAssetContainer() {
           method: 'GET',
       }
 
-      const res = await fetch('/asset' + '?' + new URLSearchParams({
+      const res = await fetch('/asset?' + new URLSearchParams({
           asset_id: assetID,
       }), request_options);
 
@@ -36,9 +32,13 @@ function ViewAssetContainer() {
       console.log(jsonResponse);
       const companyFullName = await jsonResponse.company_name;
       const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
-      const body = await response.json();
-      const articles = await body.articles;
-      setNewsList(articles);
+      if (response.status == 429) {
+        setNewsList([]);
+      } else {
+        const body = await response.json();
+        const articles = await body.articles;
+        setNewsList(articles);
+      }
     }
 
     const toWatchlist = () => {
@@ -191,14 +191,14 @@ function ViewAssetContainer() {
             </div>
           </div>
         </div>
-        {/* <div className={styles.container}>
+        <div className={styles.container}>
             News Container
             {newsList.map((article) => (
                 <GeneralNewsCard 
                     newsArticle={article}
                 />
             ))}
-        </div> */}
+        </div>
       </>
     )
 }
