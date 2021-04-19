@@ -1,0 +1,33 @@
+.assetCard {
+    box-shadow: 0px 1px 5px 1px;
+    border-radius: 5px;
+}
+
+.watchlistInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.changeInfo {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 1px 5px 1px;
+    border-radius: 5px;
+}
+
+.changeCategory {
+    font-size: 16px;
+}
+
+.changeNumber {
+    font-size: 40px;
+    color: green;
+}
