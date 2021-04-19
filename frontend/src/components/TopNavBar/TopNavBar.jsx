@@ -20,7 +20,6 @@ function TopNavBar() {
                     func={handleLogOut}
                 />
             </div>
-
         </div>
     )
 }
