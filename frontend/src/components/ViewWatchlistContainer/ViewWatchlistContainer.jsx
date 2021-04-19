@@ -13,6 +13,8 @@ import {
 } from '@material-ui/core';
 
 import styles from './ViewWatchlistContainer.module.css';
+import CustomTextField from '../CustomTextField/CustomTextField';
+import CustomButton from '../CustomButton/CustomButton';
 function ViewWatchlistContainer() {
     const history = useHistory();
 
@@ -143,24 +145,17 @@ function ViewWatchlistContainer() {
             </div>
           </div>
           <h2>Add new asset</h2>
-          <Box>
-            <Card>
-              <CardContent id="addAsset">
-                <form name="createAssetForm" onSubmit={createAsset}>
-                  <InputLabel>
-                    ASX ticker
-                    <Box m={1}>
-                      <Input variant="outlined" type="text" value={newAssetName} onChange={(event) => setNewAssetName(event.target.value)} />
-                    </Box>
-                  </InputLabel>
-                  <Box my={3}>
-                    <Button type="submit" variant="contained" color="primary">Add asset</Button>
-                  </Box>
-                </form>
-              </CardContent>
-            </Card>
-          </Box>
-          
+          <div className={styles.addTicker}>
+            <CustomTextField 
+              placeholder="ASX Ticker"
+              setValue={setNewAssetName}
+              lightVersion={true}
+            />
+            <CustomButton 
+              displayText="Add asset"
+              func={createAsset}
+            />
+          </div>
           <Button color="primary" onClick={() => toAllWatchlists()}>
             Back to all watchlists
           </Button>
