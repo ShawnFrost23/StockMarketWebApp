@@ -13,6 +13,7 @@ import AdvanceHomeScreen from './pages/AdvanceHomeScreen/AdvanceHomeScreen';
 import EditWatchlist from './pages/EditWatchlist/EditWatchlist';
 import ViewWatchlist from './pages/ViewWatchlist/ViewWatchlist';
 import ViewAsset from './pages/ViewAsset/ViewAsset';
+import AccountSelection from './pages/AccountSelection/AccountSelection';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
       <>
         <Switch>
           <Route exact path="/" render={() => (<Redirect to="/loginScreen"/>)} />
+          <Route path="/selectAccountType">
+            <AccountSelection />
+          </Route>
           <Route path="/loginScreen">
             <LoginScreen />
           </Route>
