@@ -191,63 +191,6 @@ function ViewAssetContainer() {
             </div>
           </div>
         </div>
-        {/* <Container maxWidth="sm">
-          <Box key="assetOverview" my={2}>
-            <Card variant="outlined">
-              <CardContent>
-                <Typography>
-                  Last price: {assetInfo['last_price']}
-                </Typography>
-                <Typography>
-                  Daily change: {assetInfo['daily_nominal_change']}
-                </Typography>
-                <Typography>
-                  Daily % change: {assetInfo['daily_percentage_change']}
-                </Typography>
-                <Typography>
-                  Weekly change: {assetInfo['weekly_nominal_change']}
-                </Typography>
-                <Typography>
-                  Weekly % change: {assetInfo['weekly_percentage_change']}
-                </Typography>
-                <Typography>
-                  Monthly change: {assetInfo['monthly_nominal_change']}
-                </Typography>
-                <Typography>
-                  Monthly % change: {assetInfo['monthly_percentage_change']}
-                </Typography>
-                <Typography>
-                  Yearly change: {assetInfo['yearly_nominal_change']}
-                </Typography>
-                <Typography>
-                  Yearly % change: {assetInfo['yearly_percentage_change']}
-                </Typography>
-                <Typography>
-                  Volume: {assetInfo['volume']}
-                </Typography>
-                <Typography>
-                  Market cap: {assetInfo['market_cap']}
-                </Typography>
-              </CardContent>
-            </Card> */}
-            {/* <Card variant="outlined">
-              <CardContent>
-                <Typography>
-                  Forward price to equity ratio: {assetInfo['forward_PE']}
-                </Typography>
-                <Typography>
-                  Trailing price to equity ratio: {assetInfo['trailing_PE']}
-                </Typography>
-                <Typography>
-                  Dividend payout ratio: {assetInfo['payout_ratio']}
-                </Typography>
-                <Typography>
-                  Dividend yield: {assetInfo['dividend_yield']}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box> */}
-        {/* </Container> */}
         {/* <div className={styles.container}>
             News Container
             {newsList.map((article) => (
