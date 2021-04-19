@@ -48,14 +48,18 @@ function GeneralNewsContainer() {
             if (tickerValidationBody.success === true) {
                 const companyFullName = await tickerValidationBody.company_name;
                 const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
-                const body = await response.json();
-                const articles = await body.articles;
-                if (articles.length > 5) {
-                    articleList.push(articles[0]);
-                    articleList.push(articles[1]);
-                } else if (articles.length > 0) {
-                    articleList.push(articles[0]);
-                } 
+                if (response.status === 429) {
+                    // Do Nothing!
+                } else {
+                    const body = await response.json();
+                    const articles = await body.articles;
+                    if (articles.length > 5) {
+                        articleList.push(articles[0]);
+                        articleList.push(articles[1]);
+                    } else if (articles.length > 0) {
+                        articleList.push(articles[0]);
+                    }
+                }
             } else {
                 console.log("🚀 ~ file: GeneralNewsContainer.jsx ~ line 39 False epose in ticker validation");
             }
