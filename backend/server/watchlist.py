@@ -120,7 +120,7 @@ def validate(ticker):
 # Validate Company_name
 def validateCompName(company_name):
     con, cur = connect()
-    cur.execute(f"SELECT * FROM tickers WHERE company_name = '{company_name}';")
+    cur.execute(f"SELECT * FROM tickers WHERE LOWER(company_name) = LOWER('{company_name}');")
     result = cur.fetchone()
     if result: 
         return {"success": True, "ticker": result[0], "company_name": result[1], "industry": result[2]}
