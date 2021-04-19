@@ -5,10 +5,10 @@ import TopNavBar from '../../components/TopNavBar/TopNavBar';
 // import styles from './EditWatchlist.module.css';
 function EditWatchlist() {
     return (
-        <>
+        <div>
             <TopNavBar />
             <EditWatchlistContainer />
-        </>
+        </div>
     )
 }
 
