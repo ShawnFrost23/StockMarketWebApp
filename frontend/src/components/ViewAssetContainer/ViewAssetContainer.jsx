@@ -65,7 +65,133 @@ function ViewAssetContainer() {
             <TradingViewWidget symbol={`ASX:${assetInfo['ticker']}`}/>
           </>
         </Container>
-        <Container maxWidth="sm">
+        <div className={styles.companyInfoSection}>
+          <div className={styles.infoSectionRow}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Last Price
+              </div>
+              <div className={styles.changeNumber}>
+                ${assetInfo['last_price']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Market Cap
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['market_cap']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Volume
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['volume']}
+              </div>
+            </div>
+          </div>
+          <div className={styles.infoSectionRow}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Daily Change
+              </div>
+              <div className={styles.changeVariants}>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Nominal
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['daily_nominal_change']}
+                  </div>
+                </div>
+                <div className={styles.verticalLine}></div>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Percentage
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['daily_percentage_change']}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Weekly Change
+              </div>
+              <div className={styles.changeVariants}>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Nominal
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['weekly_nominal_change']}
+                  </div>
+                </div>
+                <div className={styles.verticalLine}></div>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Percentage
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['weekly_percentage_change']}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Monthly Change
+              </div>
+              <div className={styles.changeVariants}>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Nominal
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['monthly_nominal_change']}
+                  </div>
+                </div>
+                <div className={styles.verticalLine}></div>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Percentage
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['monthly_percentage_change']}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Yearly Change
+              </div>
+              <div className={styles.changeVariants}>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Nominal
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['yearly_nominal_change']}
+                  </div>
+                </div>
+                <div className={styles.verticalLine}></div>
+                <div className={styles.subChangeGroup}>
+                  <div className={styles.subGroupHeading}>
+                    Percentage
+                  </div>
+                  <div className={styles.subGroupNumber}>
+                    {assetInfo['yearly_percentage_change']}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <Container maxWidth="sm">
           <Box key="assetOverview" my={2}>
             <Card variant="outlined">
               <CardContent>
@@ -103,8 +229,8 @@ function ViewAssetContainer() {
                   Market cap: {assetInfo['market_cap']}
                 </Typography>
               </CardContent>
-            </Card>
-            <Card variant="outlined">
+            </Card> */}
+            {/* <Card variant="outlined">
               <CardContent>
                 <Typography>
                   Forward price to equity ratio: {assetInfo['forward_PE']}
@@ -120,8 +246,8 @@ function ViewAssetContainer() {
                 </Typography>
               </CardContent>
             </Card>
-          </Box>
-        </Container>
+          </Box> */}
+        {/* </Container> */}
         {/* <div className={styles.container}>
             News Container
             {newsList.map((article) => (
