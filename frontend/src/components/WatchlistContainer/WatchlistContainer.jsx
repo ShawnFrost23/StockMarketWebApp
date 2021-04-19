@@ -6,8 +6,6 @@ import styles from './WatchListContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import WatchListCards from '../WatchListCards/WatchListCards';
 import download from './download.png'; 
-import SearchBar from '../SearchBar/SearchBar';
-
 
 function WatchlistContainer() {
     const history = useHistory();
@@ -116,7 +114,6 @@ function WatchlistContainer() {
           </div>
           <h2>Create a new watchlist</h2>
           <div className={styles.watchlistContainer}>
-            <SearchBar/>      
             <CustomTextField 
               lightVersion={true}
               placeholder="Name"
