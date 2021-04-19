@@ -92,7 +92,7 @@ function PasswordResetContainer() {
                 method: 'POST',
             }
 
-            const response = await fetch('/auth/reset_password' + '?' + new URLSearchParams({reset_code: veriCode, new_password: newPass, }), requestOptions);
+            const response = await fetch('/auth/reset_password?' + new URLSearchParams({reset_code: veriCode, new_password: newPass, }), requestOptions);
             if (response.status === 200) {
                 history.push('loginScreen');
             } else {

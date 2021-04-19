@@ -68,7 +68,7 @@ function LoginContainer() {
                 method: 'POST',
             }
 
-            const response = await fetch('/auth/login' + '?' + new URLSearchParams({email: email, password: password,}), requestOptions);
+            const response = await fetch('/auth/login?' + new URLSearchParams({email: email, password: password,}), requestOptions);
             if (response.status === 200) {
                 const jsonFormat = await response.json();
                 const userID = await jsonFormat.user_id;
@@ -99,7 +99,7 @@ function LoginContainer() {
                 method: 'POST',
             }
 
-            const response = await fetch('/auth/reset_request' + '?' + new URLSearchParams({email: email, }), requestOptions);
+            const response = await fetch('/auth/reset_request?' + new URLSearchParams({email: email, }), requestOptions);
             if (response.status === 200) {
                 history.push('passwordReset');
             } else {
