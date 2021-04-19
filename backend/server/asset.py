@@ -34,6 +34,11 @@ def overview(asset_id):
     yearly_nominal_change = round((last_price - start_price), 2)
     yearly_percentage_change = "{:.2%}".format(((last_price - start_price)/start_price))
 
+    payout_ratio = round(stock.info["payoutRatio"], 2)
+    dividend_yield = "{:.2%}".format(stock.info["dividendYield"])
+    forward_PE = round(stock.info["forwardPE"], 2)
+    trailing_PE = round(stock.info["trailingPE"], 2)
+
     return { "last_price": round(last_price, 2),
              "daily_nominal_change": daily_nominal_change,
              "daily_percentage_change": daily_percentage_change,
@@ -47,4 +52,8 @@ def overview(asset_id):
              "market_cap": stock.info["marketCap"],
              "ticker": ticker,
              "company_name": company_name,
+             "payout_ratio": payout_ratio,
+             "dividend_yield": dividend_yield,
+             "forward_PE": forward_PE,
+             "trailing_PE": trailing_PE,
            }
