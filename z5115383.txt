@@ -52,4 +52,25 @@ the postgres database. This involved creating numerous data structures and writi
 logic to make yfinance api calls. In addition i wrote logic for basic finance calculations 
 on stock price return using data returned by yfinance, making use of pandas dataframes. 
 I also wrote the functionality for automated email reporting on a users portfolio. One 
-improvement we could make in the future is by calling a faster/ premium API. 
+improvement we could make in the future is by calling a faster/ premium API.
+
+Week 8
+
+To begin week 8 I spent a few days testing functionality and fixing bugs in preparation 
+for Demonstration B. On Wednesday i gave Rachid our group's demonstration where I 
+highlighted our features from sprint 2. Overall i was pleased with how our group worked to 
+finish all features that we agreed upon. In the demonstration i showed all tickets in Jira 
+had been complete as well working functionality for each ticket. 
+
+Week 9
+
+Week 9 was super busy finishing work for other assignments so i only spent a few hours 
+designing a front end autocomplete search component as well as adding price prediction 
+functionality into our email reporting function. 
+
+Week 10
+
+Added price predictions into Email alerts as well completed search autocomplete component
+for the front end. This week i also begun work on our groups final report, writing 
+documentation/ manual for users to start/ navigate the webapp. In addition i documented 
+features/ logic on how specific functionality in our web app works and behaves. 
