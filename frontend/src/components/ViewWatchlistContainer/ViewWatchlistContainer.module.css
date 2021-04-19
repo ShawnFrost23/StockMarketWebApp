@@ -31,3 +31,11 @@
     font-size: 40px;
     color: green;
 }
+
+.addTicker {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
