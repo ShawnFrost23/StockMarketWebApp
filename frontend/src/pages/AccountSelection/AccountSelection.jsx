@@ -8,8 +8,7 @@ function AccountSelection() {
     const history = useHistory();
 
     const handleBasicAccountSelection = () => {
-        // Do nothing for now.
-        // history.push('basicHome');
+        history.push('basicHome');
     }
     const handleAdvanceAccountSelection = () => {
         history.push('loginScreen');
