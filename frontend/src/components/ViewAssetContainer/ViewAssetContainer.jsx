@@ -33,7 +33,6 @@ function ViewAssetContainer() {
 
       const jsonResponse = await res.json();
       setAssetInfo(jsonResponse);
-      console.log(jsonResponse);
       const companyFullName = await jsonResponse.company_name;
       const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
       const body = await response.json();
@@ -109,6 +108,22 @@ function ViewAssetContainer() {
                 </Typography>
                 <Typography>
                   Dividend yield: {assetInfo['dividend_yield']}
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography>
+                  Overall rating: {assetInfo['predictions_signal']}
+                </Typography>
+                <Typography>
+                  Buy signals: {assetInfo['predictions_buy']}
+                </Typography>
+                <Typography>
+                  Hold signals: {assetInfo['predictions_hold']}
+                </Typography>
+                <Typography>
+                  Sell signals: {assetInfo['predictions_sell']}
                 </Typography>
               </CardContent>
             </Card>
