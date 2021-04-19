@@ -9,7 +9,7 @@ import styles from './AdvanceHomeScreen.module.css';
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 function AdvanceHomeScreen() {    
     return (
-        <>
+        <div className={styles.container}>
             <TopNavBar />
             <div>
                 <div className={styles.companySearch}>
@@ -23,7 +23,7 @@ function AdvanceHomeScreen() {
                     <GeneralNewsContainer />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
