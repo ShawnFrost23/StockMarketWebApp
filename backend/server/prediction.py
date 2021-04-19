@@ -2,7 +2,7 @@ from numpy.lib.index_tricks import AxisConcatenator
 from numpy.testing._private.utils import tempdir
 import yfinance as yf
 import pandas as pd
-#import talib 
+import talib 
 
 
 buy_signal_list = {
