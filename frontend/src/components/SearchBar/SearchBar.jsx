@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { Hint } from 'react-autocomplete-hint';
 
+import styles from './SearchBar.module.css';
+
 function SearchBar() {
     const [hintData, setHintData] = useState([])
     const [text, setText] = useState('')
@@ -2228,9 +2230,9 @@ function SearchBar() {
     })
   
     return (
-      <div className="App">
+      <div className={styles.container}>
         <Hint options={hintData} allowTabFill>
-          <input className='input-with-hint'
+          <input className={styles.inputField}
             value={text}
             onChange={e => setText(e.target.value)} 
           />
