@@ -11,8 +11,8 @@ import {
     InputLabel,
     Typography,
 } from '@material-ui/core';
-import ViewAsset from '../../pages/ViewAsset/ViewAsset';
 
+import styles from './ViewWatchlistContainer.module.css';
 function ViewWatchlistContainer() {
     const history = useHistory();
 
@@ -27,14 +27,14 @@ function ViewWatchlistContainer() {
           method: 'GET',
       }
 
-      const res = await fetch('/watchlist' + '?' + new URLSearchParams({
+      const res = await fetch('/watchlist?' + new URLSearchParams({
           watchlist_id: watchlistID,
       }), request_options);
 
       const jsonResponse = await res.json();
       setWatchlistName(jsonResponse[2]);
 
-      const aggregateRes = await fetch('/watchlist/aggregate_data' + '?' + new URLSearchParams({
+      const aggregateRes = await fetch('/watchlist/aggregate_data?' + new URLSearchParams({
           watchlist_id: watchlistID,
       }), request_options);
 
@@ -47,7 +47,7 @@ function ViewWatchlistContainer() {
         method: 'GET',
       }
 
-      const res = await fetch('/watchlist/assets' + '?' + new URLSearchParams({
+      const res = await fetch('/watchlist/assets?' + new URLSearchParams({
           watchlist_id: watchlistID,
       }), request_options);
 
@@ -79,7 +79,7 @@ function ViewWatchlistContainer() {
           method: 'POST',
       };
 
-      const res = await fetch('/watchlists/add_asset' + '?' + new URLSearchParams({
+      const res = await fetch('/watchlists/add_asset?' + new URLSearchParams({
           watchlist_id: watchlistID,
           ticker: newAssetName,
       }), request_options);
@@ -97,7 +97,7 @@ function ViewWatchlistContainer() {
           method: 'DELETE',
       };
 
-      const res = await fetch('/watchlists/delete_asset' + '?' + new URLSearchParams({
+      const res = await fetch('/watchlists/delete_asset?' + new URLSearchParams({
           asset_id: id,
       }), request_options);
 
@@ -106,43 +106,42 @@ function ViewWatchlistContainer() {
 
     return (
       <>
-        <Container maxWidth="sm">
+        <Container maxWidth="xl">
           <h2>Viewing watchlist: {watchlistName}</h2>
-          <Box>
-            <Card>
-              <CardContent>
-                <Typography>
-                  Daily change: {aggregateInfo['daily_percentage_changes']}
-                </Typography>
-                <Typography>
-                  Weekly change: {aggregateInfo['weekly_percentage_changes']}
-                </Typography>
-                <Typography>
-                  Monthly change: {aggregateInfo['monthly_percentage_changes']}
-                </Typography>
-                <Typography>
-                  Yearly change: {aggregateInfo['yearly_percentage_changes']}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
-          <h2>Watchlist assets</h2>
-          { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
-            <Box key={a[0]} my={2}>
-              <Card variant="outlined">
-                <CardContent>
-                  <CardHeader className="title" title={a[1]}>
-                  </CardHeader>
-                  <Button color="primary" variant="contained" onClick={() => viewAsset(a[0])}>
-                    View asset
-                  </Button>
-                  <Button color="secondary" variant="outlined" onClick={() => deleteAsset(a[0])}>
-                    Delete asset
-                  </Button>
-                </CardContent>
-              </Card>
-            </Box>
-          ))}
+          <div className={styles.watchlistInfo}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Daily Change
+              </div>
+              <div className={styles.changeNumber}>
+                {aggregateInfo['daily_percentage_changes']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Weekly Change
+              </div>
+              <div className={styles.changeNumber}>
+                {aggregateInfo['weekly_percentage_changes']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Monthly Change
+              </div>
+              <div className={styles.changeNumber}>
+                {aggregateInfo['monthly_percentage_changes']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Yearly Change
+              </div>
+              <div className={styles.changeNumber}>
+                {aggregateInfo['yearly_percentage_changes']}
+              </div>
+            </div>
+          </div>
           <h2>Add new asset</h2>
           <Box>
             <Card>
@@ -151,7 +150,7 @@ function ViewWatchlistContainer() {
                   <InputLabel>
                     ASX ticker
                     <Box m={1}>
-                      <Input type="text" value={newAssetName} onChange={(event) => setNewAssetName(event.target.value)} />
+                      <Input variant="outlined" type="text" value={newAssetName} onChange={(event) => setNewAssetName(event.target.value)} />
                     </Box>
                   </InputLabel>
                   <Box my={3}>
@@ -161,9 +160,29 @@ function ViewWatchlistContainer() {
               </CardContent>
             </Card>
           </Box>
+          
           <Button color="primary" onClick={() => toAllWatchlists()}>
             Back to all watchlists
           </Button>
+          <h2>Watchlist assets</h2>
+          { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
+            <div className={styles.assetCard}>
+              <Box key={a[0]} my={2}>
+                <Card variant="outlined">
+                  <CardContent>
+                    <CardHeader className="title" title={a[1]}>
+                    </CardHeader>
+                    <Button color="primary" variant="contained" onClick={() => viewAsset(a[0])}>
+                      View asset
+                    </Button>
+                    <Button color="secondary" variant="outlined" onClick={() => deleteAsset(a[0])}>
+                      Delete asset
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Box>
+            </div>
+          ))}
         </Container>
       </>
     )
