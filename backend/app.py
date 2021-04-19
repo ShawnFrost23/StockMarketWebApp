@@ -11,6 +11,7 @@ from server.watchlist import *
 from server.db_setup import *
 from server.data.validate_tickers import *
 from server.asset import *
+from server.portfolio import *
 from server.api_feed import *
 
 # Establish connection to database
@@ -185,6 +186,12 @@ def watchlist_assets():
 @app.route('/watchlist/aggregate_data', methods=['GET'])
 def watchlist_data():
     return dumps(get_api_data_watchlist(request.values.get('watchlist_id')))
+
+# -----------------------------------
+@app.route('/watchlist/portfolio_calculation', methods=['GET'])
+def get_portfolio_distribution():
+    return dumps(get_portfolio_distribution(request.values.get('watchlist_id')))
+
 
 # Route requires:
 #       watchlist_id
