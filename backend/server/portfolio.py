@@ -47,6 +47,6 @@ def get_portfolio_distribution(watchlist_id):
     # aggregate_data['Expected_annual_return:'] = f"Expected annual return: {perf[0]*100:.2f}%"
     # aggregate_data['Annual_volatility:'] = f"Annual volatility: {perf[1]*100:.2f}%"
     # aggregate_data['Sharpe_Ratio:'] = f"Sharpe Ratio: {perf[2]:.2f}""
-    aggregate_data['Sharpe_Ratio:'] = 42
+    aggregate_data['Sharpe_Ratio:'] = "test of a string"
     return aggregate_data
 

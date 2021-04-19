@@ -20,6 +20,7 @@ function ViewWatchlistContainer() {
     const [newAssetName, setNewAssetName] = useState('');
     const [assets, setAssets] = useState([]);
     const [aggregateInfo, setAggregateInfo] = useState({});
+    const [porfolioInfo, setPorfolioInfo] = useState({});
     const { watchlistID } = useParams();
 
     const getWatchlist = async () => {
@@ -40,6 +41,13 @@ function ViewWatchlistContainer() {
 
       const aggregateJsonResponse = await aggregateRes.json();
       setAggregateInfo(aggregateJsonResponse);
+
+      const portAggregateRes = await fetch('/watchlist/portfolio_calculation' + '?' + new URLSearchParams({
+          watchlist_id: watchlistID,
+      }), request_options);
+
+      const portfolioAggregateJsonResponse = await portAggregateRes.json();
+      setPorfolioInfo(portfolioAggregateJsonResponse);
     }
 
     const getAssets = async () => {
@@ -123,8 +131,27 @@ function ViewWatchlistContainer() {
                 <Typography>
                   Yearly change: {aggregateInfo['yearly_percentage_changes']}
                 </Typography>
+
               </CardContent>
             </Card>
+            </Box>
+            <h2>Viewing Portfolio optimization</h2>
+            <Typography>
+                  Daily change: {porfolioInfo['Sharpe_Ratio']}
+                  {/* Daily change: hello there */}
+            </Typography>
+            { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
+            <Box key={a[0]} my={2}>
+              <Card variant="outlined">
+              <Typography>
+                Weight of {a[1]}: 
+              </Typography>
+              </Card>
+            </Box>
+          ))}
+          <Box>
+            
+          {/* </Box> */}
           </Box>
           <h2>Watchlist assets</h2>
           { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
