@@ -88,7 +88,6 @@ function RegisterContainer() {
         return true;
     }
 
-    // TODO: Add backend link
     async function handleRegister () {
         const nameStatus = checkName(name);
         const emailStatus = checkEmail(email);

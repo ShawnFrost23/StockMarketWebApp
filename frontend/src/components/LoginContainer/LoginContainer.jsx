@@ -44,7 +44,6 @@ function LoginContainer() {
         return true;
     }
 
-    // TODO: Add logic to send backend verfication for inputs and login to account.
     async function handleLogin () {
         const emailStatus = checkEmail(email);
         const passwordStatus = checkPassword(password);
@@ -70,9 +69,8 @@ function LoginContainer() {
             }
 
             const response = await fetch('/auth/login' + '?' + new URLSearchParams({email: email, password: password,}), requestOptions);
-            if (response.status === 200) {                
+            if (response.status === 200) {
                 const jsonFormat = await response.json();
-                // TODO: Store user_id in local storage.
                 const userID = await jsonFormat.user_id;
                 localStorage.setItem('user_id', userID);
                 history.push('advanceHome')
@@ -116,16 +114,16 @@ function LoginContainer() {
     }
     return (
         <div className={styles.container}>
-            <LogRegHeading 
+            <LogRegHeading
                 heading="Login"
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Email"
                 setValue={setEmail}
                 errorStatus={emailErr}
                 helperText={emailHelpText}
             />
-            <CustomTextField 
+            <CustomTextField
                 placeholder="Password"
                 type='password'
                 setValue={setPassword}
@@ -138,7 +136,6 @@ function LoginContainer() {
             />
             <CustomButton
                 displayText="Forgot Password"
-                // TODO: add the function to handle Forgot passwrod button.
                 func={handleForgotPassword}
             />
             <CustomButton

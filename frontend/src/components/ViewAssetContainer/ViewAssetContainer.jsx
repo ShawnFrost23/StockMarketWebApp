@@ -96,6 +96,22 @@ function ViewAssetContainer() {
                 </Typography>
               </CardContent>
             </Card>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography>
+                  Forward price to equity ratio: {assetInfo['forward_PE']}
+                </Typography>
+                <Typography>
+                  Trailing price to equity ratio: {assetInfo['trailing_PE']}
+                </Typography>
+                <Typography>
+                  Dividend payout ratio: {assetInfo['payout_ratio']}
+                </Typography>
+                <Typography>
+                  Dividend yield: {assetInfo['dividend_yield']}
+                </Typography>
+              </CardContent>
+            </Card>
           </Box>
         </Container>
         <Container maxWidth="md">
