@@ -56,8 +56,16 @@ function ViewAssetContainer() {
 
     return (
       <>
-        <Container maxWidth="sm">
+        <Container maxWidth="xl">
           <h2>{assetInfo['company_name']}</h2>
+          <Button color="primary" onClick={() => toWatchlist()}>
+            Back to watchlist
+          </Button>
+          <>
+            <TradingViewWidget symbol={`ASX:${assetInfo['ticker']}`}/>
+          </>
+        </Container>
+        <Container maxWidth="sm">
           <Box key="assetOverview" my={2}>
             <Card variant="outlined">
               <CardContent>
@@ -114,22 +122,14 @@ function ViewAssetContainer() {
             </Card>
           </Box>
         </Container>
-        <Container maxWidth="md">
-          <Card>
-            <TradingViewWidget symbol={`ASX:${assetInfo['ticker']}`}/>
-          </Card>
-          <Button color="primary" onClick={() => toWatchlist()}>
-            Back to watchlist
-          </Button>
-        </Container>
-        <div className={styles.container}>
+        {/* <div className={styles.container}>
             News Container
             {newsList.map((article) => (
                 <GeneralNewsCard 
                     newsArticle={article}
                 />
             ))}
-        </div>
+        </div> */}
       </>
     )
 }
