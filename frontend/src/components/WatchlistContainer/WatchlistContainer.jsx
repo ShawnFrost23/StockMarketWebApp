@@ -118,6 +118,7 @@ function WatchlistContainer() {
           <div className={styles.watchlistContainer}>
             <SearchBar/>      
             <CustomTextField 
+              lightVersion={true}
               placeholder="Name"
               setValue={setName}
               errorStatus={nameErr}
