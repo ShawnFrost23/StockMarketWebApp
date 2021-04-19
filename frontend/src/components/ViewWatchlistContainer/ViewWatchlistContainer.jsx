@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import {
-    Box,
     Button,
-    Card,
-    CardContent,
-    CardHeader,
     Container,
-    Input,
-    InputLabel,
-    Typography,
 } from '@material-ui/core';
 
 import styles from './ViewWatchlistContainer.module.css';
@@ -109,7 +102,7 @@ function ViewWatchlistContainer() {
     return (
       <>
         <Container maxWidth="xl">
-          <h2>Viewing watchlist: {watchlistName}</h2>
+          <h2 className={styles.headings}>Viewing watchlist: {watchlistName}</h2>
           <div className={styles.watchlistInfo}>
             <div className={styles.changeInfo}>
               <div className={styles.changeCategory}>
@@ -144,9 +137,9 @@ function ViewWatchlistContainer() {
               </div>
             </div>
           </div>
-          <h2>Add new asset</h2>
+          <h2 className={styles.headings}>Add new asset</h2>
           <div className={styles.addTicker}>
-            <CustomTextField 
+            <CustomTextField
               placeholder="ASX Ticker"
               setValue={setNewAssetName}
               lightVersion={true}
@@ -159,25 +152,24 @@ function ViewWatchlistContainer() {
           <Button color="primary" onClick={() => toAllWatchlists()}>
             Back to all watchlists
           </Button>
-          <h2>Watchlist assets</h2>
-          { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
-            <div className={styles.assetCard}>
-              <Box key={a[0]} my={2}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <CardHeader className="title" title={a[1]}>
-                    </CardHeader>
-                    <Button color="primary" variant="contained" onClick={() => viewAsset(a[0])}>
-                      View asset
-                    </Button>
-                    <Button color="secondary" variant="outlined" onClick={() => deleteAsset(a[0])}>
-                      Delete asset
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Box>
+          <h2 className={styles.headings}>Watchlist assets</h2>
+            <div className={styles.assetBox}>
+            { assets?.sort((a, b) => a[1].localeCompare(b[1])).map((a) => (
+                <div key={a[0]} className={styles.assetCard}>
+                  <div className={styles.tickerName}>
+                    {a[1]}
+                  </div>
+                  <CustomButton 
+                    displayText="View Asset"
+                    func={() => viewAsset(a[0])}
+                  />
+                  <CustomButton 
+                    displayText="Delete Asset"
+                    func={() => deleteAsset(a[0])}
+                  />
+                </div>
+            ))}
             </div>
-          ))}
         </Container>
       </>
     )
