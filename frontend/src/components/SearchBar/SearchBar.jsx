@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import { Hint } from 'react-autocomplete-hint';
+import { useHistory } from 'react-router-dom';
 
+import CustomButton from '../CustomButton/CustomButton';
 import styles from './SearchBar.module.css';
 
 function SearchBar() {
     const [hintData, setHintData] = useState([])
     const [text, setText] = useState('')
-  
+
+    const history = useHistory();
+
     const getData = async () => {
        const res = await axios.get('https://jsonplaceholder.typicode.com/users')
         var hintArray = [
@@ -2224,21 +2228,39 @@ function SearchBar() {
         ]
         setHintData(hintArray)
     }
-  
+
     useEffect(()=> {
       getData()
     })
-  
+
+    async function searchAsset() {
+      const request_options = {
+          method: 'POST',
+      }
+
+      const res = await fetch('/watchlists/company_validation' + '?' + new URLSearchParams({
+          company_name: text,
+      }), request_options);
+
+      const jsonResponse = await res.json();
+      const ticker = await jsonResponse.ticker;
+      history.push(`/public/${ticker}`);
+    }
+
     return (
       <div className={styles.container}>
         <Hint options={hintData} allowTabFill>
           <input className={styles.inputField}
             value={text}
-            onChange={e => setText(e.target.value)} 
+            onChange={e => setText(e.target.value)}
           />
         </Hint>
+        <CustomButton
+          displayText="Search asset"
+          func={searchAsset}
+        />
       </div>
     );
   }
-  
+
   export default SearchBar;
