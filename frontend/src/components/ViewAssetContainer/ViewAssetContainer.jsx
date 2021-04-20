@@ -192,8 +192,42 @@ function ViewAssetContainer() {
               </div>
             </div>
           </div>
+          <div className={styles.infoSectionRow}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Forward price to equity ratio
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['forward_PE']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Trailing price to equity ratio
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['trailing_PE']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Dividend payout ratio
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['payout_ratio']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Dividend yield
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['dividend_yield']}
+              </div>
+            </div>
+          </div>
         </div>
-        <Card variant="outlined">
+        {/* <Card variant="outlined">
               <CardContent>
                 <Typography>
                   Forward price to equity ratio: {assetInfo['forward_PE']}
@@ -208,7 +242,7 @@ function ViewAssetContainer() {
                   Dividend yield: {assetInfo['dividend_yield']}
                 </Typography>
               </CardContent>
-          </Card>
+          </Card> */}
           <Card variant="outlined">
               <CardContent>
                 <Typography>
