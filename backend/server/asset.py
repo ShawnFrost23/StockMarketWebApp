@@ -15,6 +15,10 @@ def overview(asset_id):
     result = cur.fetchone()
     ticker = result[2]
 
+    return overview_public(ticker)
+
+def overview_public(ticker):
+    ticker = ticker.upper()
     stock = yf.Ticker(f"{ticker}.AX")
     company_name = validate(ticker)['company_name']
     last_price = stock.history(period="1d", interval="1m").iloc[-1]["Close"]
