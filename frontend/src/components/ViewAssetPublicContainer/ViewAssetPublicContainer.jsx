@@ -40,10 +40,6 @@ function ViewAssetPublicContainer() {
       setNewsList(articles);
     }
 
-    const toBasicHome = () => {
-      history.push('/basicHome')
-    }
-
     useEffect(() => {
       getAssetInfo();
     }, [history]);
@@ -53,8 +49,6 @@ function ViewAssetPublicContainer() {
         <AssetInformation 
           assetInfo={assetInfo}
           newsList={newsList}
-          displayTextForBackButton="Back to Home"
-          clickFunction={() => toBasicHome()}
         />
         {/* <Container maxWidth="sm">
           <h2>{assetInfo['company_name']}</h2>
