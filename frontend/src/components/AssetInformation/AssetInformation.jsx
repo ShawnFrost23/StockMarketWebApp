@@ -13,7 +13,7 @@ function AssetInformation({ assetInfo, newsList, displayTextForBackButton, click
     return (
         <>
             <Container maxWidth="xl">
-            <h2>{assetInfo['company_name']}</h2>
+            <h2 className={styles.companyHeading}>{assetInfo['company_name']}</h2>
             <Button color="primary" onClick={clickFunction}>
                 {displayTextForBackButton}
             </Button>
