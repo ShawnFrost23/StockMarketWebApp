@@ -11,6 +11,7 @@ import {
 import TradingViewWidget from 'react-tradingview-widget';
 import styles from './ViewAssetPublicContainer.module.css';
 import GeneralNewsCard from '../GeneralNewsCard/GeneralNewsCard';
+import AssetInformation from '../AssetInformation/AssetInformation';
 
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 
@@ -39,13 +40,23 @@ function ViewAssetPublicContainer() {
       setNewsList(articles);
     }
 
+    const toBasicHome = () => {
+      history.push('/basicHome')
+    }
+
     useEffect(() => {
       getAssetInfo();
     }, [history]);
 
     return (
       <>
-        <Container maxWidth="sm">
+        <AssetInformation 
+          assetInfo={assetInfo}
+          newsList={newsList}
+          displayTextForBackButton="Back to Home"
+          clickFunction={() => toBasicHome()}
+        />
+        {/* <Container maxWidth="sm">
           <h2>{assetInfo['company_name']}</h2>
           <Box key="assetOverview" my={2}>
             <Card variant="outlined">
@@ -131,7 +142,7 @@ function ViewAssetPublicContainer() {
                     newsArticle={article}
                 />
             ))}
-        </div>
+        </div> */}
       </>
     )
 }
