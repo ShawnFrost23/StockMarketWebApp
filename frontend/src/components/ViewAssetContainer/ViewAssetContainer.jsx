@@ -10,6 +10,7 @@ import {
 import TradingViewWidget from 'react-tradingview-widget';
 import styles from './ViewAssetContainer.module.css';
 import GeneralNewsCard from '../GeneralNewsCard/GeneralNewsCard';
+import AssetInformation from '../AssetInformation/AssetInformation';
 
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 
@@ -58,7 +59,13 @@ function ViewAssetContainer() {
 
     return (
       <>
-        <Container maxWidth="xl">
+        <AssetInformation 
+          assetInfo={assetInfo}
+          newsList={newsList}
+          displayTextForBackButton="Back to Watchlist"
+          clickFunction={() => toWatchlist()}
+        />
+        {/* <Container maxWidth="xl">
           <h2>{assetInfo['company_name']}</h2>
           <Button color="primary" onClick={() => toWatchlist()}>
             Back to watchlist
@@ -226,47 +233,53 @@ function ViewAssetContainer() {
               </div>
             </div>
           </div>
+          <div className={styles.infoSectionRow}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Buy Signals
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['predictions_buy']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Hold Signals
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['predictions_hold']}
+              </div>
+            </div>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Sell Signals
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['predictions_sell']}
+              </div>
+            </div>
+          </div>        
+          <div className={styles.infoSectionRow}>
+            <div className={styles.changeInfo}>
+              <div className={styles.changeCategory}>
+                Overall Verdict
+              </div>
+              <div className={styles.changeNumber}>
+                {assetInfo['predictions_signal']}
+              </div>
+            </div>
+          </div>
         </div>
-        {/* <Card variant="outlined">
-              <CardContent>
-                <Typography>
-                  Forward price to equity ratio: {assetInfo['forward_PE']}
-                </Typography>
-                <Typography>
-                  Trailing price to equity ratio: {assetInfo['trailing_PE']}
-                </Typography>
-                <Typography>
-                  Dividend payout ratio: {assetInfo['payout_ratio']}
-                </Typography>
-                <Typography>
-                  Dividend yield: {assetInfo['dividend_yield']}
-                </Typography>
-              </CardContent>
-          </Card> */}
-          <Card variant="outlined">
-              <CardContent>
-                <Typography>
-                  Overall rating: {assetInfo['predictions_signal']}
-                </Typography>
-                <Typography>
-                  Buy signals: {assetInfo['predictions_buy']}
-                </Typography>
-                <Typography>
-                  Hold signals: {assetInfo['predictions_hold']}
-                </Typography>
-                <Typography>
-                  Sell signals: {assetInfo['predictions_sell']}
-                </Typography>
-              </CardContent>
-            </Card>
-        <div className={styles.container}>
-            News Container
+        <h1 className={styles.newsHeading}>News related to {assetInfo['company_name']}</h1>
+        <div className={styles.newsContainer}>
             {newsList.map((article) => (
-                <GeneralNewsCard 
+                <div className={styles.newsCardContainer}>
+                  <GeneralNewsCard 
                     newsArticle={article}
-                />
+                  />
+                </div>
             ))}
-        </div>
+        </div> */}
       </>
     )
 }
