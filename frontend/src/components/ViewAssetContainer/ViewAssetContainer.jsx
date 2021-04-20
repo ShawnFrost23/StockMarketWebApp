@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import {
+    Card,
     Button,
     Container,
+    Typography,
+    CardContent,
 } from '@material-ui/core';
 import TradingViewWidget from 'react-tradingview-widget';
 import styles from './ViewAssetContainer.module.css';
@@ -29,7 +32,6 @@ function ViewAssetContainer() {
 
       const jsonResponse = await res.json();
       setAssetInfo(jsonResponse);
-      console.log(jsonResponse);
       const companyFullName = await jsonResponse.company_name;
       const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
       if (response.status == 429) {
@@ -191,6 +193,38 @@ function ViewAssetContainer() {
             </div>
           </div>
         </div>
+        <Card variant="outlined">
+              <CardContent>
+                <Typography>
+                  Forward price to equity ratio: {assetInfo['forward_PE']}
+                </Typography>
+                <Typography>
+                  Trailing price to equity ratio: {assetInfo['trailing_PE']}
+                </Typography>
+                <Typography>
+                  Dividend payout ratio: {assetInfo['payout_ratio']}
+                </Typography>
+                <Typography>
+                  Dividend yield: {assetInfo['dividend_yield']}
+                </Typography>
+              </CardContent>
+          </Card>
+          <Card variant="outlined">
+              <CardContent>
+                <Typography>
+                  Overall rating: {assetInfo['predictions_signal']}
+                </Typography>
+                <Typography>
+                  Buy signals: {assetInfo['predictions_buy']}
+                </Typography>
+                <Typography>
+                  Hold signals: {assetInfo['predictions_hold']}
+                </Typography>
+                <Typography>
+                  Sell signals: {assetInfo['predictions_sell']}
+                </Typography>
+              </CardContent>
+            </Card>
         <div className={styles.container}>
             News Container
             {newsList.map((article) => (

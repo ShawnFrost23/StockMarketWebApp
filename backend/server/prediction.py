@@ -93,12 +93,4 @@ def predict(ticker):
     else:
         signal = "Hold"
 
-
     return {"signal": signal, "buy": buy, "sell": sell, "hold": cont}
-
-
-
-
-#print(predict('APT'))
-
-

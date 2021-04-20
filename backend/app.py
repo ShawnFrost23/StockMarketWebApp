@@ -231,6 +231,9 @@ def validate_name():
 def get_overview():
     return dumps(overview(request.values.get('asset_id')))
 
+@app.route('/asset_public', methods=['GET'])
+def get_overview_public():
+    return dumps(overview_public(request.values.get('ticker')))
 
 # need ticker to generate prediction
 # return {"signal": signal, "buy": buy, "sell": sell, "hold": cont}
