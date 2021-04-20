@@ -6,9 +6,6 @@ import styles from './ViewAssetPublic.module.css';
 function ViewAssetPublic() {
     return (
         <div className={styles.container}>
-            <TopNavBar 
-                version={1}
-            />
             <ViewAssetPublicContainer />
         </div>
     )
