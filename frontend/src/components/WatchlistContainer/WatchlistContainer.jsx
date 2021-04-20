@@ -6,8 +6,6 @@ import styles from './WatchListContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import WatchListCards from '../WatchListCards/WatchListCards';
 import download from './download.png'; 
-import SearchBar from '../SearchBar/SearchBar';
-
 
 function WatchlistContainer() {
     const history = useHistory();
@@ -21,7 +19,7 @@ function WatchlistContainer() {
             method: 'GET',
         }
 
-        const res = await fetch('/watchlists' + '?' + new URLSearchParams({
+        const res = await fetch('/watchlists?' + new URLSearchParams({
             user_id: localStorage.getItem('user_id'),
         }), request_options);
 
@@ -53,7 +51,7 @@ function WatchlistContainer() {
       event.preventDefault();
       const watchlistNameStatus = checkWatchlistName(name);
 
-      if (watchlistNameStatus == false) {
+      if (watchlistNameStatus === false) {
         setNameErr(true);
       } else {
         setNameErr(false);
@@ -62,7 +60,7 @@ function WatchlistContainer() {
           method: 'POST',
         }
 
-        const res = await fetch('/watchlists/create' + '?' + new URLSearchParams({
+        const res = await fetch('/watchlists/create?' + new URLSearchParams({
             user_id: localStorage.getItem('user_id'),
             watchlist_name: name,
         }), request_options);
@@ -86,7 +84,7 @@ function WatchlistContainer() {
           method: 'DELETE',
       }
 
-      await fetch('/watchlists/delete' + '?' + new URLSearchParams({
+      await fetch('/watchlists/delete?' + new URLSearchParams({
           user_id: localStorage.getItem('user_id'),
           watchlist_id: id,
       }), request_options);
@@ -99,7 +97,7 @@ function WatchlistContainer() {
         method: 'POST', 
       }
 
-      await fetch('/send_automated_report' + '?' + new URLSearchParams({
+      await fetch('/send_automated_report?' + new URLSearchParams({
         user_id: localStorage.getItem('user_id'),
       }), request_options);
     }
@@ -116,7 +114,6 @@ function WatchlistContainer() {
           </div>
           <h2>Create a new watchlist</h2>
           <div className={styles.watchlistContainer}>
-            <SearchBar/>      
             <CustomTextField 
               lightVersion={true}
               placeholder="Name"

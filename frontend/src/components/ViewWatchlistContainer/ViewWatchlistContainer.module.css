@@ -1,18 +1,25 @@
-.container {
+.assetBox {
     width: 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.assetCard {
+    background-image: url(../../elements/unnamed.jpg);
+    background-size: cover;
+    width: 400px;
+    display: flex;
+    margin: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 1px 5px 1px;
+    border-radius: 5px;
 }
 
-.companyInfoSection {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.infoSectionRow {
+.watchlistInfo {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -39,35 +46,19 @@
 
 .changeNumber {
     font-size: 40px;
-    color: rgb(27, 22, 22);
+    color: green;
 }
 
-.verticalLine {
-    height: 40px;
-    border: 1px solid grey;
-}
-
-.changeVariants {
+.addTicker {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-
-.subChangeGroup {
-    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.subGroupHeading {
-    font-size: 13px;
-}
+.tickerName {
 
-.subGroupNumber {
-    font-size: 30px;
+    margin-top: 10px;
+    font-size: 25px;
 }

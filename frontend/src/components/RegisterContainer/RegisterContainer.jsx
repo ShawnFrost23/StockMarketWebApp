@@ -121,7 +121,7 @@ function RegisterContainer() {
                 method: 'POST'
             }
 
-            const response = await fetch('/auth/register' + '?' + new URLSearchParams({
+            const response = await fetch('/auth/register?' + new URLSearchParams({
                 email: email,
                 password: password,
                 nickname: name,
