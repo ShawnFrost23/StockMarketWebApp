@@ -60,6 +60,21 @@ Had team meeting on wednseday to discus the status and assist if someone is fall
 
 ## Week 8
 Finished the news for particular stock screens on Monday. Finished with everything in sprint 2 and ready for Demo!
+The demo went really good! After the demo, the team met to discuss the rettrosepctive B. Discussed about
+how everything went and what could've been improved. Prepared for final sprint.
 
+## Week 9
+The first half of week 9 was really busy for me. Trying to do other assignments and focusing on other work.
+In the second half of week 9, I started restructuring the code for better code quality. Started styling the 
+app by the weekend to make sure it was done on time. 
+
+## Week 10
+The team met on monday to discuss the progress. I had started the intial code styling and changing the functional components
+which used material ui cards and contents to standard html code for better styling options. I was waiting on elton and donna to 
+complete some part of the backend in order for me to complete the final frontend. Worked on monday and Tuesday
+for quite long hours to make the frontend look great. Finally wednesday came where we al gave the final demo. I gave the demo for sprint 1 components
+and the public web app. Rachid was satsified i reckon with what we have and asked a few questions which we confidently answered. Overall I thought it went great.
+After the demo, we decided to work on our allocated parts for the final report. I completed the final commenting on code and restructing for better code quality.
+Frontend is ready for submission now and only have to work on the report!
 
 
