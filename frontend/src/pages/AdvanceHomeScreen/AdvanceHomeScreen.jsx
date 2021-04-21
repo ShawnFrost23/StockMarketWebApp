@@ -7,6 +7,8 @@ import WatchlistContainer from '../../components/WatchlistContainer/WatchlistCon
 import styles from './AdvanceHomeScreen.module.css';
 
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
+
+// Functional class for advance home screen for user.
 function AdvanceHomeScreen() {    
     return (
         <div className={styles.container}>

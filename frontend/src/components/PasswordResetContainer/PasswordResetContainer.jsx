@@ -5,6 +5,8 @@ import styles from './PasswordResetContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
+
+// Functioncal Class for passwrod reset container on password reset page.
 function PasswordResetContainer() {
     // Verification Code State Variables
     const [veriCode, setVeriCode] = React.useState('');
@@ -35,6 +37,7 @@ function PasswordResetContainer() {
     // Function to check confirm new passsword in the input field and verify
     // if the entered passwords match or not.
     const checkPass = (newPass, confirmNewPass) => {
+        // Error handling for password.
         if (newPass.length < 8) {
             setNewPassHelpText('Password should have atleast 8 characters');
             setNewPassErr(true);
@@ -70,14 +73,14 @@ function PasswordResetContainer() {
     async function handleChangePassword () {
         const veriCodeStatus = checkVeriCode(veriCode);
         const passStatus = checkPass(newPass, confirmNewPass);
-        
+        // Error handling for verification code.
         if (veriCodeStatus === false) {
             setVeriCodeErr(true);
         } else if (veriCodeStatus === true) {
             setVeriCodeHelpText('');
             setVeriCodeErr(false);
         }
-
+        // error handling for entered passwords.
         if (passStatus === false) {
             // Do Nothing
         } else if (passStatus === true) {
@@ -102,6 +105,7 @@ function PasswordResetContainer() {
         }
     }
 
+    // button action for cancel button.
     async function cancelButtonHandler() {
         history.push('loginScreen');
     }

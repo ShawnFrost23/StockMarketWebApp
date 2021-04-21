@@ -7,13 +7,17 @@ import CustomTextField from '../CustomTextField/CustomTextField';
 import WatchListCards from '../WatchListCards/WatchListCards';
 import download from './download.png'; 
 
+// Functional Class for displaying all the watchlists on advance home screen.
 function WatchlistContainer() {
     const history = useHistory();
+
+    // Set state variables.
     const [watchlists, setWatchlists] = useState([]);
     const [name, setName] = useState('');
     const [nameErr, setNameErr] = React.useState(false)
     const [nameHelpText, setNameHelpText] = React.useState('');
 
+    // Function to get all the watchlists. 
     const getWatchlists = async () => {
         const request_options = {
             method: 'GET',
@@ -38,6 +42,7 @@ function WatchlistContainer() {
         displayWatchlists();
     }, [history]);
 
+    // Function to check entered name for new watchlists.
     const checkWatchlistName = (name) => {
       if (name === '') {
         setNameHelpText('Enter Watchlist Name');
@@ -46,6 +51,7 @@ function WatchlistContainer() {
       return true;
     }
 
+    // Button action for creating new watchlist.
     const createWatchlist = async (event) => {
       
       event.preventDefault();
@@ -71,14 +77,17 @@ function WatchlistContainer() {
       
     }
 
+    // Button action for view button
     const viewWatchlist = (id) => {
       history.push(`watchlist/${id}`);
     }
 
+    // Button action for edit button.
     const editWatchlist = (id) => {
       history.push(`watchlist/edit/${id}`);
     }
 
+    // Button action for delete button.
     const deleteWatchlist = async (id) => {
       const request_options = {
           method: 'DELETE',
@@ -92,6 +101,7 @@ function WatchlistContainer() {
       getWatchlists();
     }
 
+    // Button action to get detailed report of watchlists on email.
     const send_report = async (id) => {
       const request_options = {
         method: 'POST', 

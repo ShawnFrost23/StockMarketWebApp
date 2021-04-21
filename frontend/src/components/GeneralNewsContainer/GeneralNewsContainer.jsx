@@ -6,21 +6,27 @@ import styles from './GeneralNewsContainer.module.css';
 
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
 
+// Functional Class for general news contianer. Callin API to display news for
+// customised news on advance home screen.
 function GeneralNewsContainer() {
+    // Set State Variables
     const [newsList, setNewsList] = useState([]);
     const history = useHistory();
 
+    // Function to get news for all the assets in different watchlists for logged in user.
     const getNewsForTickers = async () => {
         const request_options = {
             method: 'GET',
         }
 
+        // Fetch wathclists for user
         const res = await fetch("/watchlists?" + new URLSearchParams({
             user_id: localStorage.getItem('user_id'),
         }), request_options);
 
         const jsonResponse = await res.json();
         const newList = [];
+        // For each watchlist, fetch the assest
         for (let index = 0; index < jsonResponse.length; index++) {
             const watchList = jsonResponse[index];
             const listID = watchList[0];
@@ -39,12 +45,14 @@ function GeneralNewsContainer() {
             method: 'POST',
         }
         const articleList = [];
+        // Get company name for the assests
         for ( let index = 0; index < comapnyList.length; index++) {
             const companyName = comapnyList[index];
             const tickerValidation = await fetch('/watchlists/ticker_validation?' + new URLSearchParams({
                 ticker: companyName,
             }), request_options2);
             const tickerValidationBody = await tickerValidation.json();
+            // Fetch News
             if (tickerValidationBody.success === true) {
                 const companyFullName = await tickerValidationBody.company_name;
                 const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
@@ -68,6 +76,7 @@ function GeneralNewsContainer() {
         setNewsList(articleList);
     }
 
+    // Call use effect.
     useEffect(() => {
         const displayNews = async () => {
             getNewsForTickers();

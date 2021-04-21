@@ -17,7 +17,7 @@ import ViewAssetPublic from './pages/ViewAssetPublic/ViewAssetPublic';
 import AccountSelection from './pages/AccountSelection/AccountSelection';
 import BasicHomeScreen from './pages/BasicHomeScreen/BasicHomeScreen';
 
-
+// App.
 function App() {
   return (
     <Router>

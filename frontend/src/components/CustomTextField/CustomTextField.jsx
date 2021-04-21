@@ -73,6 +73,7 @@ const CssTextFieldLightVersion = withStyles({
   },
 })(TextField);
 
+// Functional Class for custom text field component with dark and light variants for different screens.
 function CustomTextField({ lightVersion, placeholder, type, setValue, errorStatus, helperText, size }) {
   const classes = useStyles();
 

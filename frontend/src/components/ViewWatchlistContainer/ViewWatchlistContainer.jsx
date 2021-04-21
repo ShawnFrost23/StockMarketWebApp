@@ -8,15 +8,18 @@ import {
 import styles from './ViewWatchlistContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
+// Functional class for viewing watchlists.
 function ViewWatchlistContainer() {
     const history = useHistory();
 
+    // Set State variables.
     const [watchlistName, setWatchlistName] = useState('');
     const [newAssetName, setNewAssetName] = useState('');
     const [assets, setAssets] = useState([]);
     const [aggregateInfo, setAggregateInfo] = useState({});
     const { watchlistID } = useParams();
 
+    // function to get all the watchlists for the user.
     const getWatchlist = async () => {
       const request_options = {
           method: 'GET',
@@ -37,6 +40,7 @@ function ViewWatchlistContainer() {
       setAggregateInfo(aggregateJsonResponse);
     }
 
+    // Function to get assets for the watchlists.
     const getAssets = async () => {
       const request_options = {
         method: 'GET',
@@ -64,6 +68,7 @@ function ViewWatchlistContainer() {
       displayAssets();
     }, [watchlistID, history]);
 
+    // Button action for back.
     const toAllWatchlists = () => {
       history.push("/advanceHome")
     }
@@ -83,10 +88,12 @@ function ViewWatchlistContainer() {
       getAssets();
     }
 
+    // Button action to for viewing asset.
     const viewAsset = async (id) => {
       history.push(`/watchlist/${watchlistID}/asset/${id}`);
     }
 
+    // Button action for delete button.
     const deleteAsset = async (id) => {
       const request_options = {
           method: 'DELETE',

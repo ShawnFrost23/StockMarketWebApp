@@ -5,6 +5,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+// Function to display wathclit cards on advance home screen.
 function WatchListCards({ id, watchListName, viewFunc, editFunc, deleteFunc}) {
     return (
         <div key={id} className={styles.container}>

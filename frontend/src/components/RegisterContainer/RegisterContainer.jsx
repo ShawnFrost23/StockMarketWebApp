@@ -5,6 +5,7 @@ import styles from './RegisterContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
+// Functional class for register contianer to be displayed on register screen.
 function RegisterContainer() {
     // Name State Variables
     const [name, setName] = React.useState('');
@@ -57,6 +58,7 @@ function RegisterContainer() {
     // Function to check passswords in the input field and verify
     // if the entered passwords match or not.
     const checkPass = (newPass, confirmNewPass) => {
+        // Error handling for password.
         if (newPass.length < 8) {
             setPasswordHelpText('Password should have atleast 8 characters');
             setPasswordErr(true);
@@ -88,11 +90,13 @@ function RegisterContainer() {
         return true;
     }
 
+    // Button action for register button
     async function handleRegister () {
         const nameStatus = checkName(name);
         const emailStatus = checkEmail(email);
         const passStatus = checkPass(password, confirmPassword);
 
+        // Error handling for name
         if (nameStatus === false) {
             setNameErr(true);
         } else if (nameStatus === true) {
@@ -100,6 +104,7 @@ function RegisterContainer() {
             setNameErr(false);
         }
 
+        // Error handling for email
         if (emailStatus === false) {
             setEmailErr(true);
         } else if (emailStatus === true) {
@@ -107,6 +112,7 @@ function RegisterContainer() {
             setEmailErr(false);
         }
 
+        // Error handling for password
         if (passStatus === false) {
             // Do Nothing
         } else if (passStatus === true) {
@@ -138,10 +144,10 @@ function RegisterContainer() {
                     setEmailErr(true);
                 }
             }
-
         }
     }
 
+    // Button action for login button
     const loginButtonHandler = () => {
         history.push('loginScreen');
     }

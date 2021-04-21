@@ -21,6 +21,7 @@ const ColorButton = withStyles((theme) => ({
 
 }))(Button);
 
+// Functional Class for custom button component. 
 function CustomButton({ displayText, func }) {
   return (
     <ColorButton variant="outlined" color="primary" size="large" onClick={func} >{displayText}</ColorButton>

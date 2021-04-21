@@ -6,12 +6,15 @@ import { useHistory } from 'react-router-dom';
 import CustomButton from '../CustomButton/CustomButton';
 import styles from './SearchBar.module.css';
 
+// Functional class for search bar to search companies.
 function SearchBar() {
+    // Set state variables.
     const [hintData, setHintData] = useState([])
     const [text, setText] = useState('')
 
     const history = useHistory();
 
+    // Setting data of ASX companies.
     const getData = async () => {
        const res = await axios.get('https://jsonplaceholder.typicode.com/users')
         var hintArray = [
@@ -2233,12 +2236,13 @@ function SearchBar() {
       getData()
     })
 
+    // button action for search asset button.
     async function searchAsset() {
       const request_options = {
           method: 'POST',
       }
 
-      const res = await fetch('/watchlists/company_validation' + '?' + new URLSearchParams({
+      const res = await fetch('/watchlists/company_validation?' + new URLSearchParams({
           company_name: text,
       }), request_options);
 

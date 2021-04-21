@@ -6,13 +6,17 @@ import styles from './BasicHomeScreen.module.css';
 import GeneralNewsCard from '../../components/GeneralNewsCard/GeneralNewsCard';
 
 // API KEY for newsapi: 6f3b269cd1974ca58522d326e9556f0c
+
+// Functional class for basic home screen.
 function BasicHomeScreen() {
+    // Set state variables.
     const [newsList, setNewsList] = useState([]);
 
+    // Function to get general ASX news for basic user.
     async function getGeneralNews () {
         const companyFullName = 'ASX';
         const response = await fetch(`https://newsapi.org/v2/everything?q=${companyFullName}&language=en&sortBy=publishedAt&apiKey=6f3b269cd1974ca58522d326e9556f0c`)
-        if (response.status == 429) {
+        if (response.status === 429) {
             setNewsList([]);
         } else {
             const body = await response.json();

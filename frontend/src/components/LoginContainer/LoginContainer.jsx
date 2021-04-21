@@ -5,6 +5,8 @@ import styles from './LoginContainer.module.css';
 import CustomTextField from '../CustomTextField/CustomTextField';
 import CustomButton from '../CustomButton/CustomButton';
 import LogRegHeading from '../LogRegHeading/LogRegHeading';
+
+// Functional class to have login container dispalyed on login page.
 function LoginContainer() {
     // Name State Variables
     const [email, setEmail] = React.useState('');
@@ -44,10 +46,12 @@ function LoginContainer() {
         return true;
     }
 
+    // Button action for login button
     async function handleLogin () {
         const emailStatus = checkEmail(email);
         const passwordStatus = checkPassword(password);
 
+        // Error Handling for email
         if (emailStatus === false) {
             setEmailErr(true);
         } else if (emailStatus === true) {
@@ -55,6 +59,7 @@ function LoginContainer() {
             setEmailErr(false);
         }
 
+        // Error handling for passwrod
         if (passwordStatus === false) {
             setPasswordErr(true);
         } else if (passwordStatus === true) {
@@ -83,9 +88,11 @@ function LoginContainer() {
         }
     }
 
+    // Button action for forget passwrod button.
     async function handleForgotPassword () {
         const emailStatus = checkEmail(email);
 
+        // Error handling for email.
         if (emailStatus === false) {
             setEmailErr(true);
         } else if (emailStatus === true) {
@@ -109,9 +116,11 @@ function LoginContainer() {
         }
     }
 
+    // Button action for register button
     const registerButtonHandler = () => {
         history.push('registerScreen');
     }
+    
     return (
         <div className={styles.container}>
             <LogRegHeading

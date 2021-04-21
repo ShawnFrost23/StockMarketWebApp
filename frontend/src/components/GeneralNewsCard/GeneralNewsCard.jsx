@@ -1,6 +1,9 @@
 import React from 'react'
 
 import styles from './GeneralNewsCard.module.css';
+
+// Functional class for dispalying news. Common card to display news at different
+// screens.
 function GeneralNewsCard( { newsArticle } ) {
     return (
         <div className={styles.container}>

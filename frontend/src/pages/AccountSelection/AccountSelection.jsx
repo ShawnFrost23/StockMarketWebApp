@@ -4,12 +4,16 @@ import { useHistory } from 'react-router-dom';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import styles from './AccountSelection.module.css';
 
+// Functionl class for account slection page.
 function AccountSelection() {
     const history = useHistory();
 
+    // Button action for basic account.
     const handleBasicAccountSelection = () => {
         history.push('basicHome');
     }
+
+    // Button action for advance account.
     const handleAdvanceAccountSelection = () => {
         history.push('loginScreen');
     }
